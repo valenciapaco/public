@@ -514,7 +514,7 @@ SCREENS[5] = () => {
   }).join('');
   return `
     <h2>Ponlos en orden</h2>
-    ${ningunoGusto ? `<div class="quote">Ninguno te convenció del todo, y está bien. Ordénalos de menos malo a más aceptable y mándanoslo así. Si de verdad ninguno te late, no hay problema: generamos más opciones a partir de lo que sí te gustó o te disgustó de estos cuatro.</div>` : `<p>De los que marcaste "me gusta" o "me encanta", ponlos en el orden que prefieras, del que más te late al que menos.</p>`}
+    ${ningunoGusto ? `<div class="quote">Ninguno te convenció del todo, y está bien. Ordénalos del menos malo al más malo y mándanoslo así. Si de verdad ninguno te late, no hay problema: generamos más opciones a partir de lo que sí te gustó o te disgustó de estos cuatro.</div>` : `<p>De los que marcaste "me gusta" o "me encanta", ponlos en el orden que prefieras, del que más te late al que menos.</p>`}
     <ol class="orderlist">${items}</ol>
     <div class="btn-row"><button class="btn btn-primary" onclick="confirmarOrden()">Confirmar orden</button></div>
   `;

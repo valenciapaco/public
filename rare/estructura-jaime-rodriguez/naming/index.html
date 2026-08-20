@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elige el nombre de tu empresa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Poppins:wght@400;600&family=Sora:wght@400;600&family=Work+Sans:wght@400;600&family=Nunito+Sans:wght@400;600&family=Lora:wght@400;600&family=Playfair+Display:wght@400;600&family=Source+Serif+4:wght@400;600&family=IBM+Plex+Mono:wght@400;600&family=Space+Mono:wght@400;700&family=Bricolage+Grotesque:wght@400;700&family=Unbounded:wght@500;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14101B;
+    --bg-2:#1F1729;
+    --card:#241A33;
+    --border:#3A2E4D;
+    --purple:#3D1A5B;
+    --purple-light:#6B3FA0;
+    --gold:#C9A227;
+    --gold-light:#E8C55C;
+    --text:#F5F1E8;
+    --text-dim:#B8AFC7;
+    --danger:#E8622C;
+    --ok:#7FD8A0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:24px 20px 80px;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;margin:0 0 12px;}
+  h1{font-size:1.6rem;}
+  h2{font-size:1.35rem;color:var(--gold-light);}
+  h3{font-size:1.05rem;color:var(--text);}
+  p{margin:0 0 14px;color:var(--text-dim);}
+  strong{color:var(--text);}
+  .progress{
+    position:sticky;top:0;background:var(--bg);padding:14px 0 10px;z-index:10;
+  }
+  .progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--purple-light),var(--gold));transition:width .3s ease;}
+  .progress-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim);margin-top:6px;letter-spacing:.03em;}
+  .screen{display:none;animation:fadeIn .35s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:20px;margin-bottom:16px;
+  }
+  .btn{
+    display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;
+    padding:13px 22px;border-radius:10px;border:1px solid var(--gold);
+    background:transparent;color:var(--gold-light);cursor:pointer;
+    transition:all .15s ease;text-align:center;
+  }
+  .btn:hover{background:var(--gold);color:var(--bg);}
+  .btn-primary{background:var(--gold);color:var(--bg);}
+  .btn-primary:hover{background:var(--gold-light);}
+  .btn-ghost{border-color:var(--border);color:var(--text-dim);}
+  .btn-ghost:hover{background:var(--bg-2);color:var(--text);}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .btn-row.center{justify-content:center;}
+  .btn-block{width:100%;}
+  .reactions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;}
+  .reactions button{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;
+    padding:12px 8px;border-radius:10px;border:1px solid var(--border);
+    background:var(--bg-2);color:var(--text-dim);cursor:pointer;transition:all .15s ease;
+  }
+  .reactions button:hover{border-color:var(--gold);color:var(--text);}
+  .reactions button.selected{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+  .name-hero{font-family:'Space Grotesk',sans-serif;font-size:2.4rem;font-weight:700;color:var(--gold-light);margin-bottom:2px;}
+  .name-sub{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--text-dim);margin-bottom:14px;}
+  .avail{
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--bg-2);
+    border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-bottom:16px;color:var(--ok);
+  }
+  .risk{
+    font-size:.85rem;color:var(--text-dim);border-top:1px dashed var(--border);
+    margin-top:12px;padding-top:12px;
+  }
+  .risk strong{color:var(--gold-light);}
+  ol.orderlist,ul.orderlist{list-style:none;margin:0;padding:0;}
+  .order-item{
+    display:flex;align-items:center;gap:10px;background:var(--bg-2);
+    border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;
+  }
+  .order-item .pos{font-family:'JetBrains Mono',monospace;color:var(--gold);font-weight:700;min-width:20px;}
+  .order-item .name{flex:1;font-weight:600;}
+  .order-item .arrows{display:flex;gap:4px;}
+  .order-item .arrows button{
+    background:var(--card);border:1px solid var(--border);color:var(--text-dim);
+    border-radius:6px;width:30px;height:30px;cursor:pointer;font-size:.9rem;
+  }
+  .order-item .arrows button:hover{border-color:var(--gold);color:var(--gold-light);}
+  .order-item .arrows button:disabled{opacity:.3;cursor:default;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem;}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:top;}
+  th{color:var(--gold-light);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;}
+  td:first-child{color:var(--text);font-weight:600;white-space:nowrap;}
+  .round-title{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--gold-light);margin:20px 0 4px;font-size:.95rem;}
+  textarea,input[type=text]{
+    width:100%;background:var(--bg-2);border:1px solid var(--border);border-radius:10px;
+    color:var(--text);font-family:'Inter',sans-serif;font-size:.95rem;padding:12px;resize:vertical;
+  }
+  textarea:focus,input[type=text]:focus{outline:none;border-color:var(--gold);}
+  .quote{
+    background:var(--bg-2);border-left:3px solid var(--gold);padding:12px 16px;
+    border-radius:0 8px 8px 0;margin:14px 0;color:var(--text-dim);font-style:italic;
+  }
+  .slider-block{margin-bottom:22px;}
+  .slider-labels{display:flex;justify-content:space-between;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;}
+  input[type=range]{
+    width:100%;height:4px;background:var(--border);border-radius:2px;-webkit-appearance:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;
+  }
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;}
+  .palette-card{
+    background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;
+  }
+  .palette-card.chosen{border-color:var(--gold);}
+  .palette-card.discarded{opacity:.4;}
+  .swatches{display:flex;gap:6px;margin:10px 0;}
+  .swatch{width:38px;height:38px;border-radius:8px;border:1px solid rgba(255,255,255,.15);}
+  .palette-actions{display:flex;gap:8px;margin-top:8px;}
+  .palette-actions button{
+    font-size:.78rem;padding:7px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--card);color:var(--text-dim);cursor:pointer;
+  }
+  .palette-actions button.on-like{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+  .palette-actions button.on-discard{background:var(--danger);color:var(--bg);border-color:var(--danger);}
+  .type-block{margin-bottom:24px;}
+  .type-options{display:grid;gap:8px;}
+  .type-option{
+    background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;
+    cursor:pointer;transition:all .15s ease;
+  }
+  .type-option:hover{border-color:var(--gold);}
+  .type-option.selected{border-color:var(--gold);background:rgba(201,162,39,.1);}
+  .type-sample{font-size:1.5rem;color:var(--text);}
+  .type-name{font-size:.75rem;color:var(--text-dim);margin-top:4px;font-family:'JetBrains Mono',monospace;}
+  .checkbox-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;background:var(--bg-2);padding:12px 14px;border-radius:10px;border:1px solid var(--border);}
+  .checkbox-row input{margin-top:3px;}
+  .footer-note{font-size:.78rem;color:var(--text-dim);text-align:center;margin-top:30px;opacity:.7;}
+  #summaryBlock{
+    white-space:pre-wrap;font-family:'JetBrains Mono',monospace;font-size:.75rem;
+    background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px;
+    max-height:280px;overflow-y:auto;color:var(--text-dim);
+  }
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:var(--bg);padding:10px 18px;border-radius:20px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;
+    opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:100;
+  }
+  .toast.show{opacity:1;}
+  @media(max-width:480px){
+    .name-hero{font-size:1.9rem;}
+    .reactions{grid-template-columns:1fr;}
+    .swatches{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="progress">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+      <button id="backBtn" onclick="regresar()" style="display:none;background:none;border:none;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:.72rem;cursor:pointer;padding:0;letter-spacing:.03em;">← Regresar</button>
+      <div class="progress-label" id="progressLabel" style="margin-top:0;">PASO 1 DE 15</div>
+    </div>
+  </div>
+  <div id="screens"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- DATOS ---------- */
+
+const NOMBRES = [
+  {
+    id:'roderwell', nombre:'Roderwell', sufijo:'Roderwell Medic · Roderwell Retail',
+    dominio:'Libre en .com, .com.mx, .mx e .io. El único de los cuatro con las cuatro libres.',
+    origen:'Rodericus es como se escribía Rodríguez en los documentos medievales en latín. La terminación "-well" es la de los apellidos y despachos ingleses de toda la vida.',
+    frase:'"Es mi apellido, pero en su forma antigua. Nadie lo nota, y a mí me recuerda que respondo yo por cada proyecto."',
+    teDa:'Suena a firma con años encima, no a alguien que acaba de empezar. Nunca te va a encasillar en una industria. Es el único de los cuatro sin ningún choque detectado en ningún país.',
+    teCuesta:'No suena a tecnología. Si quieres que a la primera se note que es software, este es el que menos lo hace.',
+    impi:'Sin coincidencia exacta registrada. Coincidencias fonéticas en categoría 42: RODHER, RODIER, RODHE.',
+    porQueExcelente:'Roderwell es, de las tres rondas completas de este proceso, el único nombre que llegó limpio en todo: las cuatro extensiones de dominio libres, incluido el .com, y ninguna empresa con ese nombre en ningún país que revisamos. Eso no fue suerte, fue diseño: al construirlo sobre tu propio apellido en su forma antigua, nadie más iba a llegar ahí por accidente. Es también el que mejor aguanta el paso del tiempo: cuando tengas veinte o treinta personas trabajando contigo, "Roderwell" va a sonar exactamente igual de sólido que hoy. Y como no suena a ningún giro en particular, va a poder venderle a una clínica, a una fábrica o a una cafetería sin que el nombre le estorbe a ninguna.',
+    legal:['Roderwell Desarrollo de Software S.A.','Roderwell Soluciones Tecnológicas S.A.','Roderwell Sistemas de Gestión S.A.','Roderwell Tecnologías de la Información S.A.','Roderwell Servicios Digitales S.A.']
+  },
+  {
+    id:'nubion', nombre:'Nubion', sufijo:'Nubion Medic · Nubion Retail',
+    dominio:'Libre en .com.mx, .mx e .io.',
+    origen:'Es tuyo. Nube más visión.',
+    frase:'"Lo que vendemos es que veas tu negocio completo, y eso vive en la nube. El nombre lo dice."',
+    teDa:'Es el que tú inventaste, y eso vale mucho a la hora de defenderlo. Dice lo que hace sin tener que explicarlo.',
+    teCuesta:'El final "-bion" suena a "bio", y como tu primer producto es médico, hay riesgo de que la empresa madre se lea como empresa de salud, justo lo que no queremos cuando le vendas a una fábrica o a una tienda.',
+    impi:'Sin coincidencia exacta en tu categoría (hay una coincidencia exacta de nombre, ANUBION, pero es una marca de juguetes en otra categoría). Coincidencias fonéticas en categoría 42: NUBINIO, NUBIO, NUBING, NUBI — el nombre con más vecinos fonéticos de los cuatro. El dato que tranquiliza: esas cuatro marcas conviven registradas entre sí, lo que sugiere que el IMPI no está bloqueando por parecido fonético en esta familia de nombres.',
+    porQueExcelente:'Nubion tiene algo que ningún otro finalista tiene: lo inventaste tú, antes de que empezara todo este proceso de verificación. Eso importa más de lo que parece, porque vas a defender con mucha más fuerza un nombre en el que te reconoces que uno que alguien más te entregó. Además, en una sola palabra dice exactamente lo que vendes: ver tu negocio completo, y hacerlo desde la nube. Es el finalista que menos necesita explicación la primera vez que alguien lo escucha.',
+    legal:['Nubion Desarrollo de Software S.A.','Nubion Soluciones Tecnológicas S.A.','Nubion Sistemas de Gestión S.A.','Nubion Tecnologías de la Información S.A.','Nubion Servicios Digitales S.A.']
+  },
+  {
+    id:'ikisoft', nombre:'Ikisoft', sufijo:'Ikisoft Medic · Ikisoft Retail',
+    dominio:'Libre en .com.mx, .mx e .io.',
+    origen:'"Iki" es un concepto japonés que describe lo bien hecho que no necesita presumirse: elegancia sin ostentación. El "-soft" sigue el mismo patrón de Luxsoft, que tú mencionaste como referencia.',
+    frase:'"Iki es hacer las cosas bien sin andar presumiendo. Así trabajamos."',
+    teDa:'Es el que más se nota que es de tecnología, que era tu preferencia. Sigue el molde que ya te gustaba.',
+    teCuesta:'El "-soft" tiene edad, suena más a empresa que vende licencias que a plataforma por suscripción con IA. Y vas a tener que explicar qué es "iki" cada vez que te pregunten, en México y en Estados Unidos.',
+    impi:'Sin coincidencia exacta registrada. Coincidencias fonéticas en categoría 42: EQUISOFT, KEYSOFT, EKASOFT.',
+    porQueExcelente:'Ikisoft es el finalista que más rápido comunica "somos una empresa de tecnología", que es justo lo que tú dijiste que te importaba. Sigue el mismo patrón de Luxsoft, la referencia que tú mismo diste desde el principio, así que es el nombre con el que probablemente te vas a sentir más cómodo de entrada. Su historia (elegancia sin necesidad de presumir) también es, sin que lo hayamos buscado a propósito, una descripción bastante exacta de cómo describes tu forma de trabajar: cuidado al detalle, sin ruido.',
+    legal:['Ikisoft Desarrollo de Software S.A.','Ikisoft Soluciones Tecnológicas S.A.','Ikisoft Sistemas de Gestión S.A.','Ikisoft Tecnologías de la Información S.A.','Ikisoft Servicios Digitales S.A.']
+  },
+  {
+    id:'drexen', nombre:'Drexen', sufijo:'Drexen Medic · Drexen Retail',
+    dominio:'Libre en .com.mx, .mx e .io.',
+    origen:'De ningún lado. Es inventado a propósito.',
+    frase:'"No significa nada. Va a significar lo que hagamos con él."',
+    teDa:'No arrastra el significado de nadie más, se registra sin pelear, y suena firme y corporativo.',
+    teCuesta:'Hay que construirle sentido desde cero, con tiempo y trabajo de marca. Fonéticamente se parece a nombres de empresas de TI en India, donde tienes operación hermana.',
+    impi:'Sin coincidencia exacta registrada. Es el de menos coincidencias fonéticas de los cuatro, y también en categoría 42: DRESSER, DRAXON.',
+    porQueExcelente:'Drexen es el finalista con menos riesgo futuro de los cuatro, precisamente porque no significa nada todavía. No vas a heredar la historia de nadie más, ni vas a competir contra el significado previo de una palabra real. Todo lo que Drexen va a significar lo construimos nosotros, desde cero, exactamente a tu medida. Suena a empresa establecida desde el primer día, y tiene dominio disponible en tres extensiones.',
+    legal:['Drexen Desarrollo de Software S.A.','Drexen Soluciones Tecnológicas S.A.','Drexen Sistemas de Gestión S.A.','Drexen Tecnologías de la Información S.A.','Drexen Servicios Digitales S.A.']
+  }
+];
+
+const OTROS_RONDAS = [
+  {titulo:'Ronda 1 — primeros candidatos verificados', items:[
+    ['Arx','Marca registrada de una empresa grande de software'],
+    ['Iki','Sin dominio bueno disponible en ningún país'],
+    ['Kumo','Choca con Kumo.AI, empresa activa de análisis de datos con IA'],
+    ['Lumina','Muy cerca de Illumina, empresa grande de genómica, justo en el terreno de salud'],
+    ['Vector','Choca con Vector Casa de Bolsa, marca fuerte y conocida en México']
+  ]},
+  {titulo:'Ronda 2 — variaciones construidas sobre las raíces que más te gustaban', items:[
+    ['Arxum','Choca con una empresa alemana de software industrial'],
+    ['Ikion','Muy cerca de Ikione, empresa de software activa en India'],
+    ['Ikia','Choca con Ikia Tech, estudio de desarrollo con tu mismo giro de negocio'],
+    ['Kumoa','Este sí quedó limpio de todo riesgo legal. Se descartó solo porque no convenció por gusto']
+  ]},
+  {titulo:'Ronda 3 — segunda ronda, con un especialista distinto, sin ver nuestro trabajo previo', items:[
+    ['Vantel','Choca con una empresa de software activa en India'],
+    ['Jaro','Choca con Jaro.dev, estudio de desarrollo, tu mismo negocio'],
+    ['Datrix','Choca con una empresa de analítica de datos en Reino Unido'],
+    ['Luxen','La palabra ya está trabajada en paneles solares e iluminación'],
+    ['Aptus','Choca con una empresa de software activa en India'],
+    ['Datum / Arvo','Empresas de TI activas y establecidas con esos nombres']
+  ]},
+  {titulo:'Ronda 4 — tercera ronda, ya informada de todo lo aprendido', items:[
+    ['Keelson','Varias empresas pequeñas ya usan el nombre'],
+    ['Millwright','Choca con una empresa activa en India'],
+    ['Quadriva','Muy cerca de Quadrivia AI, empresa de salud digital con financiamiento'],
+    ['Bacalar','Sin dominio bueno disponible, es un destino turístico real y esos ya están tomados'],
+    ['Tallyworks','Choca con un software activo de la misma categoría, con enfoque en datos'],
+    ['Kravel','Sin problema real de disponibilidad. Se descartó por ser casi el mismo nombre que Drexen']
+  ]}
+];
+
+const PALETAS = [
+  {id:'p1',nombre:'Despacho establecido',personalidad:'Con historia, confiable, serio',colores:['#0B2545','#C9A227','#F5F1E8','#3A3F44','#4A6FA5']},
+  {id:'p2',nombre:'SaaS moderno',personalidad:'Limpio, actual, tecnológico',colores:['#2D6CDF','#22262B','#E8EAED','#FFFFFF','#5FD4D0']},
+  {id:'p3',nombre:'Sobrio y cálido',personalidad:'Orgánico, cercano, tranquilo',colores:['#2F4B3C','#D8C9A3','#6B4F3B','#FAF6EE','#7C9473']},
+  {id:'p4',nombre:'Premium',personalidad:'Audaz, exclusivo, con carácter',colores:['#3D1A5B','#C9A227','#14101B','#FFFFFF','#B79FD1']},
+  {id:'p5',nombre:'Preciso e industrial',personalidad:'Técnico, exacto, sin adornos',colores:['#2B2B2E','#E8622C','#8A8D91','#F7F7F7','#45586B']},
+  {id:'p6',nombre:'Claridad y aire',personalidad:'Ligero, abierto, accesible',colores:['#7EC8E3','#FFFFFF','#1B4965','#F0F4F7','#F2C879']}
+];
+
+const TIPOGRAFIAS = [
+  {id:'geo',estilo:'Geométrica moderna',comunica:'Tecnología, orden, actual',fuentes:['Space Grotesk','Poppins','Sora']},
+  {id:'hum',estilo:'Humanista clásica',comunica:'Cercanía, legibilidad, calidez',fuentes:['Inter','Work Sans','Nunito Sans']},
+  {id:'serif',estilo:'Con serifas editorial',comunica:'Autoridad, tradición, peso',fuentes:['Lora','Playfair Display','Source Serif 4']},
+  {id:'mono',estilo:'Técnica monoespaciada',comunica:'Precisión, ingeniería, dato',fuentes:['JetBrains Mono','IBM Plex Mono','Space Mono']},
+  {id:'display',estilo:'Display con carácter',comunica:'Personalidad, memorabilidad',fuentes:['Bricolage Grotesque','Unbounded','Syne']}
+];
+
+const TONOS = [
+  ['Cercano y conversacional','Formal e institucional'],
+  ['Tradicional y confiable','Innovador y disruptivo'],
+  ['Técnico y preciso','Humano y accesible'],
+  ['Sobrio y minimalista','Expresivo y con carácter'],
+  ['Empresa grande y sólida','Taller especializado de autor'],
+  ['Local mexicano','Internacional sin acento']
+];
+
+const APLICACIONES = ['Propuestas comerciales en PDF','Panel de administración (dentro del producto)','Sitio web','Firma de correo','Facturas','Presentaciones a clínicas y otros clientes'];
+
+/* ---------- ESTADO ---------- */
+
+const STORAGE_KEY = 'jr_naming_form_v1';
+let state = {
+  screen:0,
+  reacciones:{},
+  orden:[],
+  ganador:null,
+  vozAltaHecho:false,
+  preguntaCliente:'',
+  convence:null,
+  tono:[50,50,50,50,50,50],
+  paletaLike:[],
+  paletaDiscard:[],
+  tipografia:{},
+  tipografiaDescartada:{},
+  tipoOrden:[],
+  refGusta:'', refNoQuiere:'', refCompetencia:'',
+  aplicacionesElegidas:[],
+  confirmDecisionPropia:false,
+  legalOrden:[]
+};
+
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ Object.assign(state, JSON.parse(raw)); }
+  }catch(e){}
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+function goTo(n){
+  state.screen=n; saveState(); render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function nombreById(id){ return NOMBRES.find(n=>n.id===id); }
+
+function regresar(){
+  if(state.screen === 0) return;
+  if(state.screen === 4){
+    if(cardIndex > 0){ cardIndex--; render(); }
+    else { goTo(3); }
+    return;
+  }
+  if(state.screen === 5){
+    cardIndex = NOMBRES.length - 1;
+    goTo(4);
+    return;
+  }
+  if(state.screen === 6 && state.orden.length === 1){
+    cardIndex = NOMBRES.length - 1;
+    goTo(4);
+    return;
+  }
+  goTo(state.screen - 1);
+}
+
+/* ---------- RENDER ENGINE ---------- */
+
+const TOTAL_SCREENS = 16;
+
+function updateProgress(){
+  const pct = Math.round((state.screen/(TOTAL_SCREENS-1))*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = `PASO ${state.screen+1} DE ${TOTAL_SCREENS}`;
+  document.getElementById('backBtn').style.display = state.screen===0 ? 'none' : 'inline-block';
+}
+
+function render(){
+  updateProgress();
+  const el = document.getElementById('screens');
+  el.innerHTML = '';
+  const fn = SCREENS[state.screen];
+  const section = document.createElement('div');
+  section.className='screen active';
+  section.innerHTML = fn();
+  el.appendChild(section);
+  bindScreenEvents();
+}
+
+/* ---------- PANTALLAS 0-3 (contenido fijo) ---------- */
+
+const SCREENS = {};
+
+SCREENS[0] = () => `
+  <h1>Elige el nombre de tu empresa</h1>
+  <p>Esto va a tomarte unos 10 minutos. Vamos a ver primero el nombre de la empresa madre, y si quieres seguir, después unas preguntas rápidas de identidad visual (color, tipografía) para arrancar el diseño en cuanto decidas.</p>
+  <p>No hay respuestas correctas. Contesta con lo primero que sientas, no lo que creas que deberías contestar.</p>
+  <div class="btn-row"><button class="btn btn-primary" onclick="goTo(1)">Empezar</button></div>
+`;
+
+SCREENS[1] = () => `
+  <h2>Tres cosas antes de ver los nombres</h2>
+  <div class="card">
+    <p><strong>1.</strong> No existe el nombre perfecto y completamente libre en todo el mundo. No lo buscamos. Buscamos uno que no tenga marca registrada en México en tu categoría, que tenga dominio disponible en México, y que no compita contra otra empresa de software activa en México, Estados Unidos o India.</p>
+    <p><strong>2.</strong> El <code>.com</code> ya no es un requisito. Está ocupado para casi cualquier palabra corta, casi siempre por alguien que solo la tiene en venta. Para una empresa de software como la tuya, lo que de verdad importa es <code>.com.mx</code> o <code>.mx</code> (para México), y como alternativa <code>.io</code> (el estándar no oficial de las empresas de tecnología) o <code>.dev</code> (pensado justo para empresas de desarrollo de software, literal). Cualquier combinación de esas es una base sólida, no necesitas las cuatro.</p>
+    <p><strong>3.</strong> Te proponemos que la plataforma médica no se llame igual que la empresa. La idea es que lleve el nombre de la empresa más un apellido, por ejemplo "Roderwell Medic". Vas a ver cada nombre probado así, para que juzgues las dos cosas juntas.</p>
+  </div>
+  <div class="quote">Sabemos que es tentador pedirle su opinión a tus familiares, amigos cercanos o a alguien más antes de decidir. Está bien platicarlo, pero la decisión final te corresponde a ti, y aquí está el porqué: el dueño defiende mucho mejor un nombre que él mismo eligió que uno que le sugirieron entre varios. Vas a tener que explicar este nombre cientos de veces en los próximos años, lo mejor es que sea tuyo desde el primer día.</div>
+  <div class="btn-row"><button class="btn btn-primary" onclick="goTo(2)">Entendido, seguir</button></div>
+`;
+
+SCREENS[2] = () => `
+  <h2>Antes de los finalistas: qué se cayó y por qué</h2>
+  <p>Sabemos que "Omnia" era uno de tus favoritos cuando empezamos. Lo revisamos primero, antes que nada más: <strong>está registrado como marca en México, justo en la categoría de desarrollo de software.</strong> No es que no nos gustara, es que usarlo sería construir la marca encima de un problema legal desde el principio.</p>
+  <p>La buena noticia: la dirección que te gustaba, la de la nube, sigue viva. De ahí salió <strong>Nubion</strong>, que es propuesta tuya, y está entre los cuatro finalistas.</p>
+  <p>En total se generaron y revisaron más de cien nombres, entre varias rondas de trabajo. La mayoría se cayó por lo mismo: los nombres cortos y bonitos casi siempre ya están tomados en algún país, y varios chocaban específicamente con empresas de software en India, que es donde tienes operación hermana.</p>
+  <p>Si en algún momento quieres ver el proceso completo, con gusto te lo compartimos y te lo explicamos. Aquí solo te presentamos lo que sí sobrevivió.</p>
+  <div class="btn-row"><button class="btn btn-primary" onclick="goTo(3)">Ver qué más se consideró</button></div>
+`;
+
+SCREENS[3] = () => {
+  const rondasHtml = OTROS_RONDAS.map(r=>`
+    <div class="round-title">${r.titulo}</div>
+    <table><tbody>
+      ${r.items.map(i=>`<tr><td>${i[0]}</td><td>${i[1]}</td></tr>`).join('')}
+    </tbody></table>
+  `).join('');
+  return `
+    <h2>El resto del camino</h2>
+    <p>Antes de los 4 finalistas, aquí está el rastro de los nombres que llegaron hasta la etapa de verificación real (dominio y marca), organizados por ronda de trabajo. Ninguno de estos sigue vivo, pero queremos que veas por qué se cayó cada uno.</p>
+    ${rondasHtml}
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(4)">Ver los 4 finalistas</button></div>
+  `;
+};
+
+/* ---------- PANTALLA 4: tarjetas de nombres ---------- */
+
+let cardIndex = 0;
+
+SCREENS[4] = () => {
+  if(cardIndex >= NOMBRES.length) cardIndex = 0;
+  const n = NOMBRES[cardIndex];
+  const sel = state.reacciones[n.id];
+  return `
+    <div class="progress-label" style="margin-bottom:10px;">NOMBRE ${cardIndex+1} DE ${NOMBRES.length}</div>
+    ${cardIndex>0 ? `<button onclick="tarjetaAnterior()" style="background:none;border:none;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:.72rem;cursor:pointer;padding:0;margin-bottom:10px;">← Tarjeta anterior</button>` : ''}
+    <div class="name-hero">${n.nombre}</div>
+    <div class="name-sub">${n.sufijo}</div>
+    <div class="avail">DOMINIO — ${n.dominio}</div>
+    <div class="card">
+      <p><strong>De dónde viene:</strong> ${n.origen}</p>
+      <p><strong>Lo que dirías tú:</strong> ${n.frase}</p>
+      <p><strong>Te da:</strong> ${n.teDa}</p>
+      <p><strong>Te cuesta:</strong> ${n.teCuesta}</p>
+      <div class="risk"><strong>Búsqueda directa en el IMPI:</strong> ${n.impi}</div>
+    </div>
+    <p style="text-align:center;font-style:italic;">Antes de reaccionar: dilo en voz alta.</p>
+    <div class="reactions">
+      <button data-r="no_me_gusta" class="${sel==='no_me_gusta'?'selected':''}" onclick="reaccionar('${n.id}','no_me_gusta')">No me gusta</button>
+      <button data-r="me_gusta" class="${sel==='me_gusta'?'selected':''}" onclick="reaccionar('${n.id}','me_gusta')">Me gusta</button>
+      <button data-r="me_encanta" class="${sel==='me_encanta'?'selected':''}" onclick="reaccionar('${n.id}','me_encanta')">Me encanta</button>
+    </div>
+  `;
+};
+
+function tarjetaAnterior(){
+  if(cardIndex > 0){ cardIndex--; render(); }
+}
+
+function reaccionar(id, valor){
+  state.reacciones[id] = valor;
+  saveState();
+  setTimeout(()=>{
+    if(cardIndex < NOMBRES.length-1){
+      cardIndex++;
+      render();
+    } else {
+      prepararOrden();
+      goTo(5);
+    }
+  }, 350);
+}
+
+/* ---------- PANTALLA 5: orden de preferencia ---------- */
+
+function prepararOrden(){
+  const positivos = NOMBRES.filter(n => state.reacciones[n.id]==='me_gusta' || state.reacciones[n.id]==='me_encanta').map(n=>n.id);
+  if(positivos.length === 0){
+    state.orden = NOMBRES.map(n=>n.id);
+  } else if(positivos.length === 1){
+    state.orden = positivos;
+    state.ganador = positivos[0];
+  } else {
+    state.orden = positivos;
+  }
+  saveState();
+}
+
+SCREENS[5] = () => {
+  if(state.orden.length === 1){
+    state.ganador = state.orden[0];
+    saveState();
+    goTo(6);
+    return '';
+  }
+  const ningunoGusto = NOMBRES.every(n => state.reacciones[n.id]==='no_me_gusta');
+  const items = state.orden.map((id,i)=>{
+    const n = nombreById(id);
+    return `
+      <li class="order-item">
+        <span class="pos">${i+1}</span>
+        <span class="name">${n.nombre}</span>
+        <span class="arrows">
+          <button ${i===0?'disabled':''} onclick="moverOrden(${i},-1)">↑</button>
+          <button ${i===state.orden.length-1?'disabled':''} onclick="moverOrden(${i},1)">↓</button>
+        </span>
+      </li>`;
+  }).join('');
+  return `
+    <h2>Ponlos en orden</h2>
+    ${ningunoGusto ? `<div class="quote">Ninguno te convenció del todo, y está bien. Ordénalos de menos malo a más aceptable y mándanoslo así. Si de verdad ninguno te late, no hay problema: generamos más opciones a partir de lo que sí te gustó o te disgustó de estos cuatro.</div>` : `<p>De los que marcaste "me gusta" o "me encanta", ponlos en el orden que prefieras, del que más te late al que menos.</p>`}
+    <ol class="orderlist">${items}</ol>
+    <div class="btn-row"><button class="btn btn-primary" onclick="confirmarOrden()">Confirmar orden</button></div>
+  `;
+};
+
+function moverOrden(i, dir){
+  const j = i+dir;
+  if(j<0 || j>=state.orden.length) return;
+  [state.orden[i], state.orden[j]] = [state.orden[j], state.orden[i]];
+  saveState(); render();
+}
+
+function confirmarOrden(){
+  state.ganador = state.orden[0];
+  saveState();
+  goTo(6);
+}
+
+/* ---------- PANTALLA 6: checkpoint final ---------- */
+
+SCREENS[6] = () => {
+  const n = nombreById(state.ganador);
+  return `
+    <h2>Antes de cerrar esto</h2>
+    <p>Tu primer lugar es <strong>${n.nombre}</strong>. Antes de confirmarlo, tres pruebas rápidas.</p>
+
+    <div class="card">
+      <h3>1. Dilo en voz alta, tres veces</h3>
+      <p>"Gracias por llamar a ${n.nombre}."<br>Y ahora el de la plataforma médica:<br>"${n.nombre} Medic."</p>
+      <label style="display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--text-dim);">
+        <input type="checkbox" ${state.vozAltaHecho?'checked':''} onchange="toggleVozAlta(this.checked)"> Ya lo dije en voz alta
+      </label>
+    </div>
+
+    <div class="card">
+      <h3>2. Contesta esto, en tus palabras</h3>
+      <p>¿Qué le dirías a un cliente que te pregunte por qué tu empresa se llama así?</p>
+      <textarea rows="3" placeholder="Escribe tu respuesta..." oninput="state.preguntaCliente=this.value; saveState();">${state.preguntaCliente}</textarea>
+    </div>
+
+    <div class="card">
+      <h3>3. Por qué ${n.nombre} es una excelente opción</h3>
+      <p>${n.porQueExcelente}</p>
+    </div>
+
+    <p style="text-align:center;"><strong>¿Te convence ${n.nombre} como ganador?</strong></p>
+    <div class="btn-row center">
+      <button class="btn btn-primary" onclick="convencido(true)">Sí, este es</button>
+      <button class="btn btn-ghost" onclick="convencido(false)">No, quiero revisar el orden</button>
+    </div>
+  `;
+};
+
+function toggleVozAlta(v){ state.vozAltaHecho=v; saveState(); }
+
+function convencido(si){
+  state.convence = si;
+  saveState();
+  if(si){ goTo(7); } else { goTo(5); }
+}
+
+/* ---------- PANTALLA 7: corte ---------- */
+
+SCREENS[7] = () => `
+  <h2>Ya tenemos nombre. ¿Seguimos?</h2>
+  <p>Con esto ya podemos empezar a trabajar. Lo que sigue son unas preguntas rápidas de identidad visual (color, tipografía, referencias) para que cuando arranquemos el diseño, arranquemos en la dirección correcta. Son cinco minutos más.</p>
+  <p>Si prefieres parar aquí, está perfecto, lo demás lo platicamos en la llamada.</p>
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="goTo(8)">Seguir con identidad visual</button>
+    <button class="btn btn-ghost" onclick="goTo(14)">Terminar aquí</button>
+  </div>
+`;
+
+/* ---------- PANTALLA 8: tono ---------- */
+
+SCREENS[8] = () => {
+  const sliders = TONOS.map((par,i)=>`
+    <div class="slider-block">
+      <div class="slider-labels"><span>${par[0]}</span><span>${par[1]}</span></div>
+      <input type="range" min="0" max="100" value="${state.tono[i]}" oninput="state.tono[${i}]=parseInt(this.value); saveState();">
+    </div>
+  `).join('');
+  return `
+    <h2>¿Cómo quieres que se sienta la marca?</h2>
+    <p>Mueve cada control hacia el lado que más se sienta como tú. Ninguno de los dos extremos es "el correcto".</p>
+    ${sliders}
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(9)">Seguir</button></div>
+  `;
+};
+
+/* ---------- PANTALLA 9: paleta ---------- */
+
+SCREENS[9] = () => {
+  const cards = PALETAS.map(p=>{
+    const liked = state.paletaLike.includes(p.id);
+    const discarded = state.paletaDiscard.includes(p.id);
+    const swatches = p.colores.map(c=>`<div class="swatch" style="background:${c};"></div>`).join('');
+    return `
+      <div class="palette-card ${liked?'chosen':''} ${discarded?'discarded':''}">
+        <h3>${p.nombre}</h3>
+        <div class="swatches">${swatches}</div>
+        <p style="margin:0;font-size:.85rem;">${p.personalidad}</p>
+        <div class="palette-actions">
+          <button class="${liked?'on-like':''}" onclick="togglePaleta('${p.id}','like')">Me gusta</button>
+          <button class="${discarded?'on-discard':''}" onclick="togglePaleta('${p.id}','discard')">Descartar</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  return `
+    <h2>¿Cuál paleta se siente más como tu marca?</h2>
+    <p>Elige una o dos, y marca cuáles descartas de plano.</p>
+    ${cards}
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(10)">Seguir</button></div>
+  `;
+};
+
+function togglePaleta(id, tipo){
+  if(tipo==='like'){
+    state.paletaDiscard = state.paletaDiscard.filter(x=>x!==id);
+    if(state.paletaLike.includes(id)) state.paletaLike = state.paletaLike.filter(x=>x!==id);
+    else state.paletaLike.push(id);
+  } else {
+    state.paletaLike = state.paletaLike.filter(x=>x!==id);
+    if(state.paletaDiscard.includes(id)) state.paletaDiscard = state.paletaDiscard.filter(x=>x!==id);
+    else state.paletaDiscard.push(id);
+  }
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 10: tipografía ---------- */
+
+const FONT_FAMILY_MAP = {
+  'Space Grotesk':"'Space Grotesk',sans-serif",'Poppins':"'Poppins',sans-serif",'Sora':"'Sora',sans-serif",
+  'Inter':"'Inter',sans-serif",'Work Sans':"'Work Sans',sans-serif",'Nunito Sans':"'Nunito Sans',sans-serif",
+  'Lora':"'Lora',serif",'Playfair Display':"'Playfair Display',serif",'Source Serif 4':"'Source Serif 4',serif",
+  'JetBrains Mono':"'JetBrains Mono',monospace",'IBM Plex Mono':"'IBM Plex Mono',monospace",'Space Mono':"'Space Mono',monospace",
+  'Bricolage Grotesque':"'Bricolage Grotesque',sans-serif",'Unbounded':"'Unbounded',sans-serif",'Syne':"'Syne',sans-serif"
+};
+
+SCREENS[10] = () => {
+  const n = nombreById(state.ganador);
+  const blocks = TIPOGRAFIAS.map(t=>{
+    const descartado = !!state.tipografiaDescartada[t.id];
+    const opts = t.fuentes.map(f=>{
+      const selected = state.tipografia[t.id]===f;
+      return `
+        <div class="type-option ${selected?'selected':''}" onclick="elegirTipografia('${t.id}','${f}')">
+          <div class="type-sample" style="font-family:${FONT_FAMILY_MAP[f]};">${n.nombre}</div>
+          <div class="type-name">${f}</div>
+        </div>
+      `;
+    }).join('');
+    return `
+      <div class="type-block" style="${descartado?'opacity:.45;':''}">
+        <h3>${t.estilo} <span style="color:var(--text-dim);font-weight:400;font-size:.85rem;">— ${t.comunica}</span></h3>
+        <div class="type-options">${opts}</div>
+        <div style="margin-top:10px;">
+          <button class="btn btn-ghost" style="padding:8px 14px;font-size:.8rem;${descartado?'border-color:var(--danger);color:var(--danger);':''}" onclick="toggleDescartarTipografia('${t.id}')">${descartado?'Estilo descartado — deshacer':'Descartar este estilo completo'}</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  return `
+    <h2>Así se vería tu nombre</h2>
+    <p>Por cada estilo, elige cuál te gusta más de las tres. Si ninguna de las tres te convence para ese estilo, descártalo completo, y no entra a la comparación final.</p>
+    ${blocks}
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(11)">Seguir</button></div>
+  `;
+};
+
+function elegirTipografia(catId, fuente){
+  state.tipografia[catId] = fuente;
+  saveState(); render();
+}
+
+function toggleDescartarTipografia(catId){
+  state.tipografiaDescartada[catId] = !state.tipografiaDescartada[catId];
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 11: comparación final de estilos ---------- */
+
+function prepararTipoOrden(){
+  const sobrevivientes = TIPOGRAFIAS.filter(t => !state.tipografiaDescartada[t.id] && state.tipografia[t.id]).map(t=>t.id);
+  const valido = state.tipoOrden.length === sobrevivientes.length && sobrevivientes.every(id=>state.tipoOrden.includes(id));
+  if(!valido){ state.tipoOrden = sobrevivientes; }
+  saveState();
+}
+
+SCREENS[11] = () => {
+  const n = nombreById(state.ganador);
+  prepararTipoOrden();
+  if(state.tipoOrden.length === 0){
+    return `
+      <h2>Comparación final de estilos</h2>
+      <p>Descartaste los cinco estilos. Está bien, lo exploramos juntos en la llamada.</p>
+      <div class="btn-row"><button class="btn btn-primary" onclick="goTo(12)">Seguir</button></div>
+    `;
+  }
+  const items = state.tipoOrden.map((catId,i)=>{
+    const t = TIPOGRAFIAS.find(x=>x.id===catId);
+    const f = state.tipografia[catId];
+    return `
+      <li class="order-item" style="flex-direction:column;align-items:stretch;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <span class="pos">${i+1}</span>
+          <span class="arrows">
+            <button ${i===0?'disabled':''} onclick="moverTipoOrden(${i},-1)">↑</button>
+            <button ${i===state.tipoOrden.length-1?'disabled':''} onclick="moverTipoOrden(${i},1)">↓</button>
+          </span>
+        </div>
+        <div class="type-sample" style="font-family:${FONT_FAMILY_MAP[f]};font-size:1.8rem;">${n.nombre}</div>
+        <div class="type-name">${t.estilo} — ${f}</div>
+      </li>
+    `;
+  }).join('');
+  return `
+    <h2>Comparación final de estilos</h2>
+    <p>Estas son tus favoritas de cada estilo que no descartaste. Ordénalas de la que más te gusta en general a la que menos.</p>
+    <ol class="orderlist">${items}</ol>
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(12)">Seguir</button></div>
+  `;
+};
+
+function moverTipoOrden(i, dir){
+  const j = i+dir;
+  if(j<0 || j>=state.tipoOrden.length) return;
+  [state.tipoOrden[i], state.tipoOrden[j]] = [state.tipoOrden[j], state.tipoOrden[i]];
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 12: referencias ---------- */
+
+SCREENS[12] = () => `
+  <h2>Gustos y anti-gustos</h2>
+  <div class="card">
+    <p><strong>1. Tres marcas (de cualquier giro) cuya imagen te gusta. ¿Por qué?</strong></p>
+    <textarea rows="3" oninput="state.refGusta=this.value; saveState();">${state.refGusta}</textarea>
+  </div>
+  <div class="card">
+    <p><strong>2. ¿Qué NO quieres que parezca tu marca?</strong></p>
+    <textarea rows="2" oninput="state.refNoQuiere=this.value; saveState();">${state.refNoQuiere}</textarea>
+  </div>
+  <div class="card">
+    <p><strong>3. ¿Alguna marca de tu competencia que te parezca bien resuelta?</strong></p>
+    <textarea rows="2" oninput="state.refCompetencia=this.value; saveState();">${state.refCompetencia}</textarea>
+  </div>
+  <div class="btn-row"><button class="btn btn-primary" onclick="goTo(13)">Seguir</button></div>
+`;
+
+/* ---------- PANTALLA 13: las 3 aplicaciones más importantes ---------- */
+
+SCREENS[13] = () => {
+  const items = APLICACIONES.map(app=>{
+    const elegida = state.aplicacionesElegidas.includes(app);
+    return `
+      <div class="type-option ${elegida?'selected':''}" style="display:flex;justify-content:space-between;align-items:center;" onclick="toggleAplicacion('${app.replace(/'/g,"\\'")}')">
+        <span>${app}</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--gold-light);">${elegida?'✓':''}</span>
+      </div>
+    `;
+  }).join('');
+  return `
+    <h2>¿Cuáles son las tres más importantes?</h2>
+    <p>Tu marca va a vivir en todos estos lugares, tarde o temprano. No es una pregunta de si se usan, se van a usar todas. Lo que necesitamos saber es cuáles <strong>tres</strong> trabajamos primero en el manual de marca.</p>
+    <div class="type-options">${items}</div>
+    <p style="font-size:.8rem;margin-top:10px;">Llevas elegidas: ${state.aplicacionesElegidas.length} de 3</p>
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(14)">Seguir</button></div>
+  `;
+};
+
+function toggleAplicacion(app){
+  if(state.aplicacionesElegidas.includes(app)){
+    state.aplicacionesElegidas = state.aplicacionesElegidas.filter(a=>a!==app);
+  } else {
+    if(state.aplicacionesElegidas.length >= 3){
+      toast('Ya elegiste 3. Quita una antes de agregar otra.');
+      return;
+    }
+    state.aplicacionesElegidas.push(app);
+  }
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 14: confirmaciones + nombre legal ---------- */
+
+function prepararLegal(){
+  const n = nombreById(state.ganador);
+  const valido = state.legalOrden.length === n.legal.length && n.legal.every(l=>state.legalOrden.includes(l));
+  if(!valido){
+    state.legalOrden = [...n.legal];
+  }
+}
+
+SCREENS[14] = () => {
+  const n = nombreById(state.ganador);
+  prepararLegal();
+  const items = state.legalOrden.map((opt,i)=>`
+    <li class="order-item">
+      <span class="pos">${i+1}</span>
+      <span class="name">${opt}</span>
+      <span class="arrows">
+        <button ${i===0?'disabled':''} onclick="moverLegal(${i},-1)">↑</button>
+        <button ${i===state.legalOrden.length-1?'disabled':''} onclick="moverLegal(${i},1)">↓</button>
+      </span>
+    </li>`).join('');
+  return `
+    <h2>Últimos puntos</h2>
+    <div class="checkbox-row">
+      <input type="checkbox" id="chk1" ${state.confirmDecisionPropia?'checked':''} onchange="state.confirmDecisionPropia=this.checked; saveState();">
+      <label for="chk1">Esta decisión la tomé yo, sabiendo que puedo platicarla con quien quiera, pero que la responsabilidad final es mía.</label>
+    </div>
+    <p><strong>Fecha:</strong> te pedimos que nos regreses esto en las próximas <strong>72 horas</strong>. En cuanto lo hagas, agendamos 20 minutos para cerrarlo juntos.</p>
+
+    <div class="card">
+      <h3>Sobre el nombre legal</h3>
+      <p>El nombre comercial que acabas de elegir no es el nombre legal de la empresa, el que va a ir en el acta constitutiva. Van a ser distintos, y eso es normal: nuestra propia empresa se llama "RARE Consulting" en la calle y "RARE Consultoría Estratégica S.A.S." ante notario.</p>
+      <p>No te lo vamos a complicar ahorita. Aquí abajo van cinco opciones de nombre legal, ya construidas sobre <strong>${n.nombre}</strong>, para que las ordenes de tu preferida a tu menos preferida. Con eso, Carlos Rangel (el abogado) arranca el trámite.</p>
+      <p style="font-size:.85rem;">Nota: las pusimos como <strong>S.A.</strong> solo para fines prácticos, para que veas cómo se leería el nombre completo. La figura legal final (S.A., S.A.S., S. de R.L., u otra) todavía no está decidida, eso se resuelve aparte con Carlos Rangel.</p>
+      <ol class="orderlist">${items}</ol>
+    </div>
+
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(15)">Seguir</button></div>
+  `;
+};
+
+function moverLegal(i, dir){
+  const j = i+dir;
+  if(j<0 || j>=state.legalOrden.length) return;
+  [state.legalOrden[i], state.legalOrden[j]] = [state.legalOrden[j], state.legalOrden[i]];
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 15: entrega ---------- */
+
+function buildMarkdown(){
+  const n = nombreById(state.ganador);
+  const nDesc = NOMBRES.map(x=>`- ${x.nombre}: ${state.reacciones[x.id] || 'sin reacción'}`).join('\n');
+  const tonoTxt = TONOS.map((par,i)=>`- ${par[0]} <-> ${par[1]}: ${state.tono[i]}/100`).join('\n');
+  const paletasLike = state.paletaLike.map(id=>PALETAS.find(p=>p.id===id).nombre).join(', ') || 'ninguna marcada';
+  const paletasDisc = state.paletaDiscard.map(id=>PALETAS.find(p=>p.id===id).nombre).join(', ') || 'ninguna';
+  const tipoTxt = TIPOGRAFIAS.map(t=>{
+    const descartado = state.tipografiaDescartada[t.id];
+    return `- ${t.estilo}: ${descartado ? 'descartado' : (state.tipografia[t.id] || 'sin elegir')}`;
+  }).join('\n');
+  const tipoOrdenTxt = state.tipoOrden.length
+    ? state.tipoOrden.map((catId,i)=>{
+        const t = TIPOGRAFIAS.find(x=>x.id===catId);
+        return `${i+1}. ${t.estilo} (${state.tipografia[catId]})`;
+      }).join('\n')
+    : 'Descartó los cinco estilos';
+  const aplicTxt = state.aplicacionesElegidas.length
+    ? state.aplicacionesElegidas.map((a,i)=>`${i+1}. ${a}`).join('\n')
+    : '(sin elegir)';
+  const legalTxt = state.legalOrden.map((l,i)=>`${i+1}. ${l}`).join('\n');
+
+  return `# Respuestas de James — decisión de nombre y branding
+
+Fecha de respuesta: ${new Date().toLocaleDateString('es-MX')}
+
+## Nombre ganador
+**${n.nombre}**
+
+## Reacciones a los 4 finalistas
+${nDesc}
+
+## Orden de preferencia
+${state.orden.map((id,i)=>`${i+1}. ${nombreById(id).nombre}`).join('\n')}
+
+## ¿Qué le dirías a un cliente que pregunte por qué se llama así?
+${state.preguntaCliente || '(sin respuesta)'}
+
+## ¿Convenció como ganador?
+${state.convence ? 'Sí' : 'No indicado'}
+
+## Tono de marca
+${tonoTxt}
+
+## Paleta de color
+Le gustaron: ${paletasLike}
+Descartó: ${paletasDisc}
+
+## Tipografía elegida por estilo
+${tipoTxt}
+
+## Orden final de estilos (comparación entre los no descartados)
+${tipoOrdenTxt}
+
+## Referencias
+Marcas que le gustan y por qué:
+${state.refGusta || '(sin respuesta)'}
+
+Qué NO quiere que parezca su marca:
+${state.refNoQuiere || '(sin respuesta)'}
+
+Competencia bien resuelta:
+${state.refCompetencia || '(sin respuesta)'}
+
+## Las 3 aplicaciones más importantes para él
+${aplicTxt}
+
+## Confirmaciones
+Decisión tomada por él mismo: ${state.confirmDecisionPropia ? 'Sí' : 'No marcado'}
+
+## Orden de preferencia de nombre legal
+${legalTxt}
+`;
+}
+
+SCREENS[15] = () => `
+  <h2>Ya casi</h2>
+  <p>Dale clic al botón de abajo para descargar un archivo con todas tus respuestas. Adjúntalo en un correo o WhatsApp y mándanoslo. Si por alguna razón la descarga no funciona en tu navegador, hay un botón de respaldo que copia todo al portapapeles, y más abajo el texto queda visible por si prefieres copiarlo a mano.</p>
+  <div class="btn-row center">
+    <button class="btn btn-primary" onclick="descargarMD()">Descargar mis respuestas (.md)</button>
+    <button class="btn btn-ghost" onclick="copiarMD()">Copiar todas mis respuestas</button>
+  </div>
+  <p style="margin-top:24px;font-size:.85rem;">Respaldo, por si necesitas copiarlo a mano:</p>
+  <div id="summaryBlock">${buildMarkdown()}</div>
+`;
+
+function descargarMD(){
+  const md = buildMarkdown();
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `respuestas-naming-${nombreById(state.ganador).nombre.toLowerCase()}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('Descargado. Ya lo puedes adjuntar en tu mensaje.');
+}
+
+function copiarMD(){
+  const md = buildMarkdown();
+  navigator.clipboard.writeText(md).then(()=>{
+    toast('Copiado. Pégalo en WhatsApp o correo.');
+  }).catch(()=>{
+    toast('No se pudo copiar automático. Usa el texto de abajo.');
+  });
+}
+
+/* ---------- EVENTOS ---------- */
+
+function bindScreenEvents(){}
+
+window.moverOrden = moverOrden;
+window.toggleAplicacion = toggleAplicacion;
+window.moverLegal = moverLegal;
+window.reaccionar = reaccionar;
+window.confirmarOrden = confirmarOrden;
+window.toggleVozAlta = toggleVozAlta;
+window.convencido = convencido;
+window.togglePaleta = togglePaleta;
+window.elegirTipografia = elegirTipografia;
+window.toggleDescartarTipografia = toggleDescartarTipografia;
+window.moverTipoOrden = moverTipoOrden;
+window.descargarMD = descargarMD;
+window.copiarMD = copiarMD;
+window.goTo = goTo;
+window.regresar = regresar;
+window.tarjetaAnterior = tarjetaAnterior;
+
+/* ---------- INICIO ---------- */
+
+loadState();
+if(state.screen === 4){
+  cardIndex = NOMBRES.findIndex(n => !(n.id in state.reacciones));
+  if(cardIndex === -1) cardIndex = NOMBRES.length-1;
+}
+render();
+</script>
+</body>
+</html>

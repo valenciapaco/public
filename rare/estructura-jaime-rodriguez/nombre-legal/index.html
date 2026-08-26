@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elige el nombre legal de tu empresa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14101B;
+    --bg-2:#1F1729;
+    --card:#241A33;
+    --border:#3A2E4D;
+    --purple:#3D1A5B;
+    --purple-light:#6B3FA0;
+    --gold:#C9A227;
+    --gold-light:#E8C55C;
+    --text:#F5F1E8;
+    --text-dim:#B8AFC7;
+    --danger:#E8622C;
+    --ok:#7FD8A0;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:24px 20px 80px;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;margin:0 0 12px;}
+  h1{font-size:1.6rem;}
+  h2{font-size:1.35rem;color:var(--gold-light);}
+  h3{font-size:1.05rem;color:var(--text);}
+  p{margin:0 0 14px;color:var(--text-dim);}
+  strong{color:var(--text);}
+  .progress{
+    position:sticky;top:0;background:var(--bg);padding:14px 0 10px;z-index:10;
+  }
+  .progress-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--purple-light),var(--gold));transition:width .3s ease;}
+  .progress-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text-dim);margin-top:6px;letter-spacing:.03em;}
+  .screen{display:none;animation:fadeIn .35s ease;}
+  .screen.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:20px;margin-bottom:16px;
+  }
+  .btn{
+    display:inline-block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;
+    padding:13px 22px;border-radius:10px;border:1px solid var(--gold);
+    background:transparent;color:var(--gold-light);cursor:pointer;
+    transition:all .15s ease;text-align:center;
+  }
+  .btn:hover{background:var(--gold);color:var(--bg);}
+  .btn-primary{background:var(--gold);color:var(--bg);}
+  .btn-primary:hover{background:var(--gold-light);}
+  .btn-ghost{border-color:var(--border);color:var(--text-dim);}
+  .btn-ghost:hover{background:var(--bg-2);color:var(--text);}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .btn-row.center{justify-content:center;}
+  .quote{
+    background:var(--bg-2);border-left:3px solid var(--gold);padding:12px 16px;
+    border-radius:0 8px 8px 0;margin:14px 0;color:var(--text-dim);font-style:italic;
+  }
+  ol.orderlist,ul.orderlist{list-style:none;margin:0;padding:0;}
+  .order-item{
+    display:flex;align-items:center;gap:10px;background:var(--bg-2);
+    border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;
+  }
+  .order-item .pos{font-family:'JetBrains Mono',monospace;color:var(--gold);font-weight:700;min-width:20px;}
+  .order-item .name{flex:1;font-weight:600;}
+  .order-item .arrows{display:flex;gap:4px;}
+  .order-item .arrows button{
+    background:var(--card);border:1px solid var(--border);color:var(--text-dim);
+    border-radius:6px;width:30px;height:30px;cursor:pointer;font-size:.9rem;
+  }
+  .order-item .arrows button:hover{border-color:var(--gold);color:var(--gold-light);}
+  .order-item .arrows button:disabled{opacity:.3;cursor:default;}
+  .legal-row{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:var(--bg-2);border:1px solid var(--border);border-radius:10px;
+    padding:12px 14px;margin-bottom:8px;
+  }
+  .legal-row .name{font-weight:600;flex:1;}
+  .legal-row .suffix{color:var(--text-dim);font-weight:400;font-size:.85rem;}
+  .legal-row .toggle{display:flex;gap:6px;flex-shrink:0;}
+  .legal-row .toggle button{
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.78rem;
+    padding:9px 12px;border-radius:8px;border:1px solid var(--border);
+    background:var(--card);color:var(--text-dim);cursor:pointer;transition:all .15s ease;
+    white-space:nowrap;
+  }
+  .legal-row .toggle button:hover{border-color:var(--gold);color:var(--text);}
+  .legal-row .toggle button.on-like{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+  .legal-row .toggle button.on-dislike{background:var(--danger);color:var(--bg);border-color:var(--danger);}
+  .liked-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:var(--bg-2);border:1px solid var(--border);border-radius:10px;
+    padding:12px 14px;margin-bottom:8px;
+  }
+  .liked-row .name{font-weight:600;}
+  .liked-row .remove{
+    background:none;border:none;color:var(--text-dim);font-size:1.1rem;cursor:pointer;
+    line-height:1;padding:2px 6px;
+  }
+  .liked-row .remove:hover{color:var(--danger);}
+  .add-row{display:flex;gap:8px;margin-top:6px;}
+  input[type=text]{
+    flex:1;background:var(--bg-2);border:1px solid var(--border);border-radius:10px;
+    color:var(--text);font-family:'Inter',sans-serif;font-size:.95rem;padding:12px;
+  }
+  input[type=text]:focus{outline:none;border-color:var(--gold);}
+  .add-row .btn{padding:0 20px;font-size:1.2rem;}
+  #summaryBlock{
+    white-space:pre-wrap;font-family:'JetBrains Mono',monospace;font-size:.75rem;
+    background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px;
+    max-height:280px;overflow-y:auto;color:var(--text-dim);
+  }
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:var(--bg);padding:10px 18px;border-radius:20px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;
+    opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:100;
+  }
+  .toast.show{opacity:1;}
+  @media(max-width:480px){
+    .legal-row{flex-direction:column;align-items:stretch;}
+    .legal-row .toggle{justify-content:flex-end;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="progress">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+      <button id="backBtn" onclick="regresar()" style="display:none;background:none;border:none;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:.72rem;cursor:pointer;padding:0;letter-spacing:.03em;">← Regresar</button>
+      <div class="progress-label" id="progressLabel" style="margin-top:0;">PASO 1 DE 5</div>
+    </div>
+  </div>
+  <div id="screens"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- DATOS ---------- */
+
+const OPCIONES = [
+  {id:'l1', nombre:'Drexen'},
+  {id:'l2', nombre:'Drexen Innovación Tecnológica'},
+  {id:'l3', nombre:'Drexen Innovación y Desarrollo'},
+  {id:'l4', nombre:'Drexen Innovación Digital'},
+  {id:'l5', nombre:'Drexen Soluciones'},
+  {id:'l6', nombre:'Drexen Soluciones Tecnológicas'},
+  {id:'l7', nombre:'Drexen Soluciones Digitales'},
+  {id:'l8', nombre:'Drexen Soluciones de Software'},
+  {id:'l9', nombre:'Drexen Software'},
+  {id:'l10', nombre:'Drexen Software Solutions'},
+  {id:'l11', nombre:'Drexen Desarrollo Tecnológico'},
+  {id:'l12', nombre:'Drexen Desarrollo de Software'},
+  {id:'l13', nombre:'Drexen Desarrollo Digital'},
+  {id:'l14', nombre:'Drexen Tecnologías'},
+  {id:'l15', nombre:'Drexen Tecnología y Desarrollo'},
+  {id:'l16', nombre:'Drexen Sistemas'},
+  {id:'l17', nombre:'Drexen Consultores Tecnológicos'},
+  {id:'l18', nombre:'Drexen Consultores en Tecnología'},
+  {id:'l19', nombre:'Drexen Data'},
+  {id:'l20', nombre:'Drexen Data Solutions'}
+];
+
+const SUFIJO = 'S.A. de C.V.';
+
+/* ---------- ESTADO ---------- */
+
+const STORAGE_KEY = 'jr_legal_form_v1';
+let state = {
+  screen:0,
+  reacciones:{},
+  agregadas:[],
+  orden:[]
+};
+
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ Object.assign(state, JSON.parse(raw)); }
+  }catch(e){}
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+function goTo(n){
+  state.screen=n; saveState(); render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function regresar(){
+  if(state.screen === 0) return;
+  goTo(state.screen - 1);
+}
+
+function nombrePorId(id){
+  const o = OPCIONES.find(x=>x.id===id);
+  if(o) return o.nombre;
+  const a = state.agregadas.find(x=>x.id===id);
+  return a ? a.nombre : id;
+}
+
+/* ---------- RENDER ENGINE ---------- */
+
+const TOTAL_SCREENS = 5;
+
+function updateProgress(){
+  const pct = Math.round((state.screen/(TOTAL_SCREENS-1))*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = `PASO ${state.screen+1} DE ${TOTAL_SCREENS}`;
+  document.getElementById('backBtn').style.display = state.screen===0 ? 'none' : 'inline-block';
+}
+
+function render(){
+  updateProgress();
+  const el = document.getElementById('screens');
+  el.innerHTML = '';
+  const fn = SCREENS[state.screen];
+  const section = document.createElement('div');
+  section.className='screen active';
+  section.innerHTML = fn();
+  el.appendChild(section);
+}
+
+const SCREENS = {};
+
+/* ---------- PANTALLA 0: intro ---------- */
+
+SCREENS[0] = () => `
+  <h1>Ahora el nombre legal</h1>
+  <p>El nombre comercial ya quedó decidido: <strong>Drexen</strong>. Esto es aparte: el nombre legal, el que va a ir en el acta constitutiva y que puede ser distinto del comercial.</p>
+  <div class="card">
+    <p><strong>1.</strong> Vas a ver una lista de opciones, todas construidas sobre Drexen. Marca si te gusta o no cada una.</p>
+    <p><strong>2.</strong> Con las que te gustaron, armamos tu lista final. Ahí puedes agregar tus propias ideas si se te ocurre alguna que no esté.</p>
+    <p><strong>3.</strong> Al final, ordenas tu lista de tu favorita a tu menos favorita.</p>
+  </div>
+  <p style="font-size:.85rem;">Nota: todas las opciones se muestran con "${SUFIJO}" solo para que veas cómo se leería completo. El régimen societario real (si es S.A., S.A.S. o S. de R.L. de C.V.) se confirma aparte con Carlos Rangel.</p>
+  <div class="btn-row"><button class="btn btn-primary" onclick="goTo(1)">Empezar</button></div>
+`;
+
+/* ---------- PANTALLA 1: reacciones ---------- */
+
+SCREENS[1] = () => {
+  const rows = OPCIONES.map(o=>{
+    const sel = state.reacciones[o.id];
+    return `
+      <div class="legal-row">
+        <div class="name">${o.nombre} <span class="suffix">${SUFIJO}</span></div>
+        <div class="toggle">
+          <button class="${sel==='no_me_gusta'?'on-dislike':''}" onclick="reaccionar('${o.id}','no_me_gusta')">No me gusta</button>
+          <button class="${sel==='me_gusta'?'on-like':''}" onclick="reaccionar('${o.id}','me_gusta')">Me gusta</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+  return `
+    <h2>¿Cuáles te gustan?</h2>
+    <p>Son 20 opciones. Marca cada una, con lo primero que sientas.</p>
+    ${rows}
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(2)">Seguir</button></div>
+  `;
+};
+
+function reaccionar(id, valor){
+  state.reacciones[id] = valor;
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 2: gustados + agregar ---------- */
+
+function gustadosIds(){
+  const originales = OPCIONES.filter(o => state.reacciones[o.id]==='me_gusta').map(o=>o.id);
+  const agregadas = state.agregadas.map(a=>a.id);
+  return [...originales, ...agregadas];
+}
+
+SCREENS[2] = () => {
+  const ids = gustadosIds();
+  const rows = ids.length ? ids.map(id=>{
+    const esAgregada = state.agregadas.some(a=>a.id===id);
+    return `
+      <div class="liked-row">
+        <span class="name">${nombrePorId(id)} <span style="color:var(--text-dim);font-weight:400;font-size:.85rem;">${SUFIJO}</span></span>
+        ${esAgregada ? `<button class="remove" onclick="quitarAgregada('${id}')">×</button>` : ''}
+      </div>
+    `;
+  }).join('') : `<p><em>Ninguna te convenció por ahora. Agrega tus propias ideas abajo.</em></p>`;
+  return `
+    <h2>Tu lista hasta ahora</h2>
+    <p>Estas son las que te gustaron. Si se te ocurre otra combinación, agrégala aquí.</p>
+    ${rows}
+    <div class="add-row">
+      <input type="text" id="nuevaOpcion" placeholder="Ej. Drexen Studio" onkeydown="if(event.key==='Enter'){agregarOpcion();}">
+      <button class="btn btn-primary" onclick="agregarOpcion()">+</button>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(3)">Seguir</button></div>
+  `;
+};
+
+function agregarOpcion(){
+  const input = document.getElementById('nuevaOpcion');
+  const texto = input.value.trim();
+  if(!texto){ return; }
+  const id = 'custom-' + Date.now();
+  state.agregadas.push({id, nombre: texto.startsWith('Drexen') ? texto : `Drexen ${texto}`});
+  input.value = '';
+  saveState(); render();
+  toast('Agregada.');
+}
+
+function quitarAgregada(id){
+  state.agregadas = state.agregadas.filter(a=>a.id!==id);
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 3: orden ---------- */
+
+function prepararOrden(){
+  const actuales = gustadosIds();
+  const valido = state.orden.length === actuales.length && actuales.every(id=>state.orden.includes(id));
+  if(!valido){ state.orden = actuales; }
+  saveState();
+}
+
+SCREENS[3] = () => {
+  prepararOrden();
+  if(state.orden.length === 0){
+    return `
+      <h2>Ordénalas de tu favorita a tu menos favorita</h2>
+      <p>No tienes ninguna opción en tu lista todavía. Regresa y agrega al menos una.</p>
+      <div class="btn-row"><button class="btn btn-ghost" onclick="goTo(2)">Regresar</button></div>
+    `;
+  }
+  const items = state.orden.map((id,i)=>`
+    <li class="order-item">
+      <span class="pos">${i+1}</span>
+      <span class="name">${nombrePorId(id)}</span>
+      <span class="arrows">
+        <button ${i===0?'disabled':''} onclick="moverOrden(${i},-1)">↑</button>
+        <button ${i===state.orden.length-1?'disabled':''} onclick="moverOrden(${i},1)">↓</button>
+      </span>
+    </li>
+  `).join('');
+  return `
+    <h2>Ordénalas de tu favorita a tu menos favorita</h2>
+    <p>Con esto, Carlos Rangel arranca el trámite con tu primera opción.</p>
+    <ol class="orderlist">${items}</ol>
+    <div class="btn-row"><button class="btn btn-primary" onclick="goTo(4)">Seguir</button></div>
+  `;
+};
+
+function moverOrden(i, dir){
+  const j = i+dir;
+  if(j<0 || j>=state.orden.length) return;
+  [state.orden[i], state.orden[j]] = [state.orden[j], state.orden[i]];
+  saveState(); render();
+}
+
+/* ---------- PANTALLA 4: entrega ---------- */
+
+function buildMarkdown(){
+  const reaccTxt = OPCIONES.map(o=>`- ${o.nombre}: ${state.reacciones[o.id] || 'sin reacción'}`).join('\n');
+  const agregadasTxt = state.agregadas.length
+    ? state.agregadas.map(a=>`- ${a.nombre}`).join('\n')
+    : '(no agregó ninguna)';
+  const ordenTxt = state.orden.length
+    ? state.orden.map((id,i)=>`${i+1}. ${nombrePorId(id)} ${SUFIJO}`).join('\n')
+    : '(sin opciones en su lista final)';
+
+  return `# Respuestas de James — nombre legal (segunda ronda)
+
+Fecha de respuesta: ${new Date().toLocaleDateString('es-MX')}
+
+## Reacciones a las 20 opciones
+${reaccTxt}
+
+## Opciones que agregó
+${agregadasTxt}
+
+## Orden final de preferencia
+${ordenTxt}
+`;
+}
+
+SCREENS[4] = () => `
+  <h2>Ya casi</h2>
+  <p>Dale clic al botón de abajo para descargar un archivo con todas tus respuestas. Adjúntalo en un correo o WhatsApp y mándanoslo. Si por alguna razón la descarga no funciona en tu navegador, hay un botón de respaldo que copia todo al portapapeles, y más abajo el texto queda visible por si prefieres copiarlo a mano.</p>
+  <div class="btn-row center">
+    <button class="btn btn-primary" onclick="descargarMD()">Descargar mis respuestas (.md)</button>
+    <button class="btn btn-ghost" onclick="copiarMD()">Copiar todas mis respuestas</button>
+  </div>
+  <p style="margin-top:24px;font-size:.85rem;">Respaldo, por si necesitas copiarlo a mano:</p>
+  <div id="summaryBlock">${buildMarkdown()}</div>
+`;
+
+function descargarMD(){
+  const md = buildMarkdown();
+  const blob = new Blob([md], {type:'text/markdown;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'respuestas-nombre-legal-drexen.md';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('Descargado. Ya lo puedes adjuntar en tu mensaje.');
+}
+
+function copiarMD(){
+  const md = buildMarkdown();
+  navigator.clipboard.writeText(md).then(()=>{
+    toast('Copiado. Pégalo en WhatsApp o correo.');
+  }).catch(()=>{
+    toast('No se pudo copiar automático. Usa el texto de abajo.');
+  });
+}
+
+/* ---------- EVENTOS ---------- */
+
+window.reaccionar = reaccionar;
+window.agregarOpcion = agregarOpcion;
+window.quitarAgregada = quitarAgregada;
+window.moverOrden = moverOrden;
+window.descargarMD = descargarMD;
+window.copiarMD = copiarMD;
+window.goTo = goTo;
+window.regresar = regresar;
+
+/* ---------- INICIO ---------- */
+
+loadState();
+render();
+</script>
+</body>
+</html>

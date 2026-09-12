@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drexen · Dirección de marca · Tres propuestas de logotipo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DREXEN · Dirección de marca
+   Chrome neutro: grafito + off-white + un solo acento (dorado apagado)
+   ============================================================ */
+
+:root{
+  --ink-000:#08090B;
+  --ink-100:#0B0D10;
+  --ink-200:#101318;
+  --ink-300:#14161A;
+  --ink-400:#1B1F25;
+  --line:rgba(242,241,238,.12);
+  --line-soft:rgba(242,241,238,.07);
+  --paper:#F2F1EE;
+  --paper-dim:rgba(242,241,238,.66);
+  --paper-faint:rgba(242,241,238,.40);
+  --accent:#C6A667;
+  --accent-soft:rgba(198,166,103,.30);
+
+  --font-display:'Syne','Avenir Next','Futura',system-ui,-apple-system,sans-serif;
+  --font-text:'Work Sans','Helvetica Neue',Helvetica,system-ui,-apple-system,sans-serif;
+  --font-mono:'Space Mono','SFMono-Regular',Menlo,Consolas,monospace;
+  --font-geo:'Poppins','Futura','Avenir Next',system-ui,-apple-system,sans-serif;
+
+  --pad-x:clamp(2rem,4.6vw,5.4rem);
+  --pad-y:clamp(1.8rem,4.4vh,3.4rem);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  font-size:clamp(11px,min(.95vw,1.7vh),17px);
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  background:var(--ink-100);
+  color:var(--paper);
+  font-family:var(--font-text);
+  font-weight:400;
+  line-height:1.6;
+  overflow:hidden;
+  height:100vh;
+  height:100dvh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* textura sutil de fondo, sin gradientes llamativos */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,.035), transparent 60%),
+    radial-gradient(80% 60% at 100% 110%, rgba(198,166,103,.045), transparent 65%);
+}
+
+/* ---------- DECK ---------- */
+.deck{position:relative;width:100vw;height:100vh;height:100dvh;z-index:1}
+
+.slide{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:var(--pad-y) var(--pad-x) calc(var(--pad-y) + 2.6rem);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .55s ease, visibility .55s;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:none;
+}
+.slide::-webkit-scrollbar{display:none}
+.slide.active{opacity:1;visibility:visible}
+
+.reveal{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .75s ease, transform .75s cubic-bezier(.22,.75,.28,1);
+  transition-delay:var(--d,0s);
+}
+.slide.active .reveal{opacity:1;transform:none}
+
+/* ---------- CHROME ---------- */
+.progress{
+  position:fixed;top:0;left:0;height:2px;
+  background:var(--accent);
+  width:0;z-index:60;
+  transition:width .5s cubic-bezier(.3,.8,.3,1);
+  box-shadow:0 0 12px rgba(198,166,103,.5);
+}
+
+.dots{
+  position:fixed;
+  bottom:1.5rem;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:.75rem;
+  z-index:60;
+}
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(242,241,238,.22);
+  border:0;padding:0;cursor:pointer;
+  transition:background .3s, transform .3s, width .3s, border-radius .3s;
+  position:relative;
+}
+.dot:hover{background:rgba(242,241,238,.5)}
+.dot.on{background:var(--accent);width:22px;border-radius:4px}
+.dot::after{
+  content:attr(data-label);
+  position:absolute;bottom:170%;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--paper-dim);
+  white-space:nowrap;opacity:0;transition:opacity .25s;pointer-events:none;
+}
+.dot:hover::after{opacity:1}
+
+.counter{
+  position:fixed;bottom:1.45rem;right:var(--pad-x);
+  font-family:var(--font-mono);font-size:.68rem;
+  letter-spacing:.14em;color:var(--paper-faint);
+  z-index:60;
+}
+.brandmark{
+  position:fixed;bottom:1.4rem;left:var(--pad-x);
+  display:flex;align-items:baseline;gap:.9rem;
+  font-family:var(--font-mono);font-size:.63rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--paper-faint);
+  z-index:60;
+}
+.hint{
+  font-size:.6rem;letter-spacing:.1em;text-transform:none;
+  color:rgba(242,241,238,.2);
+  transition:opacity .6s;
+}
+.hint.gone{opacity:0}
+
+/* zonas de clic */
+.zone{position:fixed;top:0;bottom:3.2rem;width:24vw;z-index:40;cursor:pointer}
+.zone.prev{left:0}
+.zone.next{right:0}
+
+/* ---------- TIPOGRAFÍA ---------- */
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);
+}
+.eyebrow.dim{color:var(--paper-faint)}
+
+.secnum{
+  font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;
+  color:var(--paper-faint);
+}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.02;letter-spacing:-.02em}
+
+.title-xl{font-size:clamp(4.2rem,13vw,11rem);font-weight:800;letter-spacing:-.045em;line-height:.88}
+.title-l{font-size:clamp(2.5rem,5.1vw,4.4rem);font-weight:700;letter-spacing:-.035em;line-height:.98}
+.title-m{font-size:clamp(1.6rem,2.5vw,2.3rem);font-weight:700;letter-spacing:-.02em}
+.title-s{font-size:1.06rem;font-weight:600;letter-spacing:-.01em}
+
+p{font-size:.98rem;color:var(--paper-dim);max-width:46ch}
+p strong{color:var(--paper);font-weight:500}
+p + p{margin-top:.85rem}
+.lead{font-size:1.12rem;color:var(--paper);font-weight:300;line-height:1.5;max-width:40ch}
+
+.rule{height:1px;background:var(--line);border:0}
+.rule-accent{height:1px;width:3.2rem;background:var(--accent);border:0}
+
+/* ---------- LAYOUT HELPERS ---------- */
+.head{display:flex;align-items:baseline;gap:1.1rem;flex-wrap:wrap}
+.head .rule{flex:1;min-width:2rem;align-self:center}
+
+.stack{display:flex;flex-direction:column}
+.gap-xs{gap:.5rem}.gap-s{gap:.9rem}.gap-m{gap:1.5rem}.gap-l{gap:2.2rem}
+
+.split{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+  gap:clamp(2rem,4vw,4.5rem);
+  align-items:center;
+}
+.split-wide{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+
+/* ---------- PLATES (contenedores de logo) ---------- */
+.plate{
+  background:#FFFFFF;
+  border:1px solid rgba(242,241,238,.07);
+  border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+.plate img{width:100%;height:100%;object-fit:contain;display:block}
+.plate--mist{background:#E9EAED}
+.plate--dark{background:#181B20}
+.plate--flush{background:transparent;border:0;border-radius:0}
+.plate--flush img{border-radius:2px}
+.plate--oceanic{background:#2D6CE0;border-color:rgba(255,255,255,.10)}
+.plate--hairline{background:transparent;border:1px solid var(--line-soft);border-radius:3px}
+.plate--check{
+  background-color:#F2F1EE;
+  background-image:
+    linear-gradient(45deg,#D8D7D3 25%,transparent 25%,transparent 75%,#D8D7D3 75%),
+    linear-gradient(45deg,#D8D7D3 25%,transparent 25%,transparent 75%,#D8D7D3 75%);
+  background-size:16px 16px;
+  background-position:0 0,8px 8px;
+}
+.plate--checkdark{
+  background-color:#16181C;
+  background-image:
+    linear-gradient(45deg,#232730 25%,transparent 25%,transparent 75%,#232730 75%),
+    linear-gradient(45deg,#232730 25%,transparent 25%,transparent 75%,#232730 75%);
+  background-size:16px 16px;
+  background-position:0 0,8px 8px;
+}
+.pad-s img{padding:8%}
+.pad-m img{padding:11%}
+.pad-wide img{padding:3.5% 6%}
+.pad-icon img{padding:16%}
+
+.hero-square{
+  width:100%;
+  max-width:min(34vw,50vh);
+  aspect-ratio:1/1;
+  margin-inline:auto;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.85);
+}
+.band{
+  width:100%;
+  aspect-ratio:1452/308;
+  box-shadow:0 24px 60px -34px rgba(0,0,0,.8);
+}
+
+/* ---------- GALERÍA ---------- */
+.gal{display:grid;gap:clamp(.8rem,1.4vw,1.4rem)}
+.gal-5{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  height:min(62vh,40rem);
+}
+.gal-5 .item:nth-child(1){grid-column:span 2;grid-row:span 2}
+
+.gal-4{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  height:min(62vh,40rem);
+}
+
+.item{display:flex;flex-direction:column;gap:.5rem;min-width:0;min-height:0}
+.item .plate{flex:1 1 auto;min-height:0}
+.gal .item .plate{flex:1 1 0}
+.item .cap{
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.1em;
+  color:var(--paper-dim);text-transform:uppercase;
+  display:flex;flex-direction:column;gap:.15rem;
+}
+.item .cap .n{color:var(--accent)}
+.item .cap .note{color:rgba(242,241,238,.34);text-transform:none;letter-spacing:.02em;font-size:.6rem}
+
+/* ---------- SWATCHES ---------- */
+.swatches{display:flex;flex-wrap:wrap;gap:.55rem}
+.sw{
+  display:flex;align-items:center;gap:.5rem;
+  padding:.4rem .65rem .4rem .4rem;
+  border:1px solid var(--line-soft);
+  border-radius:2px;
+  background:rgba(255,255,255,.02);
+}
+.sw i{width:1.15rem;height:1.15rem;border-radius:2px;display:block;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.sw span{font-family:var(--font-mono);font-size:.6rem;line-height:1.25;color:var(--paper-dim)}
+.sw span b{display:block;color:var(--paper);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.58rem}
+
+/* ---------- ESCALAS DE TONO ---------- */
+.scales{display:flex;flex-direction:column;gap:2rem;padding-bottom:1.25rem}
+.scale-lab{
+  display:flex;justify-content:space-between;gap:1rem;
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.07em;
+  text-transform:uppercase;color:rgba(242,241,238,.34);margin-bottom:.5rem;
+}
+.scale-lab .hit{color:var(--paper)}
+.track{height:1px;background:var(--line);position:relative}
+.track i{
+  position:absolute;top:50%;width:7px;height:7px;border-radius:50%;
+  background:var(--accent);transform:translate(-50%,-50%);
+  box-shadow:0 0 0 4px rgba(198,166,103,.14);
+}
+.track b{
+  position:absolute;top:.5rem;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:.58rem;color:var(--accent);font-weight:700;
+  white-space:nowrap;
+}
+
+/* ---------- TABLA COMPARATIVA ---------- */
+.cmp{width:100%;border-collapse:collapse;table-layout:fixed}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:1rem .9rem;border-bottom:1px solid var(--line-soft)}
+.cmp thead th{border-bottom:1px solid var(--line);padding-bottom:1.1rem}
+.cmp tbody tr:last-child td{border-bottom:0}
+.cmp .rowlab{
+  width:11.5rem;
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(242,241,238,.34);
+  padding-left:0;
+}
+.cmp td{font-size:.88rem;color:var(--paper-dim)}
+.cmp td.hi{color:var(--paper)}
+.cmp .colhead{display:flex;flex-direction:column;gap:.3rem}
+.cmp .colhead .nm{font-family:var(--font-display);font-weight:700;font-size:1.5rem;letter-spacing:-.02em;color:var(--paper)}
+.cmp .colhead .tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.chip{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;
+  border:1px solid var(--line);border-radius:2px;padding:.22rem .5rem;color:var(--paper);
+}
+.chip i{width:.55rem;height:.55rem;border-radius:1px;display:block}
+.thumbrow{display:flex;gap:.5rem;align-items:center}
+.thumb{width:5.2rem;height:5.2rem;border-radius:2px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+.thumb img{width:100%;height:100%;object-fit:contain}
+.thumb.wide{width:11rem}
+.thumb.wide img{padding:10% 8%}
+.thumb.oceanic{background:#2D6CE0}
+.thumb.flush{background:transparent;border:1px solid var(--line-soft)}
+
+/* ---------- CIERRE ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.4vw,2.4rem)}
+.step{border-top:1px solid var(--line);padding-top:1.05rem;display:flex;flex-direction:column;gap:.45rem}
+.step .n{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;color:var(--accent)}
+.step .t{font-family:var(--font-display);font-weight:600;font-size:1.12rem;letter-spacing:-.01em}
+.step p{font-size:.85rem;max-width:30ch}
+
+.callout{
+  border-left:1px solid var(--accent-soft);
+  padding-left:1.3rem;
+}
+
+/* ---------- ÍNDICE DE PORTADA ---------- */
+.cover-index{
+  position:absolute;
+  right:var(--pad-x);
+  bottom:calc(var(--pad-y) + 3.2rem);
+  display:flex;flex-direction:column;align-items:flex-end;gap:.85rem;
+  text-align:right;
+}
+.cover-index .ci-lab{
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(242,241,238,.3);margin-bottom:.3rem;
+}
+.cover-index .ci{display:flex;align-items:baseline;gap:.85rem}
+.cover-index .ci em{
+  font-family:var(--font-mono);font-style:normal;font-size:.62rem;
+  letter-spacing:.14em;color:var(--accent);
+}
+.cover-index .ci span{
+  font-family:var(--font-display);font-weight:600;font-size:1.25rem;
+  letter-spacing:-.015em;color:var(--paper-dim);
+}
+@media (max-aspect-ratio:5/4){.cover-index{display:none}}
+
+/* ---------- ICONOS ---------- */
+.iconrow{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.iconrow .plate{aspect-ratio:1/1;border-radius:8px}
+.iconrow--big{gap:clamp(1rem,2vw,2rem)}
+.iconrow--big .plate{border-radius:16px;box-shadow:0 26px 60px -36px rgba(0,0,0,.9)}
+.iconrow--big .cap{font-size:.68rem;letter-spacing:.16em;padding-top:.2rem}
+
+/* ---------- PALETA (pantalla dedicada) ---------- */
+.palette{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(.7rem,1.3vw,1.3rem);
+  height:min(54vh,34rem);
+}
+.pal{
+  display:flex;flex-direction:column;min-height:0;
+  border:1px solid var(--line-soft);border-radius:3px;overflow:hidden;
+  background:rgba(255,255,255,.02);
+}
+.pal .fill{flex:1 1 auto;min-height:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.pal .meta{padding:.9rem .85rem 1.05rem;display:flex;flex-direction:column;gap:.3rem}
+.pal .nm{font-family:var(--font-display);font-weight:600;font-size:1.02rem;letter-spacing:-.01em;color:var(--paper)}
+.pal .hex{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.09em;color:var(--accent)}
+.pal .use{font-size:.74rem;line-height:1.38;color:rgba(242,241,238,.42)}
+
+/* ---------- TIPOGRAFÍA (pantallas dedicadas) ---------- */
+.specimen{
+  border:1px solid var(--line-soft);border-radius:3px;
+  background:rgba(255,255,255,.015);
+  padding:clamp(1.3rem,2.6vw,2.4rem);
+  display:flex;flex-direction:column;gap:1.05rem;
+}
+.spec-name{font-size:clamp(2.3rem,4.8vw,4.1rem);line-height:.98;letter-spacing:-.03em;color:var(--paper);font-weight:600}
+.spec-sub{font-size:1.04rem;line-height:1.4;color:var(--paper-dim);font-weight:300;max-width:40ch}
+.spec-data{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.spec-glyphs{font-size:1.35rem;letter-spacing:.1em;color:rgba(242,241,238,.3)}
+.fontgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.2rem,2.6vw,2.6rem)}
+.fontcard{border-top:1px solid var(--line);padding-top:.95rem;display:flex;flex-direction:column;gap:.4rem}
+.fontcard .role{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.fontcard .fn{font-family:var(--font-display);font-weight:600;font-size:1.15rem;letter-spacing:-.01em;color:var(--paper)}
+.fontcard p{font-size:.84rem;max-width:38ch}
+.font-geo{font-family:var(--font-geo)}
+.font-display{font-family:var(--font-display)}
+.font-text{font-family:var(--font-text)}
+.font-code{font-family:var(--font-mono)}
+.rulecard{
+  border-left:1px solid var(--accent-soft);padding-left:1.2rem;
+  display:flex;flex-direction:column;gap:.35rem;
+}
+.rulecard .lab{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+
+/* ---------- APLICACIÓN REAL (paneles CSS) ---------- */
+.mocks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,2.2vw,2.2rem)}
+.mock{
+  position:relative;aspect-ratio:4/3;border-radius:3px;overflow:hidden;
+  border:1px solid var(--line-soft);
+  box-shadow:0 28px 64px -36px rgba(0,0,0,.9);
+}
+.mock::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(112deg,rgba(255,255,255,.028) 0 2px,transparent 2px 7px);
+  mix-blend-mode:overlay;
+}
+.mock--dark{
+  background:
+    radial-gradient(105% 72% at 16% 6%, rgba(120,152,196,.34), transparent 62%),
+    radial-gradient(88% 68% at 92% 96%, rgba(13,24,44,.9), transparent 64%),
+    radial-gradient(52% 44% at 68% 30%, rgba(255,255,255,.075), transparent 72%),
+    linear-gradient(148deg,#262C36 0%,#1A2131 46%,#10141D 100%);
+}
+.mock--light{
+  background:
+    radial-gradient(100% 70% at 22% 8%, rgba(255,255,255,.96), transparent 62%),
+    radial-gradient(86% 66% at 88% 94%, rgba(223,205,180,.8), transparent 62%),
+    radial-gradient(58% 50% at 62% 44%, rgba(247,241,232,.9), transparent 72%),
+    linear-gradient(146deg,#FAF7F2 0%,#F0EAE0 52%,#E3DACD 100%);
+}
+.mock .wm{position:absolute;right:5.5%;bottom:6.5%;width:24%;max-width:9.5rem;z-index:2}
+.mock .wm img{width:100%;height:auto;display:block}
+.mock .tag{
+  position:absolute;left:6%;top:7%;z-index:2;
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+}
+.mock--dark .tag{color:rgba(255,255,255,.62)}
+.mock--light .tag{color:rgba(30,34,42,.5)}
+.mock .ed{position:absolute;left:6%;top:17%;z-index:2;max-width:62%;display:flex;flex-direction:column;gap:.5rem}
+.mock .ed .t{font-family:var(--font-display);font-weight:700;font-size:clamp(1.1rem,2vw,1.8rem);line-height:1.05;letter-spacing:-.02em}
+.mock .ed .l{height:1px;width:2.6rem}
+.mock--dark .ed .t{color:rgba(255,255,255,.9)}
+.mock--dark .ed .l{background:rgba(255,255,255,.35)}
+.mock--light .ed .t{color:rgba(26,30,38,.86)}
+.mock--light .ed .l{background:rgba(26,30,38,.28)}
+
+/* ---------- SISTEMA DE SUBMARCAS ---------- */
+.subs{display:flex;flex-direction:column;gap:.7rem}
+.sub{
+  display:flex;align-items:center;gap:clamp(.9rem,1.8vw,1.6rem);
+  padding:.9rem 1.15rem;
+  border:1px solid var(--line-soft);border-radius:3px;
+  background:rgba(255,255,255,.02);
+}
+.sub .ic{width:2.7rem;height:2.7rem;flex:none;display:flex;align-items:center;justify-content:center}
+.sub .ic img{width:100%;height:100%;object-fit:contain;display:block}
+.sub .wd{font-family:var(--font-text);font-weight:500;font-size:1.35rem;letter-spacing:-.01em;color:var(--paper)}
+.sub .div{width:1px;height:1.5rem;background:var(--line);flex:none}
+.sub .vt{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent)}
+
+/* ---------- RESPONSIVE / PANTALLAS BAJAS ---------- */
+@media (max-aspect-ratio:5/4){
+  .split,.split-wide{grid-template-columns:1fr;gap:1.6rem}
+  .hero-square{max-width:min(62vw,34vh)}
+  .gal-5{grid-template-columns:repeat(2,1fr)}
+  .gal-5 .item:nth-child(1){grid-column:span 2;grid-row:span 1}
+  .gal-5 .item:nth-child(2){grid-column:span 2}
+  .gal-5 .item:nth-child(3){grid-column:auto}
+  .steps{grid-template-columns:1fr}
+  .cmp,.cmp thead,.cmp tbody,.cmp tr,.cmp td,.cmp th{display:block;width:auto}
+  .cmp .rowlab{width:auto;padding-top:1.2rem}
+  .slide{justify-content:flex-start}
+  .palette{grid-template-columns:repeat(2,minmax(0,1fr));height:auto}
+  .pal{min-height:9rem}
+  .pal .fill{min-height:4.5rem}
+  .fontgrid{grid-template-columns:1fr}
+  .mocks{grid-template-columns:1fr}
+  .mock{aspect-ratio:16/10}
+}
+@media (max-width:760px){
+  .zone{width:16vw}
+  .brandmark,.hint{display:none}
+  .iconrow{grid-template-columns:repeat(2,1fr)}
+  .palette{grid-template-columns:1fr}
+  .sub{flex-wrap:wrap;gap:.7rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  .slide{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="brandmark">Drexen · Dirección de marca<span class="hint" id="hint">← → para navegar</span></div>
+<div class="counter" id="counter">01 / 17</div>
+<div class="zone prev" data-dir="-1"></div>
+<div class="zone next" data-dir="1"></div>
+
+<main class="deck" id="deck">
+
+  <!-- ============ 01 · PORTADA ============ -->
+  <section class="slide" data-label="Portada">
+    <div class="stack gap-m" style="max-width:60rem">
+      <div class="eyebrow reveal" style="--d:.05s">Propuesta de identidad · 03 rutas</div>
+      <h1 class="title-xl reveal" style="--d:.12s">Drexen</h1>
+      <hr class="rule-accent reveal" style="--d:.2s">
+      <p class="lead reveal" style="--d:.26s">Dirección de marca.<br>Tres propuestas de logotipo.</p>
+      <p class="reveal" style="--d:.34s;max-width:52ch">Drexen no carga significado ni límites heredados. Es un nombre en blanco, y eso es una ventaja: lo que le dé sentido va a ser el trabajo, los productos y el trato al cliente. Lo que sigue son tres formas distintas de empezar a llenarlo.</p>
+      <div class="stack gap-xs reveal" style="--d:.44s;margin-top:.8rem">
+        <hr class="rule" style="max-width:22rem">
+        <div class="secnum" style="padding-top:.7rem">SESIÓN · 11 DE SEPTIEMBRE DE 2026</div>
+        <div class="secnum">PARA JAIME RODRÍGUEZ · DREXEN</div>
+      </div>
+    </div>
+
+    <div class="cover-index reveal" style="--d:.56s">
+      <div class="ci-lab">En esta sesión</div>
+      <div class="ci"><span>Drexen Box</span><em>01</em></div>
+      <div class="ci"><span>Drexen Fluid</span><em>02</em></div>
+      <div class="ci"><span>Drexen Iconic</span><em>03</em></div>
+    </div>
+  </section>
+
+  <!-- ============ 02 · BOX (HERO) ============ -->
+  <section class="slide" data-label="Box">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 01</span>
+        <hr class="rule">
+        <span class="eyebrow">Paleta Premium</span>
+      </div>
+
+      <div class="split">
+        <div class="reveal" style="--d:.12s">
+          <div class="plate hero-square">
+            <img src="logos-drexen/drexen-box/drexen-box-night-ice.png" alt="Logotipo Drexen Box en night e ice">
+          </div>
+        </div>
+
+        <div class="stack gap-s">
+          <div class="stack gap-xs reveal" style="--d:.2s">
+            <h2 class="title-l">Drexen<br>Box</h2>
+          </div>
+
+          <div class="reveal" style="--d:.28s">
+            <p>El cuadrado hace el trabajo evidente: orden, método, cosas que se entregan completas. Somos cuadrados, dicho en positivo.</p>
+            <p>Lo que le da personalidad es que el nombre no se acomoda al centro. Se recarga hacia una esquina y deja aire del otro lado. Es una decisión chica que cambia todo: se ve una marca con criterio propio y no una plantilla.</p>
+            <p>El color termina de definirla. <strong>Night</strong>, un azul tan profundo que casi es negro, contra <strong>lime</strong>. El azul pone la base seria. El verde es el que hace que voltees.</p>
+          </div>
+
+          <div class="scales reveal" style="--d:.4s;max-width:34rem;margin-top:.6rem">
+            <div>
+              <div class="scale-lab"><span>Empresa grande y sólida</span><span class="hit">Taller especializado de autor</span></div>
+              <div class="track"><b style="left:79%">79</b><i style="left:79%"></i></div>
+            </div>
+            <div>
+              <div class="scale-lab"><span>Tradicional y confiable</span><span class="hit">Innovador y disruptivo</span></div>
+              <div class="track"><b style="left:64%">64</b><i style="left:64%"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 · BOX PALETA ============ -->
+  <section class="slide" data-label="Box · paleta">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 01</span>
+        <h3 class="title-m">Paleta Premium</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">05 colores</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:82ch;font-size:.88rem">Premium es una de las dos paletas que marcaste como favoritas en el formulario. Aquí está completa, con el papel que juega cada color. La regla de uso es simple: night manda, lime aparece poco y por eso pega.</p>
+
+      <div class="palette reveal" style="--d:.2s">
+        <div class="pal">
+          <div class="fill" style="background:#152642"></div>
+          <div class="meta"><span class="nm">night</span><span class="hex">#152642</span><span class="use">Fondo principal. El color base de toda la marca.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#D1FF42"></div>
+          <div class="meta"><span class="nm">lime</span><span class="hex">#D1FF42</span><span class="use">Acento de energía. Se usa en poca superficie, nunca de fondo.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#0251B0"></div>
+          <div class="meta"><span class="nm">electric</span><span class="hex">#0251B0</span><span class="use">Azul de apoyo para enlaces, gráficas y estados activos.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#E8F4FC"></div>
+          <div class="meta"><span class="nm">ice</span><span class="hex">#E8F4FC</span><span class="use">Superficie clara. Texto sobre oscuro y fondos de lectura.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#2E2E2E"></div>
+          <div class="meta"><span class="nm">charcoal</span><span class="hex">#2E2E2E</span><span class="use">La versión a una tinta, para impresión y documentos neutros.</span></div>
+        </div>
+      </div>
+
+      <p class="reveal" style="--d:.32s;max-width:70ch;font-size:.86rem">Con night e ice ya se resuelve el 90% de las piezas. Los otros tres existen para cuando algo necesita subir el volumen o bajar a blanco y negro.</p>
+    </div>
+  </section>
+
+  <!-- ============ 04 · BOX TIPOGRAFÍA ============ -->
+  <section class="slide" data-label="Box · tipografía">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 01</span>
+        <h3 class="title-m">Tipografía</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">Poppins + Space Mono</span>
+      </div>
+
+      <div class="split split-wide" style="align-items:start">
+        <div class="specimen reveal" style="--d:.14s">
+          <div class="spec-name font-geo">Drexen Box</div>
+          <div class="spec-sub font-geo" style="font-weight:400">Estructura, orden y entregas completas.</div>
+          <hr class="rule">
+          <div class="spec-data">DREXEN-BOX / V1 / #00427</div>
+          <div class="spec-glyphs font-geo">ABCDEFGHIJKLM · 0123456789</div>
+        </div>
+
+        <div class="stack gap-m">
+          <div class="fontgrid reveal" style="--d:.24s">
+            <div class="fontcard">
+              <span class="role">Titulares y texto</span>
+              <span class="fn font-geo">Poppins</span>
+              <p>Geometría pura: círculos casi perfectos y remates rectos. Rima de forma directa con el cuadrado del logotipo, así que la pieza y el texto hablan el mismo idioma. Es además la tipografía número 1 de tu lista de preferencia.</p>
+            </div>
+            <div class="fontcard">
+              <span class="role">Datos y folios</span>
+              <span class="fn font-code">Space Mono</span>
+              <p>Para numeración, folios de factura, versiones de archivo y cualquier dato que deba alinearse en columna. Aporta el detalle técnico sin restarle protagonismo al nombre.</p>
+            </div>
+          </div>
+
+          <div class="rulecard reveal" style="--d:.34s">
+            <span class="lab">Regla de uso</span>
+            <p style="max-width:44ch">Poppins carga todo el peso de la comunicación. Space Mono nunca se usa para párrafos: solo datos, etiquetas y numeración.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · BOX VARIANTES ============ -->
+  <section class="slide" data-label="Box · variantes">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 01</span>
+        <h3 class="title-m">Drexen Box · variantes</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">05 aplicaciones</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:78ch;font-size:.88rem">La combinación principal es night sobre ice. Las demás cubren los escenarios reales de uso: máximo contraste, versión neutra a una tinta, y las dos versiones transparentes para montar sobre fondo oscuro o claro sin recuadro.</p>
+
+      <div class="gal gal-5 reveal" style="--d:.2s">
+        <div class="item">
+          <div class="plate plate--flush"><img src="logos-drexen/drexen-box/drexen-box-night-ice.png" alt="Drexen Box night ice"></div>
+          <div class="cap"><span><span class="n">01</span> &nbsp;night + ice</span><span class="note">combinación principal</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--flush"><img src="logos-drexen/drexen-box/drexen-box-lime-electric.png" alt="Drexen Box lime electric"></div>
+          <div class="cap"><span><span class="n">02</span> &nbsp;lime + electric</span><span class="note">máximo contraste y energía</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--flush"><img src="logos-drexen/drexen-box/drexen-box-charcoal-white.png" alt="Drexen Box charcoal blanco"></div>
+          <div class="cap"><span><span class="n">03</span> &nbsp;charcoal + blanco</span><span class="note">versión neutra, una tinta</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--checkdark"><img src="logos-drexen/drexen-box/drexen-box-white-transparent.png" alt="Drexen Box blanco transparente"></div>
+          <div class="cap"><span><span class="n">04</span> &nbsp;blanco · transp.</span><span class="note">para fondos oscuros</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--check"><img src="logos-drexen/drexen-box/drexen-box-charcoal-transparent.png" alt="Drexen Box charcoal transparente"></div>
+          <div class="cap"><span><span class="n">05</span> &nbsp;charcoal · transp.</span><span class="note">para fondos claros</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 · BOX APLICACIÓN REAL ============ -->
+  <section class="slide" data-label="Box · aplicación">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 01</span>
+        <h3 class="title-m">El transparente, montado</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">Marca de agua</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:82ch;font-size:.88rem">Así se ven las dos versiones transparentes puestas encima de una pieza real, como firma discreta en la esquina. Sin recuadro, sin caja blanca, sin borde. El archivo se monta sobre lo que sea y sigue leyéndose.</p>
+
+      <div class="mocks reveal" style="--d:.2s">
+        <div class="mock mock--dark">
+          <span class="tag">Sobre fondo oscuro</span>
+          <div class="ed">
+            <span class="t">Infraestructura<br>que no se ve</span>
+            <span class="l"></span>
+          </div>
+          <div class="wm"><img src="logos-drexen/drexen-box/drexen-box-white-transparent.png" alt="Drexen Box blanco transparente sobre fondo oscuro"></div>
+        </div>
+        <div class="mock mock--light">
+          <span class="tag">Sobre fondo claro</span>
+          <div class="ed">
+            <span class="t">Cada pieza<br>en su lugar</span>
+            <span class="l"></span>
+          </div>
+          <div class="wm"><img src="logos-drexen/drexen-box/drexen-box-charcoal-transparent.png" alt="Drexen Box charcoal transparente sobre fondo claro"></div>
+        </div>
+      </div>
+
+      <p class="reveal" style="--d:.32s;max-width:74ch;font-size:.86rem">Es la prueba de que el archivo transparente funciona montado encima de una imagen y no solo aislado en su placa. Sirve igual en portada de propuesta, en presentación y en la esquina de una factura.</p>
+    </div>
+  </section>
+
+  <!-- ============ 07 · FLUID (HERO) ============ -->
+  <section class="slide" data-label="Fluid">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 02</span>
+        <hr class="rule">
+        <span class="eyebrow">Paleta SaaS Moderno</span>
+      </div>
+
+      <div class="reveal" style="--d:.12s">
+        <div class="plate plate--oceanic band pad-wide" style="max-height:24vh">
+          <img src="logos-drexen/drexen-fluid/drexen-fluid-white.png" alt="Logotipo Drexen Fluid en blanco sobre oceanic">
+        </div>
+      </div>
+
+      <div class="split split-wide" style="align-items:start">
+        <div class="stack gap-s">
+          <h2 class="title-l reveal" style="--d:.2s">Drexen Fluid</h2>
+          <div class="reveal" style="--d:.26s">
+            <p>El nombre está dibujado para leerse de corrido. El trazo no se detiene entre una letra y la siguiente, avanza. Es la misma sensación que deja un software bien hecho: no se ven las costuras entre una parte y otra.</p>
+          </div>
+          <div class="scales reveal" style="--d:.46s;max-width:30rem;margin-top:.8rem">
+            <div>
+              <div class="scale-lab"><span class="hit">Técnico y preciso</span><span>Humano y accesible</span></div>
+              <div class="track"><b style="left:33%">33</b><i style="left:33%"></i></div>
+            </div>
+            <div>
+              <div class="scale-lab"><span>Local mexicano</span><span class="hit">Internacional sin acento</span></div>
+              <div class="track"><b style="left:79%">79</b><i style="left:79%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack gap-m">
+          <div class="reveal" style="--d:.32s">
+            <p>Ahí está lo que hace Drexen resumido en una sola imagen: conectar las piezas que un negocio ya usa y que pasar de una a otra deje de costar trabajo.</p>
+            <p>El dibujo es futurista sin levantar la voz. Tiene carácter y aun así se mantiene del lado técnico y preciso que marcaste en el formulario.</p>
+          </div>
+
+          <p class="reveal" style="--d:.44s;font-size:.88rem;max-width:54ch">De las tres, es la que más se lee como producto de software global. Si el objetivo es que nadie adivine desde dónde operas, esta es la ruta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 · FLUID PALETA ============ -->
+  <section class="slide" data-label="Fluid · paleta">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 02</span>
+        <h3 class="title-m">Paleta SaaS Moderno</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">05 colores</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:82ch;font-size:.88rem">Esta es la segunda paleta que marcaste como favorita, y la que Fluid comparte con Iconic. Es más fría y más de pantalla que Premium: menos contraste bruto, más aire.</p>
+
+      <div class="palette reveal" style="--d:.2s">
+        <div class="pal">
+          <div class="fill" style="background:#2D6CE0"></div>
+          <div class="meta"><span class="nm">oceanic</span><span class="hex">#2D6CE0</span><span class="use">Color de marca. Es el que hay que reconocer a distancia.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#22262C"></div>
+          <div class="meta"><span class="nm">obsidian</span><span class="hex">#22262C</span><span class="use">Texto y versión a una tinta para documentos.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#E9EAED"></div>
+          <div class="meta"><span class="nm">mist</span><span class="hex">#E9EAED</span><span class="use">Superficie clara. Separa bloques sin necesidad de línea.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#FFFFFF"></div>
+          <div class="meta"><span class="nm">white</span><span class="hex">#FFFFFF</span><span class="use">Fondo principal y logotipo reversado sobre color.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#5FD5D0"></div>
+          <div class="meta"><span class="nm">mint</span><span class="hex">#5FD5D0</span><span class="use">Acento. Destaca lo que importa en piezas digitales.</span></div>
+        </div>
+      </div>
+
+      <p class="reveal" style="--d:.32s;max-width:70ch;font-size:.86rem">Oceanic sobre blanco es la combinación de todos los días. Mint entra solo cuando hace falta señalar algo, nunca como segundo color de marca.</p>
+    </div>
+  </section>
+
+  <!-- ============ 09 · FLUID TIPOGRAFÍA ============ -->
+  <section class="slide" data-label="Fluid · tipografía">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 02</span>
+        <h3 class="title-m">Tipografía</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">Syne + Work Sans</span>
+      </div>
+
+      <div class="split split-wide" style="align-items:start">
+        <div class="specimen reveal" style="--d:.14s">
+          <div class="spec-name font-display" style="font-weight:700">Drexen Fluid</div>
+          <div class="spec-sub font-text">Plataforma de operación conectada para negocios que ya no caben en una hoja de cálculo.</div>
+          <hr class="rule">
+          <div class="spec-data">SYNE 700 · WORK SANS 300 / 400 / 500</div>
+        </div>
+
+        <div class="stack gap-m">
+          <div class="fontgrid reveal" style="--d:.24s">
+            <div class="fontcard">
+              <span class="role">Titulares</span>
+              <span class="fn font-display">Syne</span>
+              <p>Anchos irregulares y uniones raras entre trazos. Es el mismo gesto que ya hace el logotipo, así que el titular se siente parte de la misma pieza y no algo puesto encima.</p>
+            </div>
+            <div class="fontcard">
+              <span class="role">Texto</span>
+              <span class="fn font-text">Work Sans</span>
+              <p>Neutra, dibujada para pantalla y sin acento regional. Conecta directo con el 79/100 de internacional sin acento que marcaste.</p>
+            </div>
+          </div>
+
+          <div class="rulecard reveal" style="--d:.34s">
+            <span class="lab">Regla de uso</span>
+            <p style="max-width:46ch">Syne nunca abajo de 20px ni en párrafos: es tipografía de display, no de lectura corrida.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 · FLUID VARIANTES ============ -->
+  <section class="slide" data-label="Fluid · variantes">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 02</span>
+        <h3 class="title-m">Drexen Fluid · variantes</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">04 aplicaciones</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:78ch;font-size:.88rem">Oceanic es el color de marca y la versión principal va reversada encima de él. Obsidian resuelve documentos a una tinta, facturas y todo lo que se imprima. Mint funciona como acento en piezas digitales. La versión en blanco cubre cualquier otro fondo oscuro.</p>
+
+      <div class="gal gal-4 reveal" style="--d:.2s">
+        <div class="item">
+          <div class="plate plate--oceanic pad-wide"><img src="logos-drexen/drexen-fluid/drexen-fluid-white.png" alt="Drexen Fluid blanco sobre oceanic"></div>
+          <div class="cap"><span><span class="n">01</span> &nbsp;oceanic · reversado</span><span class="note">versión principal de marca</span></div>
+        </div>
+        <div class="item">
+          <div class="plate pad-wide"><img src="logos-drexen/drexen-fluid/drexen-fluid-obsidian.png" alt="Drexen Fluid obsidian"></div>
+          <div class="cap"><span><span class="n">02</span> &nbsp;obsidian · #22262C</span><span class="note">neutra, documentos</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--mist pad-wide"><img src="logos-drexen/drexen-fluid/drexen-fluid-mint.png" alt="Drexen Fluid mint"></div>
+          <div class="cap"><span><span class="n">03</span> &nbsp;mint · #5FD5D0</span><span class="note">variante de acento</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--dark pad-wide"><img src="logos-drexen/drexen-fluid/drexen-fluid-white.png" alt="Drexen Fluid blanco"></div>
+          <div class="cap"><span><span class="n">04</span> &nbsp;white · #FFFFFF</span><span class="note">para fondos oscuros</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11 · ICONIC (HERO) ============ -->
+  <section class="slide" data-label="Iconic">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 03</span>
+        <hr class="rule">
+        <span class="eyebrow">Paleta SaaS Moderno</span>
+      </div>
+
+      <div class="reveal" style="--d:.12s">
+        <div class="plate plate--hairline band pad-wide" style="max-height:22vh">
+          <img src="logos-drexen/drexen-iconic/drexen-iconic-logo-white.png" alt="Logotipo Drexen Iconic en blanco">
+        </div>
+      </div>
+
+      <div class="split split-wide" style="align-items:start">
+        <div class="stack gap-s">
+          <h2 class="title-l reveal" style="--d:.2s">Drexen Iconic</h2>
+          <div class="reveal" style="--d:.26s">
+            <p>Esta ruta no es un logotipo, es un sistema. Las letras van sueltas y bien espaciadas, en un dibujo tranquilo que no compite con nada de lo que se le ponga al lado.</p>
+            <p>La pieza clave es la <strong>d</strong> inicial. Se mete en un cuadrado de esquinas redondeadas y deja de comportarse como letra: se vuelve icono. El nombre completo se queda a un lado como firma, sin pelear protagonismo.</p>
+          </div>
+
+          <div class="scales reveal" style="--d:.4s;max-width:32rem;margin-top:.6rem">
+            <div>
+              <div class="scale-lab"><span class="hit">Sobrio y minimalista</span><span>Expresivo y con carácter</span></div>
+              <div class="track"><b style="left:33%">33</b><i style="left:33%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack gap-m">
+          <div class="callout reveal" style="--d:.34s">
+            <p style="max-width:48ch"><strong>Aquí es donde esta ruta se paga sola.</strong> Drexen va a operar con arquitectura de marca madre y submarcas por vertical, como ya lo definimos. Un producto de salud podría llamarse Drexen Medic. El icono de la <strong>d</strong> está diseñado para funcionar solo, independiente del nombre completo, como sello que cada submarca del catálogo puede adoptar sin rediseñar nada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12 · ICONIC · EL ICONO SUELTO ============ -->
+  <section class="slide" data-label="Iconic · el icono">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 03</span>
+        <h3 class="title-m">El icono suelto</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">04 variantes</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:78ch;font-size:.88rem">Este es el elemento que ninguna de las otras dos propuestas trae. Vive sin el wordmark: avatar, favicon, sello en documentos y, sobre todo, marca de cada producto futuro del catálogo.</p>
+
+      <div class="iconrow iconrow--big reveal" style="--d:.2s;max-width:min(88vw,72rem);margin-inline:auto;width:100%">
+        <div class="item">
+          <div class="plate pad-icon"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-oceanic.png" alt="Icono Drexen oceanic"></div>
+          <div class="cap"><span><span class="n">01</span> &nbsp;oceanic</span><span class="note">uso principal</span></div>
+        </div>
+        <div class="item">
+          <div class="plate pad-icon"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-obsidian.png" alt="Icono Drexen obsidian"></div>
+          <div class="cap"><span><span class="n">02</span> &nbsp;obsidian</span><span class="note">documentos a una tinta</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--mist pad-icon"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-mint.png" alt="Icono Drexen mint"></div>
+          <div class="cap"><span><span class="n">03</span> &nbsp;mint</span><span class="note">acento digital</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--dark pad-icon"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-white.png" alt="Icono Drexen blanco"></div>
+          <div class="cap"><span><span class="n">04</span> &nbsp;white</span><span class="note">para fondos oscuros</span></div>
+        </div>
+      </div>
+
+      <p class="reveal" style="--d:.32s;max-width:74ch;font-size:.86rem">A este tamaño se nota lo importante: la forma aguanta sola, sin el nombre al lado. Eso es lo que permite que mañana haya un catálogo de productos y todos se vean de la misma familia.</p>
+    </div>
+  </section>
+
+  <!-- ============ 13 · ICONIC PALETA ============ -->
+  <section class="slide" data-label="Iconic · paleta">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 03</span>
+        <h3 class="title-m">Paleta SaaS Moderno</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">05 colores</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:82ch;font-size:.88rem">La propuesta 03 usa la misma paleta que Fluid, a propósito: son parientes de color. Lo que las separa no es el color, es el icono. Aquí cada tono trabaja en dos planos, el del wordmark y el del sello suelto.</p>
+
+      <div class="palette reveal" style="--d:.2s">
+        <div class="pal">
+          <div class="fill" style="background:#2D6CE0"></div>
+          <div class="meta"><span class="nm">oceanic</span><span class="hex">#2D6CE0</span><span class="use">Color de marca. El icono en oceanic es la versión de todos los días.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#22262C"></div>
+          <div class="meta"><span class="nm">obsidian</span><span class="hex">#22262C</span><span class="use">Texto, facturas y cualquier pieza a una tinta.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#E9EAED"></div>
+          <div class="meta"><span class="nm">mist</span><span class="hex">#E9EAED</span><span class="use">Superficie clara detrás del icono cuando necesita respiro.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#FFFFFF"></div>
+          <div class="meta"><span class="nm">white</span><span class="hex">#FFFFFF</span><span class="use">Fondo principal y versión reversada sobre color.</span></div>
+        </div>
+        <div class="pal">
+          <div class="fill" style="background:#5FD5D0"></div>
+          <div class="meta"><span class="nm">mint</span><span class="hex">#5FD5D0</span><span class="use">Acento. Útil para distinguir una submarca sin salirse de la familia.</span></div>
+        </div>
+      </div>
+
+      <p class="reveal" style="--d:.32s;max-width:70ch;font-size:.86rem">Si más adelante una vertical necesita identidad propia, el movimiento es de color dentro de esta paleta, nunca de forma.</p>
+    </div>
+  </section>
+
+  <!-- ============ 14 · ICONIC TIPOGRAFÍA ============ -->
+  <section class="slide" data-label="Iconic · tipografía">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 03</span>
+        <h3 class="title-m">Tipografía y sistema</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">Work Sans + Space Mono</span>
+      </div>
+
+      <div class="split split-wide" style="align-items:start">
+        <div class="stack gap-s">
+          <p class="reveal" style="--d:.12s;max-width:52ch;font-size:.88rem">Las tipografías más neutras y utilitarias del set, porque aquí el protagonista es el icono y no la letra. Work Sans pone el nombre, Space Mono pone la vertical.</p>
+
+          <div class="subs reveal" style="--d:.2s;margin-top:.4rem">
+            <div class="sub">
+              <span class="ic"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-white.png" alt="Icono Drexen"></span>
+              <span class="wd">Drexen</span>
+              <span class="div"></span>
+              <span class="vt">Medic</span>
+            </div>
+            <div class="sub">
+              <span class="ic"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-white.png" alt="Icono Drexen"></span>
+              <span class="wd">Drexen</span>
+              <span class="div"></span>
+              <span class="vt">Legal</span>
+            </div>
+            <div class="sub">
+              <span class="ic"><img src="logos-drexen/drexen-iconic/drexen-iconic-icon-white.png" alt="Icono Drexen"></span>
+              <span class="wd">Drexen</span>
+              <span class="div"></span>
+              <span class="vt">Retail</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack gap-m">
+          <div class="fontgrid reveal" style="--d:.3s">
+            <div class="fontcard">
+              <span class="role">Nombre y texto</span>
+              <span class="fn font-text">Work Sans</span>
+              <p>Neutra y hecha para pantalla. No agrega personalidad propia, que es justo lo que se necesita cuando el icono ya la puso.</p>
+            </div>
+            <div class="fontcard">
+              <span class="role">Tag de vertical</span>
+              <span class="fn font-code">Space Mono</span>
+              <p>Mayúsculas con letter-spacing amplio. Marca la vertical como una etiqueta de sistema, no como parte del nombre.</p>
+            </div>
+          </div>
+
+          <div class="rulecard reveal" style="--d:.4s">
+            <span class="lab">Por qué importa</span>
+            <p style="max-width:46ch">Todas las submarcas se ven idénticas menos por una palabra. Eso es un sistema real, no un logo con variantes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 15 · ICONIC VARIANTES ============ -->
+  <section class="slide" data-label="Iconic · variantes">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">PROPUESTA 03</span>
+        <h3 class="title-m">Drexen Iconic · logotipo completo</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">04 aplicaciones</span>
+      </div>
+
+      <p class="reveal" style="--d:.12s;max-width:78ch;font-size:.88rem">Estas son las variantes del logotipo completo, icono más wordmark. Es la versión que se usa en encabezados de propuesta, presentaciones y facturas. El icono suelto, que ya viste, viaja aparte.</p>
+
+      <div class="gal gal-4 reveal" style="--d:.2s">
+        <div class="item">
+          <div class="plate plate--oceanic pad-wide"><img src="logos-drexen/drexen-iconic/drexen-iconic-logo-white.png" alt="Drexen Iconic blanco sobre oceanic"></div>
+          <div class="cap"><span><span class="n">01</span> &nbsp;oceanic · reversado</span><span class="note">versión principal de marca</span></div>
+        </div>
+        <div class="item">
+          <div class="plate pad-wide"><img src="logos-drexen/drexen-iconic/drexen-iconic-logo-obsidian.png" alt="Drexen Iconic obsidian"></div>
+          <div class="cap"><span><span class="n">02</span> &nbsp;obsidian · #22262C</span><span class="note">neutra, documentos</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--mist pad-wide"><img src="logos-drexen/drexen-iconic/drexen-iconic-logo-mint.png" alt="Drexen Iconic mint"></div>
+          <div class="cap"><span><span class="n">03</span> &nbsp;mint · #5FD5D0</span><span class="note">variante de acento</span></div>
+        </div>
+        <div class="item">
+          <div class="plate plate--dark pad-wide"><img src="logos-drexen/drexen-iconic/drexen-iconic-logo-white.png" alt="Drexen Iconic blanco"></div>
+          <div class="cap"><span><span class="n">04</span> &nbsp;white · #FFFFFF</span><span class="note">para fondos oscuros</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 16 · COMPARATIVA ============ -->
+  <section class="slide" data-label="Comparativa">
+    <div class="stack gap-m">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">DECISIÓN</span>
+        <h3 class="title-m">Las tres, lado a lado</h3>
+        <hr class="rule">
+        <span class="eyebrow dim">Para elegir</span>
+      </div>
+
+      <table class="cmp reveal" style="--d:.14s">
+        <thead>
+          <tr>
+            <th class="rowlab"></th>
+            <th>
+              <div class="colhead"><span class="tag">Propuesta 01</span><span class="nm">Box</span></div>
+            </th>
+            <th>
+              <div class="colhead"><span class="tag">Propuesta 02</span><span class="nm">Fluid</span></div>
+            </th>
+            <th>
+              <div class="colhead"><span class="tag">Propuesta 03</span><span class="nm">Iconic</span></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rowlab">Vista rápida</td>
+            <td><div class="thumbrow"><div class="thumb"><img src="logos-drexen/drexen-box/drexen-box-night-ice.png" alt="Box"></div></div></td>
+            <td><div class="thumbrow"><div class="thumb wide oceanic"><img src="logos-drexen/drexen-fluid/drexen-fluid-white.png" alt="Fluid"></div></div></td>
+            <td><div class="thumbrow"><div class="thumb wide flush"><img src="logos-drexen/drexen-iconic/drexen-iconic-logo-white.png" alt="Iconic"></div></div></td>
+          </tr>
+          <tr>
+            <td class="rowlab">Personalidad</td>
+            <td class="hi">Estructura con una decisión fuera de eje, a propósito. Sólida sin ser solemne.</td>
+            <td class="hi">Continuidad y movimiento. Se siente producto terminado, no despacho.</td>
+            <td class="hi">El nombre más un sello propio capaz de viajar solo.</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Paleta</td>
+            <td><span class="chip"><i style="background:#152642"></i><i style="background:#D1FF42"></i>Premium</span></td>
+            <td><span class="chip"><i style="background:#2D6CE0"></i><i style="background:#5FD5D0"></i>SaaS Moderno</span></td>
+            <td><span class="chip"><i style="background:#2D6CE0"></i><i style="background:#5FD5D0"></i>SaaS Moderno</span></td>
+          </tr>
+          <tr>
+            <td class="rowlab">Composición</td>
+            <td>Nombre recargado fuera del centro dentro de un cuadrado.</td>
+            <td>Trazo continuo, en minúsculas, pensado para leerse de corrido.</td>
+            <td>Minúsculas separadas, con la d convertida en icono independiente.</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Mejor para</td>
+            <td class="hi">Presencia de marca fuerte y memorable. Se reconoce de lejos y también en tamaño chico.</td>
+            <td class="hi">Aplicaciones digitales y todo lo que deba sentirse como producto SaaS.</td>
+            <td class="hi">Si se planea un catálogo de productos con submarcas por vertical.</td>
+          </tr>
+          <tr>
+            <td class="rowlab">Lo que aporta de más</td>
+            <td>El contraste cromático más agresivo de las tres. Es la que menos se confunde con otra.</td>
+            <td>La lectura más internacional y la más limpia en tamaños reducidos.</td>
+            <td>Un icono independiente, listo para Drexen Medic y lo que siga.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 17 · CIERRE ============ -->
+  <section class="slide" data-label="Cierre">
+    <div class="stack gap-m" style="max-width:76rem">
+      <div class="head reveal" style="--d:.05s">
+        <span class="secnum">CIERRE</span>
+        <hr class="rule">
+        <span class="eyebrow dim">Próximos pasos</span>
+      </div>
+
+      <div class="stack gap-s reveal" style="--d:.12s">
+        <h2 class="title-l">Dónde va a vivir el logo</h2>
+        <p style="max-width:64ch">Las tres propuestas se diseñaron pensando en los soportes que ya priorizaste. Ninguna depende de una aplicación decorativa para funcionar.</p>
+      </div>
+
+      <div class="steps reveal" style="--d:.2s">
+        <div class="step">
+          <span class="n">01</span>
+          <span class="t">Propuestas comerciales en PDF</span>
+          <p>Encabezado, portada y pie de página. Es el primer contacto visual con un prospecto.</p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <span class="t">Presentaciones a clientes</span>
+          <p>Clínicas y demás verticales. Portada, separadores y marca de agua discreta.</p>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <span class="t">Facturas</span>
+          <p>Tamaño reducido y una sola tinta. Aquí es donde se prueba de verdad la legibilidad.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="--d:.3s">
+        <hr class="rule">
+      </div>
+
+      <div class="split reveal" style="--d:.38s;align-items:start">
+        <div class="stack gap-xs">
+          <span class="eyebrow dim">Qué se entrega</span>
+          <p style="max-width:52ch">La propuesta que elijas se prepara en <strong>versión horizontal</strong> y <strong>versión compacta</strong>, con las variantes de color de su paleta y los archivos para fondo claro y fondo oscuro. Listos para montarse en plantillas de propuesta, presentación y factura.</p>
+        </div>
+
+        <div class="callout">
+          <p class="lead" style="max-width:46ch">No hay respuesta correcta entre las tres. Hay una que se parece más a como quieres que te vean.</p>
+          <p style="margin-top:.8rem;max-width:46ch">Tómate el tiempo de verlas de nuevo. Cuando tengas clara cuál, la aterrizamos.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="--d:.48s;margin-top:1.2rem">
+        <hr class="rule-accent">
+        <h2 class="title-l" style="margin-top:1.1rem;max-width:22ch">La decisión es tuya:<br>¿qué camino quieres tomar?</h2>
+      </div>
+
+      <div class="secnum reveal" style="--d:.58s;margin-top:1rem">DREXEN · 11 DE SEPTIEMBRE DE 2026</div>
+    </div>
+  </section>
+
+</main>
+
+<div class="dots" id="dots"></div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var dotsEl = document.getElementById('dots');
+  var progress = document.getElementById('progress');
+  var counter = document.getElementById('counter');
+  var hint = document.getElementById('hint');
+  var i = 0;
+  var moved = false;
+
+  // dots
+  slides.forEach(function(s, idx){
+    var b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('data-label', s.getAttribute('data-label') || ('0' + (idx+1)));
+    b.setAttribute('aria-label', 'Ir a ' + (s.getAttribute('data-label') || (idx+1)));
+    b.addEventListener('click', function(e){ e.stopPropagation(); go(idx); });
+    dotsEl.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsEl.children);
+
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+
+  function go(n){
+    if (n < 0) n = 0;
+    if (n > total - 1) n = total - 1;
+    if (n !== i) moved = true;
+    i = n;
+    slides.forEach(function(s, idx){
+      s.classList.toggle('active', idx === i);
+      if (idx === i) s.scrollTop = 0;
+    });
+    dots.forEach(function(d, idx){ d.classList.toggle('on', idx === i); });
+    progress.style.width = (((i + 1) / total) * 100) + '%';
+    counter.textContent = pad(i + 1) + ' / ' + pad(total);
+    if (moved && hint) hint.classList.add('gone');
+    if (history.replaceState) history.replaceState(null, '', '#' + (i + 1));
+  }
+
+  function next(){ go(i + 1); }
+  function prev(){ go(i - 1); }
+
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ' || k === 'Enter'){ e.preventDefault(); next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'Backspace'){ e.preventDefault(); prev(); }
+    else if (k === 'Home'){ e.preventDefault(); go(0); }
+    else if (k === 'End'){ e.preventDefault(); go(total - 1); }
+    else if (/^[1-9]$/.test(k)){ e.preventDefault(); go(parseInt(k, 10) - 1); }
+    else if (k === 'f' || k === 'F'){
+      if (!document.fullscreenElement && document.documentElement.requestFullscreen){
+        document.documentElement.requestFullscreen();
+      } else if (document.exitFullscreen && document.fullscreenElement){
+        document.exitFullscreen();
+      }
+    }
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.zone'), function(z){
+    z.addEventListener('click', function(){
+      (z.getAttribute('data-dir') === '1') ? next() : prev();
+    });
+  });
+
+  // swipe
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function(e){
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    var dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) { (dx < 0) ? next() : prev(); }
+    x0 = null; y0 = null;
+  }, {passive:true});
+
+  // arranque (respeta #n si existe)
+  var start = parseInt((location.hash || '').replace('#',''), 10);
+  go(isNaN(start) ? 0 : start - 1);
+  moved = false;
+})();
+</script>
+</body>
+</html>

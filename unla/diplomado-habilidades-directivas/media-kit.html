@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Kit — Diplomado en Habilidades Directivas para la Era de la IA · UNLA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#070B24; --bg-purple:#180A38; --bg-mid:#0D1030;
+    --white:#FFFFFF; --pale:#F5E6A3; --purple:#8B5CF6; --purple-soft:#A78BFA;
+    --purple-dim:rgba(139,92,246,.14); --purple-line:rgba(139,92,246,.32);
+    --muted:#9FB0CC; --muted-dim:#6B7A99;
+    --font-display:'Space Grotesk',sans-serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+    --rail-w:76px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg-deep);font-family:var(--font-body);color:var(--white);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;}
+  ::selection{background:rgba(245,230,163,.28);color:#fff;}
+
+  /* Ambient background */
+  .bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:
+      radial-gradient(ellipse 90% 60% at 10% 0%, rgba(139,92,246,.20), transparent 60%),
+      radial-gradient(ellipse 80% 70% at 92% 100%, rgba(76,29,149,.26), transparent 62%),
+      linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-purple) 100%);}
+  .bg .grid{position:absolute;inset:0;opacity:.22;
+    background-image:linear-gradient(rgba(139,92,246,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.09) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000 20%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000 20%,transparent 80%);}
+
+  /* Top bar + progress */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:1rem;
+    padding:.7rem clamp(1rem,4vw,2.6rem);
+    background:rgba(7,11,36,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,92,246,.16);}
+  .topbar .tt{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
+  .topbar .tt b{color:var(--pale);}
+  /* Desktop mini-nav in topbar */
+  .topbar nav.top-links{display:flex;gap:.2rem;flex-wrap:wrap;justify-content:flex-end;}
+  .topbar nav.top-links a{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;color:var(--muted);text-decoration:none;
+    padding:.28rem .5rem;border-radius:6px;transition:background .15s,color .15s;white-space:nowrap;}
+  .topbar nav.top-links a:hover{background:var(--purple-dim);color:var(--white);}
+
+  /* Mobile chips nav (scrollable) */
+  .chipnav{position:fixed;top:41px;left:0;right:0;z-index:49;display:none;gap:.4rem;padding:.55rem clamp(1rem,4vw,2.6rem);
+    background:rgba(7,11,36,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,92,246,.14);
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .chipnav::-webkit-scrollbar{display:none;}
+  .chipnav a{flex:0 0 auto;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted);text-decoration:none;
+    padding:.34rem .7rem;border-radius:99px;border:1px solid var(--purple-line);background:rgba(139,92,246,.05);white-space:nowrap;transition:all .16s;}
+  .chipnav a.active{background:rgba(245,230,163,.16);border-color:rgba(245,230,163,.45);color:var(--pale);}
+
+  .progress{position:fixed;top:0;left:0;height:2px;z-index:60;width:0;
+    background:linear-gradient(90deg,var(--purple),var(--pale));box-shadow:0 0 12px rgba(139,92,246,.7);transition:width .1s linear;}
+
+  /* Sticky side rail (desktop) */
+  .rail{position:fixed;top:50%;right:clamp(.6rem,2vw,1.4rem);transform:translateY(-50%);z-index:45;
+    display:flex;flex-direction:column;gap:.15rem;padding:.5rem .4rem;
+    background:rgba(7,11,36,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(139,92,246,.16);border-radius:99px;}
+  .rail a{position:relative;display:flex;align-items:center;justify-content:center;width:34px;height:34px;text-decoration:none;
+    font-family:var(--font-mono);font-size:.62rem;font-weight:700;color:var(--muted-dim);border-radius:50%;transition:color .18s;}
+  .rail a .dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--muted-dim);transition:all .2s;}
+  .rail a .num{opacity:0;transition:opacity .18s;}
+  .rail a:hover .dot,.rail a.active .dot{opacity:0;}
+  .rail a:hover .num,.rail a.active .num{opacity:1;}
+  .rail a:hover{color:var(--purple-soft);}
+  .rail a.active{color:var(--pale);}
+  .rail a.active::before{content:'';position:absolute;inset:0;border-radius:50%;border:1px solid rgba(245,230,163,.5);background:rgba(245,230,163,.08);}
+  .rail a .tip{position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%) translateX(6px);
+    font-family:var(--font-mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--white);white-space:nowrap;
+    background:rgba(24,10,56,.92);border:1px solid var(--purple-line);padding:.3rem .55rem;border-radius:6px;
+    opacity:0;pointer-events:none;transition:opacity .16s,transform .16s;}
+  .rail a:hover .tip{opacity:1;transform:translateY(-50%) translateX(0);}
+
+  /* Layout */
+  main{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.4rem);}
+  section{position:relative;padding:clamp(4rem,9vw,7rem) 0;scroll-margin-top:70px;}
+  .sec-inner{position:relative;z-index:2;}
+
+  /* Per-section glow accents to break continuity */
+  .glow{position:absolute;z-index:0;pointer-events:none;border-radius:50%;filter:blur(60px);opacity:.5;}
+  section[data-glow="l"] .glow{width:520px;height:520px;left:-14%;top:6%;background:radial-gradient(circle,rgba(139,92,246,.30),transparent 70%);}
+  section[data-glow="r"] .glow{width:560px;height:560px;right:-16%;top:0%;background:radial-gradient(circle,rgba(76,29,149,.36),transparent 70%);}
+  section[data-glow="c"] .glow{width:640px;height:640px;left:50%;top:-6%;transform:translateX(-50%);background:radial-gradient(circle,rgba(139,92,246,.20),transparent 68%);}
+  section[data-glow="pale"] .glow{width:480px;height:480px;right:-10%;bottom:0;background:radial-gradient(circle,rgba(245,230,163,.10),transparent 70%);}
+
+  /* Giant section number behind heading */
+  .secnum{position:absolute;z-index:1;font-family:var(--font-display);font-weight:700;
+    font-size:clamp(9rem,26vw,22rem);line-height:.8;color:transparent;
+    -webkit-text-stroke:1px rgba(139,92,246,.14);top:-.28em;left:-.04em;letter-spacing:-.03em;
+    user-select:none;pointer-events:none;}
+  .secnum b{-webkit-text-stroke:1px rgba(245,230,163,.16);color:transparent;}
+
+  .eyebrow{font-family:var(--font-mono);font-size:clamp(.6rem,.82vw,.72rem);letter-spacing:.26em;text-transform:uppercase;
+    color:var(--purple-soft);margin-bottom:1.05rem;display:flex;align-items:center;gap:.8rem;}
+  .eyebrow::before{content:attr(data-n);color:var(--pale);}
+  .eyebrow::after{content:'';flex:1;height:1px;max-width:220px;background:linear-gradient(90deg,var(--purple-line),transparent);}
+  h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,5.4vw,4.2rem);line-height:1.05;letter-spacing:-.022em;}
+  h2{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,3.2vw,2.6rem);line-height:1.14;letter-spacing:-.018em;margin-bottom:1.3rem;}
+  h2 .accent{color:var(--pale);}
+  h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1rem,1.4vw,1.25rem);color:var(--white);}
+  p{font-size:clamp(.95rem,1.12vw,1.1rem);color:var(--muted);max-width:66ch;}
+  p strong,li strong{color:var(--white);font-weight:600;}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.4rem);color:var(--white);font-weight:400;line-height:1.5;}
+  .mt{margin-top:1.3rem;}.mt-sm{margin-top:.8rem;}.mt-lg{margin-top:2.2rem;}
+
+  /* Reusable tag block: Etiqueta a la UNLA + hashtag debajo */
+  .tagwrap{display:flex;flex-direction:column;gap:.55rem;align-items:flex-start;}
+  .foot .tagwrap{align-items:center;margin-top:1.4rem;}
+  .tagchip{display:inline-flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--pale);background:rgba(245,230,163,.07);border:1px solid rgba(245,230,163,.3);border-radius:99px;padding:.42rem .9rem;}
+  .tagchip svg{width:13px;height:13px;flex:0 0 auto;}
+  .tagchip .sep{color:var(--muted-dim);}
+  .tagchip a{color:var(--pale);text-decoration:none;text-transform:none;letter-spacing:.02em;border-bottom:1px solid rgba(245,230,163,.35);}
+  .tagchip a:hover{color:#fff;border-bottom-color:#fff;}
+  .taghash{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.03em;color:var(--purple-soft);}
+
+  /* Hero */
+  .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;}
+  .kicker{font-family:var(--font-mono);font-size:clamp(.7rem,1vw,.85rem);letter-spacing:.28em;text-transform:uppercase;color:var(--purple-soft);margin-bottom:1.5rem;}
+  .hero .sub{font-size:clamp(1.05rem,1.8vw,1.5rem);color:var(--muted);max-width:40ch;margin-top:1.4rem;}
+  .hero .tagline{margin-top:2rem;font-family:var(--font-display);font-size:clamp(1rem,1.5vw,1.35rem);color:var(--pale);font-weight:500;}
+  .divider{height:1px;background:linear-gradient(90deg,var(--purple-line),transparent);margin:1.6rem 0;max-width:360px;}
+  .scrollcue{display:inline-flex;align-items:center;gap:.5rem;margin-top:2.6rem;font-family:var(--font-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-dim);text-decoration:none;transition:color .2s;}
+  .scrollcue:hover{color:var(--purple-soft);}
+  .scrollcue svg{width:14px;height:14px;animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+
+  /* Key-value / tables */
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.6rem;align-items:baseline;margin-top:.3rem;}
+  .kv dt{font-family:var(--font-mono);font-size:clamp(.6rem,.82vw,.72rem);letter-spacing:.13em;text-transform:uppercase;color:var(--muted-dim);white-space:nowrap;}
+  .kv dd{font-size:clamp(.92rem,1.15vw,1.1rem);color:var(--white);font-weight:500;}
+  .kv dd .hl{color:var(--pale);font-weight:700;}
+
+  /* Steps */
+  .steps{display:flex;flex-direction:column;gap:1.05rem;margin-top:.4rem;}
+  .step{display:flex;gap:1.1rem;align-items:flex-start;}
+  .step-n{flex:0 0 auto;width:2.3rem;height:2.3rem;border-radius:9px;border:1px solid var(--purple-line);background:var(--purple-dim);
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:.86rem;color:var(--purple-soft);font-weight:700;}
+  .step-body{padding-top:.15rem;}
+  .step-body p{font-size:clamp(.88rem,1.06vw,1rem);}
+
+  /* Callouts */
+  .callout{border-radius:12px;padding:1.1rem 1.3rem;margin-top:1.5rem;font-size:clamp(.86rem,1.05vw,1rem);line-height:1.55;max-width:78ch;}
+  .callout .lbl{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;margin-bottom:.55rem;}
+  .callout .lbl svg{width:13px;height:13px;}
+  .callout.tip{background:rgba(139,92,246,.06);border:1px solid var(--purple-line);}
+  .callout.tip .lbl{color:var(--purple-soft);}
+  .callout.warn{background:rgba(245,230,163,.07);border:1px solid rgba(245,230,163,.3);}
+  .callout.warn .lbl{color:var(--pale);}
+  .callout p{color:var(--muted);max-width:none;}
+  .callout.warn p{color:var(--white);}
+
+  /* CONFIDENTIAL callout — clearly distinct (lock + alert red) */
+  .confidential{position:relative;background:linear-gradient(180deg,rgba(255,86,86,.09),rgba(255,86,86,.045));
+    border:1px solid rgba(255,120,120,.4);border-radius:12px;padding:1.15rem 1.3rem 1.2rem;margin-top:1.6rem;max-width:78ch;
+    box-shadow:0 0 0 1px rgba(255,86,86,.05),0 10px 30px -18px rgba(255,86,86,.5);}
+  .confidential::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:12px 0 0 12px;background:linear-gradient(180deg,#ff8a8a,#ff5656);}
+  .confidential .lbl{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+    color:#ffb0b0;margin-bottom:.6rem;font-weight:700;}
+  .confidential .lbl svg{width:14px;height:14px;flex:0 0 auto;}
+  .confidential .lbl .flag{margin-left:auto;font-family:var(--font-mono);font-size:.55rem;letter-spacing:.14em;color:#ff8a8a;
+    border:1px solid rgba(255,120,120,.5);border-radius:99px;padding:.15rem .5rem;}
+  .confidential p{color:#F1E3E8;max-width:none;font-size:clamp(.86rem,1.05vw,1rem);}
+  .confidential p strong{color:#fff;}
+
+  /* Links chuleta */
+  .linkrow{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+    background:rgba(139,92,246,.055);border:1px solid var(--purple-line);border-radius:11px;padding:.85rem 1.1rem;margin-bottom:.7rem;
+    transition:border-color .18s,background .18s,transform .18s;}
+  .linkrow:hover{border-color:rgba(245,230,163,.32);background:rgba(139,92,246,.09);}
+  .linkrow .lk{display:flex;flex-direction:column;gap:.15rem;min-width:0;}
+  .linkrow .lk .name{font-size:.9rem;color:var(--white);font-weight:500;}
+  .linkrow .lk .url{font-family:var(--font-mono);font-size:.8rem;color:var(--purple-soft);word-break:break-all;}
+
+  /* Buttons */
+  .btn{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .85rem;border-radius:8px;white-space:nowrap;
+    background:var(--purple-dim);border:1px solid var(--purple-line);color:var(--purple-soft);text-decoration:none;
+    transition:background .16s,color .16s,border-color .16s,transform .12s;}
+  .btn:hover{background:rgba(139,92,246,.28);color:var(--white);}
+  .btn:active{transform:scale(.96);}
+  .btn.pale{background:rgba(245,230,163,.1);border-color:rgba(245,230,163,.35);color:var(--pale);}
+  .btn.pale:hover{background:rgba(245,230,163,.22);color:#fff;}
+  .btn svg{width:13px;height:13px;}
+  .btn.copied{background:rgba(120,220,150,.16);border-color:rgba(120,220,150,.5);color:#a7f0bd;}
+
+  /* Cards grid (docentes) */
+  .grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:.5rem;}
+  .pcard{background:rgba(139,92,246,.05);border:1px solid var(--purple-line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s;}
+  .pcard:hover{transform:translateY(-6px) scale(1.015);border-color:rgba(245,230,163,.35);
+    box-shadow:0 22px 44px -24px rgba(139,92,246,.7);}
+  .pcard .imgwrap{background:#05081c;overflow:hidden;}
+  .pcard img{width:100%;height:auto;display:block;transition:transform .35s ease;}
+  .pcard:hover img{transform:scale(1.04);}
+  .pcard .meta{padding:.9rem 1rem 1.05rem;display:flex;flex-direction:column;gap:.55rem;flex:1;}
+  .pcard .pname{font-family:var(--font-display);font-weight:600;font-size:1rem;color:var(--white);}
+  .pcard .parea{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-soft);line-height:1.4;}
+  .pcard .btn{margin-top:auto;align-self:flex-start;}
+
+  /* Ads */
+  .ads{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:.5rem;align-items:start;}
+  .adcard{background:rgba(139,92,246,.05);border:1px solid var(--purple-line);border-radius:14px;overflow:hidden;
+    transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s;}
+  .adcard:hover{transform:translateY(-5px);border-color:rgba(245,230,163,.35);box-shadow:0 22px 44px -24px rgba(139,92,246,.7);}
+  .adcard .imgwrap{background:#05081c;display:flex;justify-content:center;overflow:hidden;}
+  .adcard img{width:100%;height:auto;display:block;max-height:520px;object-fit:contain;transition:transform .35s ease;}
+  .adcard:hover img{transform:scale(1.03);}
+  .adcard .meta{padding:.85rem 1rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;}
+  .adcard .fmt{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .adcard .fmt b{color:var(--white);display:block;font-size:.92rem;letter-spacing:0;text-transform:none;font-family:var(--font-display);}
+
+  /* Copy text blocks */
+  .textblock{background:rgba(255,255,255,.028);border:1px solid rgba(255,255,255,.09);border-left:2px solid var(--pale);
+    border-radius:0 11px 11px 0;padding:1.15rem 1.25rem;margin-top:1rem;position:relative;transition:border-color .18s,background .18s;}
+  .textblock:hover{background:rgba(255,255,255,.045);}
+  .textblock.recommended{border-left-color:var(--purple-soft);box-shadow:0 0 0 1px rgba(139,92,246,.22);}
+  .textblock .opthead{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.7rem;padding-right:5.5rem;}
+  .textblock .opt{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pale);}
+  .textblock .base{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--purple-soft);
+    border:1px solid var(--purple-line);border-radius:99px;padding:.14rem .5rem;}
+  .textblock .rec-badge{font-family:var(--font-mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:#0f0a24;font-weight:700;
+    background:var(--purple-soft);border-radius:99px;padding:.16rem .55rem;}
+  .textblock .body{font-size:clamp(.9rem,1.08vw,1.02rem);color:var(--white);line-height:1.62;white-space:pre-line;}
+  .textblock .body .u{font-family:var(--font-mono);font-size:.86em;color:var(--purple-soft);word-break:break-all;}
+  .textblock .copy{position:absolute;top:.85rem;right:.9rem;}
+  @media(hover:hover){.textblock .copy{opacity:.6;transition:opacity .15s;}.textblock:hover .copy{opacity:1;}.textblock .copy.copied{opacity:1;}}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(1.4rem,3.5vw,3rem);align-items:start;}
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:.3rem;}
+  ul.clean li{display:flex;gap:.75rem;align-items:flex-start;font-size:clamp(.9rem,1.08vw,1.03rem);color:var(--muted);line-height:1.5;}
+  ul.clean li::before{content:'';flex:0 0 auto;width:6px;height:6px;margin-top:.5em;border-radius:2px;background:var(--purple);transform:rotate(45deg);}
+  .pill{display:inline-block;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--pale);
+    border:1px solid rgba(245,230,163,.4);border-radius:99px;padding:.3rem .8rem;}
+
+  .foot{text-align:center;padding:4rem 0 5rem;}
+  .foot .hh{font-family:var(--font-display);font-size:clamp(1.4rem,2.8vw,2.1rem);color:var(--pale);font-weight:600;}
+  .foot .links{margin-top:1.6rem;font-family:var(--font-mono);font-size:.8rem;color:var(--muted);line-height:2;}
+  .foot .links b{color:var(--purple-soft);}
+  .foot .tagchip{margin-top:1.4rem;}
+
+  /* Toast */
+  .toast{position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:80;
+    background:var(--pale);color:#1a1030;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+    padding:.6rem 1.1rem;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;font-weight:700;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  /* Back to top */
+  .totop{position:fixed;bottom:1.4rem;right:1.4rem;z-index:70;width:44px;height:44px;border-radius:50%;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;border:1px solid var(--purple-line);
+    background:rgba(24,10,56,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--purple-soft);
+    opacity:0;pointer-events:none;transform:translateY(10px) scale(.9);transition:opacity .22s,transform .22s,background .16s,color .16s;}
+  .totop.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1);}
+  .totop:hover{background:rgba(139,92,246,.3);color:#fff;}
+  .totop svg{width:18px;height:18px;}
+
+  /* Scroll reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media(max-width:960px){
+    .rail{display:none;}
+  }
+  @media(max-width:820px){
+    .grid-cards{grid-template-columns:1fr 1fr;}
+    .ads,.grid2,.split{grid-template-columns:1fr;}
+    .topbar nav.top-links{display:none;}
+    .chipnav{display:flex;}
+    main{padding-top:34px;}
+    .kv{grid-template-columns:1fr;gap:.2rem 0;}
+    .kv dd{margin-bottom:.55rem;}
+    .secnum{font-size:clamp(7rem,34vw,12rem);}
+  }
+  @media(max-width:480px){.grid-cards{grid-template-columns:1fr;}}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    .scrollcue svg{animation:none;}
+    *{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="bg"><div class="grid"></div></div>
+<div class="progress" id="progress"></div>
+
+<header class="topbar">
+  <div class="tt"><b>Media Kit</b> · Habilidades Directivas para la Era de la IA</div>
+  <nav class="top-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#usar">Cómo usar</a>
+    <a href="#links">Links</a>
+    <a href="#docentes">Docentes</a>
+    <a href="#clase">Clase muestra</a>
+    <a href="#general">General</a>
+    <a href="#whatsapp">WhatsApp</a>
+    <a href="#linkedin">LinkedIn</a>
+    <a href="#inscripcion">Inscripción</a>
+  </nav>
+</header>
+
+<!-- Mobile scrollable chips -->
+<nav class="chipnav" id="chipnav" aria-label="Secciones">
+  <a href="#inicio">Inicio</a>
+  <a href="#usar">01 · Cómo usar</a>
+  <a href="#links">02 · Links</a>
+  <a href="#docentes">03 · Docentes</a>
+  <a href="#clase">04 · Clase muestra</a>
+  <a href="#general">05 · General</a>
+  <a href="#whatsapp">06 · WhatsApp</a>
+  <a href="#linkedin">07 · LinkedIn</a>
+  <a href="#inscripcion">08 · Inscripción</a>
+</nav>
+
+<!-- Sticky side rail (desktop) -->
+<nav class="rail" id="rail" aria-label="Navegación de secciones">
+  <a href="#inicio" data-rail><span class="dot"></span><span class="num">00</span><span class="tip">Portada</span></a>
+  <a href="#usar" data-rail><span class="dot"></span><span class="num">01</span><span class="tip">Cómo usar</span></a>
+  <a href="#links" data-rail><span class="dot"></span><span class="num">02</span><span class="tip">Links y datos</span></a>
+  <a href="#docentes" data-rail><span class="dot"></span><span class="num">03</span><span class="tip">Docentes</span></a>
+  <a href="#clase" data-rail><span class="dot"></span><span class="num">04</span><span class="tip">Clase muestra</span></a>
+  <a href="#general" data-rail><span class="dot"></span><span class="num">05</span><span class="tip">Publicidad general</span></a>
+  <a href="#whatsapp" data-rail><span class="dot"></span><span class="num">06</span><span class="tip">WhatsApp</span></a>
+  <a href="#linkedin" data-rail><span class="dot"></span><span class="num">07</span><span class="tip">LinkedIn</span></a>
+  <a href="#inscripcion" data-rail><span class="dot"></span><span class="num">08</span><span class="tip">Inscripción</span></a>
+  <a href="#cierre" data-rail><span class="dot"></span><span class="num">09</span><span class="tip">Cierre</span></a>
+</nav>
+
+<main>
+
+<!-- 1 · Portada -->
+<section id="inicio" class="hero" data-glow="l">
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="kicker reveal">Universidad Latina de América · Otoño 2026</div>
+    <h1 class="reveal">Media Kit</h1>
+    <p class="sub reveal">Diplomado en Habilidades Directivas para la Era de la Inteligencia Artificial</p>
+    <div class="divider reveal"></div>
+    <p class="tagline reveal">Assets y textos listos para compartir la campaña.</p>
+    <a href="#usar" class="scrollcue reveal">Empezar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- 2 · Cómo usar -->
+<section id="usar" data-glow="r">
+  <span class="secnum" aria-hidden="true">01</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="01 —">Cómo usar este kit</div>
+    <h2 class="reveal">Gracias por sumarte a <span class="accent">mover esta campaña</span></h2>
+    <p class="reveal">Aquí encuentras todo lo necesario para invitar a tu red — imágenes listas para publicar y textos que solo tienes que copiar y pegar.</p>
+
+    <div class="split mt">
+      <div class="reveal">
+        <div class="steps">
+          <div class="step"><div class="step-n">1</div><div class="step-body"><h3>Publica tu ecard</h3><p>En tus redes: Facebook, Instagram y LinkedIn.</p></div></div>
+          <div class="step"><div class="step-n">2</div><div class="step-body"><h3>Invita por WhatsApp, uno a uno</h3><p>A personas en las que veas afinidad con el diplomado: clientes con los que trabajas (para sus mandos medios, gerentes o líderes), colegas de tus redes de negocio, o amigos que dirijan equipos. Piensa en quién le sacaría provecho — y recuérdales que <strong>está a muy buen precio</strong> para todo lo que ofrece.</p></div></div>
+          <div class="step"><div class="step-n">3</div><div class="step-body"><h3>Invita a la clase muestra del 29</h3><p>Es la mejor puerta de entrada.</p></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="pill">Fechas clave</div>
+        <dl class="kv mt">
+          <dt>Clase muestra gratuita</dt><dd><span class="hl">Martes 29 de septiembre</span></dd>
+          <dt>Cierre de inscripciones</dt><dd>2 de octubre</dd>
+          <dt>Inicio</dt><dd>9 de octubre de 2026</dd>
+          <dt>Fin</dt><dd>9 de abril de 2027</dd>
+        </dl>
+        <p class="mt-sm"><strong>La prioridad de esta semana:</strong> de aquí al martes, enfoquémonos en llenar la clase muestra.</p>
+      </div>
+    </div>
+
+    <div class="confidential reveal">
+      <div class="lbl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        Entre nosotros — no lo hagamos público
+        <span class="flag">Confidencial</span>
+      </div>
+      <p>El 2 de octubre es un <strong>cierre suave</strong>. En la práctica se puede inscribir gente incluso hasta una semana después de iniciado el diplomado. Mantengamos la fecha en la comunicación —el deadline ayuda a que la gente se decida—, pero si alguien te dice que no alcanzó, avísanos: casi siempre hay margen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Links -->
+<section id="links" data-glow="c">
+  <span class="secnum" aria-hidden="true">02</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="02 —">Links y datos de campaña</div>
+    <h2 class="reveal">Todo lo que necesitas, <span class="accent">en un solo lugar</span></h2>
+
+    <div class="mt reveal">
+      <div class="linkrow">
+        <div class="lk"><span class="name">📝 Registro a la clase muestra</span><span class="url">https://forms.gle/zxtf3FFQ2NyXszwt9</span></div>
+        <button class="btn" data-copy="https://forms.gle/zxtf3FFQ2NyXszwt9">Copiar</button>
+      </div>
+      <div class="linkrow">
+        <div class="lk"><span class="name">📄 PDF con toda la info del diplomado</span><span class="url">https://x.gd/HDIA_UNLA</span></div>
+        <button class="btn" data-copy="https://x.gd/HDIA_UNLA">Copiar</button>
+      </div>
+      <div class="linkrow">
+        <div class="lk"><span class="name">🏷️ Hashtag de campaña</span><span class="url">#HabilidadesDirectivasIA</span></div>
+        <button class="btn" data-copy="#HabilidadesDirectivasIA">Copiar</button>
+      </div>
+      <div class="linkrow">
+        <div class="lk"><span class="name">🔖 Etiqueta a la UNLA</span><span class="url">Instagram: @unlamorelia · LinkedIn: /company/universidad-latina-de-américa</span></div>
+      </div>
+    </div>
+
+    <div class="mt-lg reveal">
+      <div class="tagwrap">
+        <span class="tagchip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5"/></svg>
+          Etiqueta a la UNLA: <a href="https://instagram.com/unlamorelia" target="_blank" rel="noopener">@unlamorelia</a> <span class="sep">·</span> <a href="https://www.linkedin.com/company/universidad-latina-de-am%C3%A9rica/" target="_blank" rel="noopener">LinkedIn</a>
+        </span>
+        <span class="taghash">#HabilidadesDirectivasIA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Docentes -->
+<section id="docentes" data-glow="l">
+  <span class="secnum" aria-hidden="true">03</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="03 —">El cuerpo docente</div>
+    <h2 class="reveal">Seis directivos en activo. <span class="accent">Una sola dirección.</span></h2>
+
+    <div class="grid-cards">
+      <div class="pcard reveal"><div class="imgwrap"><img src="assets/cards/francisco-valencia.png" alt="Francisco Valencia"></div>
+        <div class="meta"><div class="pname">Francisco Valencia</div><div class="parea">Dirección de Liderazgo y Gobierno Corporativo</div>
+        <a class="btn pale" href="assets/cards/francisco-valencia.png" download>Descargar</a></div></div>
+      <div class="pcard reveal"><div class="imgwrap"><img src="assets/cards/helena-hernandez.png" alt="Helena Hernández"></div>
+        <div class="meta"><div class="pname">Helena Hernández</div><div class="parea">Dirección de Comunicación y Marketing</div>
+        <a class="btn pale" href="assets/cards/helena-hernandez.png" download>Descargar</a></div></div>
+      <div class="pcard reveal"><div class="imgwrap"><img src="assets/cards/alejandro-montoya.png" alt="Alejandro Montoya"></div>
+        <div class="meta"><div class="pname">Alejandro Montoya</div><div class="parea">Dirección de Personas y Talento</div>
+        <a class="btn pale" href="assets/cards/alejandro-montoya.png" download>Descargar</a></div></div>
+      <div class="pcard reveal"><div class="imgwrap"><img src="assets/cards/arturo-monroy.png" alt="Luis Arturo Monroy"></div>
+        <div class="meta"><div class="pname">Luis Arturo Monroy</div><div class="parea">Dirección Comercial y de Nuevos Negocios</div>
+        <a class="btn pale" href="assets/cards/arturo-monroy.png" download>Descargar</a></div></div>
+      <div class="pcard reveal"><div class="imgwrap"><img src="assets/cards/jose-antonio-reyes.png" alt="José Antonio Reyes"></div>
+        <div class="meta"><div class="pname">José Antonio Reyes</div><div class="parea">Dirección de Estrategia y Datos</div>
+        <a class="btn pale" href="assets/cards/jose-antonio-reyes.png" download>Descargar</a></div></div>
+      <div class="pcard reveal"><div class="imgwrap"><img src="assets/cards/jairo-flores.png" alt="Jairo Flores"></div>
+        <div class="meta"><div class="pname">Jairo Flores</div><div class="parea">Dirección de Innovación</div>
+        <a class="btn pale" href="assets/cards/jairo-flores.png" download>Descargar</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Clase muestra -->
+<section id="clase" data-glow="r">
+  <span class="secnum" aria-hidden="true">04</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="04 —">Publicidad de la clase muestra</div>
+    <h2 class="reveal">Anuncia la <span class="accent">clase muestra del 29</span></h2>
+    <p class="reveal">Elige el formato según dónde vas a publicar.</p>
+
+    <div class="ads">
+      <div class="adcard reveal"><div class="imgwrap"><img src="assets/ads/clase-muestra-cuadrado.jpeg" alt="Clase muestra — formato cuadrado"></div>
+        <div class="meta"><div class="fmt"><b>Formato cuadrado</b>Feed de Instagram y Facebook</div>
+        <a class="btn pale" href="assets/ads/clase-muestra-cuadrado.jpeg" download>Descargar</a></div></div>
+      <div class="adcard reveal"><div class="imgwrap"><img src="assets/ads/clase-muestra-vertical.jpeg" alt="Clase muestra — formato vertical"></div>
+        <div class="meta"><div class="fmt"><b>Formato vertical</b>Historias y estados de WhatsApp</div>
+        <a class="btn pale" href="assets/ads/clase-muestra-vertical.jpeg" download>Descargar</a></div></div>
+    </div>
+
+    <h3 class="mt-lg reveal">Texto sugerido — elige según tu caso</h3>
+
+    <div class="textblock reveal">
+      <button class="btn copy" data-copy-el>Copiar</button>
+      <div class="opthead"><span class="opt">Opción 1 · Si vas a estar en la clase muestra</span><span class="base">Base editable</span></div>
+      <div class="body">El 29 de septiembre voy a estar dando una clase muestra gratuita del Diplomado en Habilidades Directivas para la Era de la IA de la UNLA. En vivo, con un caso real y el método del diplomado. Si diriges equipos o vas hacia un puesto de liderazgo, te va a servir — y me daría mucho gusto verte ahí. Regístrate: <span class="u">forms.gle/zxtf3FFQ2NyXszwt9</span></div>
+    </div>
+
+    <div class="textblock reveal">
+      <button class="btn copy" data-copy-el>Copiar</button>
+      <div class="opthead"><span class="opt">Opción 2 · Si no puedes estar ese día pero quieres invitar</span><span class="base">Base editable</span></div>
+      <div class="body">Te quiero recomendar algo: el 29 de septiembre el equipo docente da una clase muestra gratuita del Diplomado en Habilidades Directivas para la Era de la IA de la UNLA, un programa del que soy parte. Es en vivo, con un caso real. Yo no podré estar ese día, pero de verdad vale la pena; si diriges equipos o vas hacia un puesto de liderazgo, no te la pierdas. Regístrate: <span class="u">forms.gle/zxtf3FFQ2NyXszwt9</span></div>
+    </div>
+
+    <div class="callout warn reveal">
+      <span class="lbl">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+        Nota importante
+      </span>
+      <p>Estas piezas llevan la foto de Paco como facilitador. Estamos preparando <strong>una nueva versión con todos los profesores que participan</strong>, y sale <strong>lo antes posible</strong>. Si quieres adelantar, publica esta; si prefieres esperar la del equipo completo, también sirve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · General -->
+<section id="general" data-glow="c">
+  <span class="secnum" aria-hidden="true">05</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="05 —">La publicidad general del diplomado</div>
+    <h2 class="reveal">La imagen <span class="accent">principal del diplomado</span></h2>
+    <p class="reveal">Para hablar del diplomado completo, no solo de la clase muestra — en un post de presentación, en tu bio, o acompañando el link al PDF.</p>
+
+    <div class="ads">
+      <div class="adcard reveal"><div class="imgwrap"><img src="assets/ads/general-cuadrado.png" alt="Diplomado — formato cuadrado"></div>
+        <div class="meta"><div class="fmt"><b>Formato cuadrado</b>Feed</div>
+        <a class="btn pale" href="assets/ads/general-cuadrado.png" download>Descargar</a></div></div>
+      <div class="adcard reveal"><div class="imgwrap"><img src="assets/ads/general-vertical.png" alt="Diplomado — formato vertical"></div>
+        <div class="meta"><div class="fmt"><b>Formato vertical</b>Historias</div>
+        <a class="btn pale" href="assets/ads/general-vertical.png" download>Descargar</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · WhatsApp -->
+<section id="whatsapp" data-glow="l">
+  <span class="secnum" aria-hidden="true">06</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="06 —">Cómo invitar por WhatsApp</div>
+    <h2 class="reveal">El uno a uno es lo que <span class="accent">más convierte</span></h2>
+    <div class="split">
+      <div class="reveal">
+        <ul class="clean">
+          <li>Manda el mensaje <strong>a personas concretas</strong> en las que veas afinidad: mandos gerenciales, directivos y clientes.</li>
+          <li>Que se sienta <strong>personal</strong>, no reenviado. Una línea tuya al inicio ("me acordé de ti para esto") hace toda la diferencia.</li>
+          <li>Enfócate en la clase muestra — es <strong>gratis y sin compromiso</strong>, la barrera de entrada es mínima.</li>
+        </ul>
+      </div>
+      <div class="textblock reveal">
+        <button class="btn copy" data-copy-el>Copiar</button>
+        <div class="opthead"><span class="opt">Listo para copiar y pegar</span><span class="base">Base editable</span></div>
+        <div class="body">Te comparto algo en lo que voy a participar y que creo que te puede interesar 👇
+
+Soy parte del cuerpo docente del Diplomado en Habilidades Directivas para la Era de la IA de la UNLA: un programa 100% en línea, con constancia de valor curricular ante la SEP, para quienes dirigen equipos o van hacia un puesto de liderazgo. No es un curso para aprender a usar IA, sino para aprender a dirigir en un momento en que la IA lo está cambiando todo.
+
+El 29 de septiembre damos una clase muestra gratuita para que vivas en vivo cómo trabajamos, con un caso real.
+
+📝 Regístrate a la clase: forms.gle/zxtf3FFQ2NyXszwt9
+📄 Toda la info del diplomado: x.gd/HDIA_UNLA
+
+Yo voy a estar ahí. Te lo recomiendo de verdad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · LinkedIn -->
+<section id="linkedin" data-glow="r">
+  <span class="secnum" aria-hidden="true">07</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="07 —">Textos para LinkedIn</div>
+    <h2 class="reveal">Tres opciones para que <span class="accent">no todos publiquen lo mismo</span></h2>
+    <p class="reveal">Elige la que vaya con tu voz — o mézclalas.</p>
+
+    <div class="mt-lg reveal">
+      <div class="tagwrap">
+        <span class="tagchip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5"/></svg>
+          Etiqueta a la UNLA: <a href="https://instagram.com/unlamorelia" target="_blank" rel="noopener">@unlamorelia</a> <span class="sep">·</span> <a href="https://www.linkedin.com/company/universidad-latina-de-am%C3%A9rica/" target="_blank" rel="noopener">LinkedIn</a>
+        </span>
+        <span class="taghash">#HabilidadesDirectivasIA</span>
+      </div>
+    </div>
+
+    <div class="grid2 mt">
+      <div class="textblock reveal">
+        <button class="btn copy" data-copy-el>Copiar</button>
+        <div class="opthead"><span class="opt">Opción A · Reflexiva</span><span class="base">Base editable</span></div>
+        <div class="body">La IA no reemplaza el criterio de un líder: lo pone a prueba.
+
+Por eso me sumé al cuerpo docente del Diplomado en Habilidades Directivas para la Era de la IA de la Universidad Latina de América. Un programa para dirigir personas y organizaciones en un momento en que la tecnología está redefiniendo cómo se decide, se comunica y se crea valor.
+
+El 29 de septiembre damos una clase muestra gratuita. Si diriges equipos —o vas hacia ese lugar— te va a interesar: forms.gle/zxtf3FFQ2NyXszwt9
+
+#HabilidadesDirectivasIA</div>
+      </div>
+      <div class="textblock recommended reveal">
+        <button class="btn copy" data-copy-el>Copiar</button>
+        <div class="opthead"><span class="opt">Opción B · Directa / invitación</span><span class="rec-badge">★ Recomendada</span></div>
+        <div class="body">¿Diriges equipos o vas hacia un puesto de liderazgo?
+
+Te comparto un programa del que soy parte: el Diplomado en Habilidades Directivas para la Era de la IA de la UNLA. 100% en línea, con constancia de valor curricular ante la SEP e impartido por directivos con experiencia real.
+
+El 29 de septiembre hay una clase muestra gratuita para vivirlo antes de decidir. Aquí te registras: forms.gle/zxtf3FFQ2NyXszwt9
+
+#HabilidadesDirectivasIA</div>
+      </div>
+    </div>
+    <div class="textblock reveal" style="margin-top:1.4rem">
+      <button class="btn copy" data-copy-el>Copiar</button>
+      <div class="opthead"><span class="opt">Opción C · Ángulo IA en los negocios · (tono de Paco — adáptala al tuyo)</span><span class="base">Base editable</span></div>
+      <div class="body">Desde hace varios meses, la IA dejó de ser un experimento y se volvió tema de todos los días en las salas de dirección. Y lo que he visto es que el verdadero reto no es la herramienta: es aprender a dirigir con ella sin perder el criterio ni el lado humano.
+
+De eso se trata el Diplomado en Habilidades Directivas para la Era de la IA de la UNLA, donde participo como docente. El 29 de septiembre damos una clase muestra gratuita, en vivo y con un caso real. Si diriges equipos, te va a servir.
+
+Regístrate aquí: forms.gle/zxtf3FFQ2NyXszwt9
+
+#HabilidadesDirectivasIA</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · Inscripción -->
+<section id="inscripcion" data-glow="pale">
+  <span class="secnum" aria-hidden="true">08</span>
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="eyebrow reveal" data-n="08 —">Invitación a inscribirse al diplomado</div>
+    <h2 class="reveal">Para quien ya <span class="accent">quiere inscribirse</span></h2>
+    <div class="split">
+      <div class="reveal">
+        <ul class="clean">
+          <li><strong>180 horas</strong> (45 sesiones), 100% en línea · viernes de 16:00 a 20:00 y sábados de 9:00 a 13:00</li>
+          <li><strong>Constancia con valor curricular</strong> y registro ante la Dirección General de Profesiones (SEP)</li>
+          <li><strong>Método del caso</strong> + práctica + herramientas de IA</li>
+          <li>Seis módulos, impartido por <strong>directivos con experiencia real</strong></li>
+          <li>Del <strong>9 de octubre de 2026 al 9 de abril de 2027</strong> · inscripciones hasta el <strong>2 de octubre</strong></li>
+        </ul>
+        <div class="confidential">
+          <div class="lbl">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Descuento por grupo — no anunciado
+            <span class="flag">Confidencial</span>
+          </div>
+          <p>Si alguien quiere inscribir a un grupo de su empresa (más de 3 personas), que <strong>me contacte directo</strong> y vemos qué descuento le podemos armar. No está publicado, así que se maneja caso por caso. Y recuerda: el precio es muy competitivo para el valor — 180 horas con seis directivos en activo y método del caso.</p>
+        </div>
+      </div>
+      <div class="textblock reveal">
+        <button class="btn copy" data-copy-el>Copiar</button>
+        <div class="opthead"><span class="opt">Texto sugerido</span><span class="base">Base editable</span></div>
+        <div class="body">Si diriges equipos o vas hacia un puesto de liderazgo, este diplomado es para ti. 180 horas, en línea, con constancia de valor curricular y método del caso — para aprender a dirigir en la era de la IA, no solo a usar la herramienta. Descarga toda la información aquí: x.gd/HDIA_UNLA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Cierre -->
+<section id="cierre" class="foot" data-glow="c">
+  <div class="glow"></div>
+  <div class="sec-inner">
+    <div class="hh reveal">Entre todos podemos llenar esa sala. 💪</div>
+    <div class="reveal">
+      <div class="tagwrap">
+        <span class="tagchip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5"/></svg>
+          Etiqueta a la UNLA: <a href="https://instagram.com/unlamorelia" target="_blank" rel="noopener">@unlamorelia</a> <span class="sep">·</span> <a href="https://www.linkedin.com/company/universidad-latina-de-am%C3%A9rica/" target="_blank" rel="noopener">LinkedIn</a>
+        </span>
+        <span class="taghash">#HabilidadesDirectivasIA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<button class="totop" id="totop" aria-label="Volver arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="toast" id="toast">Copiado ✓</div>
+
+<script>
+(function(){
+  // Progress bar
+  var bar=document.getElementById('progress');
+  var totop=document.getElementById('totop');
+  function onScroll(){
+    var h=document.documentElement,b=document.body;
+    var st=h.scrollTop||b.scrollTop;
+    var sh=(h.scrollHeight||b.scrollHeight)-h.clientHeight;
+    bar.style.width=(sh>0?(st/sh*100):0)+'%';
+    if(st>600) totop.classList.add('show'); else totop.classList.remove('show');
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // Back to top
+  totop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  // Toast
+  var toast=document.getElementById('toast'),tmo;
+  function ping(){toast.classList.add('show');clearTimeout(tmo);tmo=setTimeout(function(){toast.classList.remove('show');},1400);}
+
+  function copy(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ping,fallback);}
+    else fallback();
+    function fallback(){
+      var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);ping();
+    }
+  }
+
+  // Inline "copied" feedback on the button itself (~1.5s)
+  function flash(btn){
+    if(btn.dataset.busy)return;
+    var original=btn.textContent;btn.dataset.busy='1';
+    btn.classList.add('copied');btn.textContent='✓ Copiado';
+    setTimeout(function(){btn.classList.remove('copied');btn.textContent=original;btn.removeAttribute('data-busy');},1500);
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(){copy(btn.getAttribute('data-copy'));flash(btn);});
+  });
+  document.querySelectorAll('[data-copy-el]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var block=btn.closest('.textblock');var body=block&&block.querySelector('.body');
+      if(body){copy(body.innerText.trim());flash(btn);}
+    });
+  });
+
+  // Active-section highlighting for rail + chips
+  var railLinks=Array.prototype.slice.call(document.querySelectorAll('#rail a[data-rail]'));
+  var chipLinks=Array.prototype.slice.call(document.querySelectorAll('#chipnav a'));
+  var chipnav=document.getElementById('chipnav');
+  function setActive(id){
+    railLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    chipLinks.forEach(function(a){
+      var on=a.getAttribute('href')==='#'+id;a.classList.toggle('active',on);
+      if(on&&chipnav){var r=a.getBoundingClientRect(),pr=chipnav.getBoundingClientRect();
+        if(r.left<pr.left||r.right>pr.right){chipnav.scrollTo({left:chipnav.scrollLeft+(r.left-pr.left)-16,behavior:'smooth'});}}
+    });
+  }
+  if('IntersectionObserver' in window){
+    var secObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-45% 0px -50% 0px',threshold:0});
+    document.querySelectorAll('main > section[id]').forEach(function(s){secObs.observe(s);});
+
+    // Scroll reveal
+    var revObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target);}});
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Promoción — Diplomado en Habilidades Directivas para la Era de la IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#070B24;
+    --bg-purple:#180A38;
+    --bg-mid:#0D1030;
+    --white:#FFFFFF;
+    --pale:#F5E6A3;
+    --purple:#8B5CF6;
+    --purple-soft:#A78BFA;
+    --purple-dim:rgba(139,92,246,.14);
+    --purple-line:rgba(139,92,246,.32);
+    --muted:#9FB0CC;
+    --muted-dim:#6B7A99;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow:hidden;}
+  body{
+    background:var(--bg-deep);
+    font-family:var(--font-body);
+    color:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Ambient background ---------- */
+  .bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:
+      radial-gradient(ellipse 90% 70% at 12% 8%, rgba(139,92,246,.20), transparent 60%),
+      radial-gradient(ellipse 80% 80% at 88% 92%, rgba(76,29,149,.28), transparent 62%),
+      linear-gradient(155deg, var(--bg-deep) 0%, var(--bg-mid) 45%, var(--bg-purple) 100%);}
+  .grid{position:absolute;inset:0;opacity:.30;
+    background-image:linear-gradient(rgba(139,92,246,.09) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(139,92,246,.09) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 25%,transparent 78%);
+    -webkit-mask-image:radial-gradient(ellipse 75% 65% at 50% 45%,#000 25%,transparent 78%);}
+  .glowline{position:absolute;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(139,92,246,.55),transparent);}
+  .glowline.a{top:18%;} .glowline.b{bottom:22%;opacity:.6;}
+
+  /* ---------- Deck shell ---------- */
+  #deck{position:relative;z-index:2;height:100vh;width:100vw;}
+  .slide{
+    position:absolute;inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    padding:clamp(2.2rem,5.2vw,6rem) clamp(2.2rem,7vw,8rem) clamp(4.6rem,7vw,6rem);
+    overflow-y:auto;
+  }
+  .slide.active{display:flex;animation:enter .45s cubic-bezier(.22,.9,.3,1);}
+  @keyframes enter{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+
+  /* ---------- Typography ---------- */
+  .eyebrow{
+    font-family:var(--font-mono);font-size:clamp(.6rem,.82vw,.74rem);
+    letter-spacing:.28em;text-transform:uppercase;color:var(--purple-soft);
+    margin-bottom:1.15rem;display:flex;align-items:center;gap:.85rem;
+  }
+  .eyebrow::after{content:'';flex:1;height:1px;max-width:190px;
+    background:linear-gradient(90deg,var(--purple-line),transparent);}
+  h1{font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.3rem,5.4vw,4.6rem);line-height:1.04;letter-spacing:-.022em;}
+  h2{font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.65rem,3.3vw,2.9rem);line-height:1.12;letter-spacing:-.018em;
+    margin-bottom:1.7rem;}
+  h2 .accent{color:var(--pale);}
+  p{font-size:clamp(.95rem,1.18vw,1.16rem);line-height:1.62;color:var(--muted);max-width:64ch;}
+  strong{color:var(--white);font-weight:600;}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.42rem);color:var(--white);font-weight:400;line-height:1.5;}
+
+  /* ---------- Big stat ---------- */
+  .stat{font-family:var(--font-display);font-weight:700;color:var(--pale);
+    font-size:clamp(3.6rem,10.5vw,9rem);line-height:.92;letter-spacing:-.035em;}
+  .stat-sub{font-family:var(--font-mono);font-size:clamp(.72rem,1vw,.9rem);
+    letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:1.1rem;}
+
+  /* ---------- Tables ---------- */
+  .tbl-wrap{width:100%;overflow-x:auto;margin-top:.4rem;}
+  table{width:100%;border-collapse:collapse;font-size:clamp(.78rem,1.04vw,1rem);}
+  thead th{
+    font-family:var(--font-mono);font-size:clamp(.58rem,.78vw,.72rem);
+    letter-spacing:.15em;text-transform:uppercase;color:var(--purple-soft);
+    text-align:left;padding:.85rem 1rem;background:var(--purple-dim);
+    border-bottom:1px solid var(--purple-line);font-weight:500;white-space:nowrap;
+  }
+  tbody td{padding:.82rem 1rem;border-bottom:1px solid rgba(255,255,255,.06);
+    color:var(--muted);vertical-align:middle;}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.018);}
+  tbody td:first-child{color:var(--white);font-weight:500;}
+  tr.highlight td{background:rgba(245,230,163,.075);color:var(--pale);font-weight:600;
+    border-bottom:1px solid rgba(245,230,163,.3);border-top:1px solid rgba(245,230,163,.3);}
+  tr.highlight td:first-child{color:var(--pale);}
+  .yes{color:var(--pale);font-weight:700;} .no{color:var(--muted-dim);}
+  td a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--purple-line);
+    transition:color .16s,border-color .16s;}
+  td a:hover{color:var(--purple-soft);border-bottom-color:var(--purple-soft);}
+  td .num{font-family:var(--font-mono);}
+
+  /* ---------- Cards ---------- */
+  .cards{display:grid;gap:1.05rem;margin-top:.4rem;}
+  .c2{grid-template-columns:repeat(2,1fr);} .c3{grid-template-columns:repeat(3,1fr);}
+  .card{
+    background:rgba(139,92,246,.055);border:1px solid var(--purple-line);
+    border-radius:13px;padding:1.35rem 1.45rem;position:relative;
+  }
+  .card.pale{border-color:rgba(245,230,163,.35);background:rgba(245,230,163,.05);}
+  .card h3{font-family:var(--font-display);font-size:clamp(.98rem,1.32vw,1.24rem);
+    font-weight:600;color:var(--white);margin-bottom:.6rem;letter-spacing:-.01em;}
+  .card.pale h3{color:var(--pale);}
+  .card p{font-size:clamp(.8rem,1vw,.95rem);line-height:1.56;}
+  .card .tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--purple-soft);display:block;margin-bottom:.6rem;}
+  .card.pale .tag{color:var(--pale);opacity:.85;}
+
+  /* ---------- Numbered steps ---------- */
+  .steps{display:flex;flex-direction:column;gap:1.05rem;margin-top:.3rem;}
+  .step{display:flex;gap:1.15rem;align-items:flex-start;}
+  .step-n{
+    flex:0 0 auto;width:2.35rem;height:2.35rem;border-radius:9px;
+    border:1px solid var(--purple-line);background:var(--purple-dim);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:.86rem;color:var(--purple-soft);font-weight:700;
+  }
+  .step-body h4{font-family:var(--font-display);font-size:clamp(.95rem,1.24vw,1.15rem);
+    font-weight:600;color:var(--white);margin-bottom:.28rem;}
+  .step-body p{font-size:clamp(.82rem,1.02vw,.98rem);}
+
+  /* ---------- Quote ---------- */
+  .quote{
+    border-left:2px solid var(--pale);padding:.5rem 0 .5rem 1.6rem;
+    font-family:var(--font-display);font-weight:500;
+    font-size:clamp(1.12rem,2.05vw,1.85rem);line-height:1.38;color:var(--pale);
+    letter-spacing:-.012em;max-width:56ch;
+  }
+  .quote.small{font-size:clamp(1rem,1.55vw,1.35rem);}
+  .quote.dim{border-left-color:var(--purple);color:var(--muted);font-style:italic;font-weight:400;}
+
+  /* ---------- Key-value strip ---------- */
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:.72rem 1.8rem;align-items:baseline;}
+  .kv dt{font-family:var(--font-mono);font-size:clamp(.62rem,.85vw,.75rem);
+    letter-spacing:.15em;text-transform:uppercase;color:var(--muted-dim);white-space:nowrap;}
+  .kv dd{font-size:clamp(.9rem,1.18vw,1.12rem);color:var(--white);font-weight:500;}
+  .kv dd .hl{color:var(--pale);font-weight:700;}
+
+  /* ---------- Misc ---------- */
+  .note{font-family:var(--font-mono);font-size:clamp(.62rem,.82vw,.74rem);
+    color:var(--muted-dim);letter-spacing:.06em;margin-top:1.5rem;line-height:1.7;}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3.4vw,3.6rem);align-items:center;}
+  .stack{display:flex;flex-direction:column;gap:1.15rem;}
+  .mt{margin-top:1.5rem;} .mt-sm{margin-top:.9rem;}
+  .pill{display:inline-block;font-family:var(--font-mono);font-size:.63rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--pale);
+    border:1px solid rgba(245,230,163,.4);border-radius:99px;padding:.32rem .8rem;}
+  .metric-row{display:flex;gap:clamp(1.6rem,4.5vw,4.5rem);flex-wrap:wrap;margin-top:.5rem;}
+  .metric .v{font-family:var(--font-display);font-weight:700;color:var(--pale);
+    font-size:clamp(2rem,4.6vw,3.6rem);line-height:1;letter-spacing:-.03em;}
+  .metric .l{font-family:var(--font-mono);font-size:clamp(.6rem,.8vw,.72rem);
+    letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:.6rem;}
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:.72rem;margin-top:.3rem;}
+  ul.clean li{display:flex;gap:.85rem;align-items:flex-start;
+    font-size:clamp(.88rem,1.1vw,1.05rem);color:var(--muted);line-height:1.55;}
+  ul.clean li::before{content:'';flex:0 0 auto;width:6px;height:6px;margin-top:.55em;
+    border-radius:2px;background:var(--purple);transform:rotate(45deg);}
+  ul.clean li strong{color:var(--white);}
+  .divider{height:1px;background:linear-gradient(90deg,var(--purple-line),transparent);margin:1.5rem 0;}
+
+  /* ---------- Chrome ---------- */
+  .chrome{position:fixed;bottom:0;left:0;right:0;z-index:20;
+    padding:1.1rem clamp(1.4rem,4vw,3.4rem);
+    display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
+    background:linear-gradient(180deg,transparent,rgba(7,11,36,.92) 55%);pointer-events:none;}
+  .brand{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--muted-dim);white-space:nowrap;}
+  .nav{display:flex;align-items:center;gap:.6rem;pointer-events:auto;}
+  .nav button{
+    width:2.15rem;height:2.15rem;border-radius:8px;cursor:pointer;
+    background:rgba(139,92,246,.1);border:1px solid var(--purple-line);
+    color:var(--purple-soft);display:flex;align-items:center;justify-content:center;
+    transition:background .18s,color .18s,border-color .18s;
+  }
+  .nav button:hover{background:rgba(139,92,246,.26);color:var(--white);}
+  .nav button:disabled{opacity:.28;cursor:default;}
+  .counter{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;
+    color:var(--muted);min-width:4.4rem;text-align:center;}
+  .counter b{color:var(--pale);font-weight:700;}
+  .progress{position:fixed;top:0;left:0;height:2px;z-index:30;
+    background:linear-gradient(90deg,var(--purple),var(--pale));
+    transition:width .35s cubic-bezier(.22,.9,.3,1);box-shadow:0 0 12px rgba(139,92,246,.7);}
+
+  @media(max-width:820px){
+    .split,.c2,.c3{grid-template-columns:1fr;}
+    .slide{padding:2rem 1.5rem 5rem;}
+    .kv{grid-template-columns:1fr;gap:.25rem .8rem;}
+    .kv dd{margin-bottom:.6rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg"><div class="grid"></div><div class="glowline a"></div><div class="glowline b"></div></div>
+<div class="progress" id="progress"></div>
+
+<div id="deck">
+
+<!-- 1 · Portada -->
+<section class="slide active">
+  <div class="eyebrow">Universidad Latina de América · 21 de julio de 2026</div>
+  <h1>Estrategia de<br><span style="color:var(--pale)">Promoción</span></h1>
+  <div class="divider" style="max-width:340px"></div>
+  <p class="lead" style="max-width:46ch">Diplomado en Habilidades Directivas<br>para la Era de la Inteligencia Artificial</p>
+  <div class="mt"><span class="pill">Otoño 2026</span></div>
+</section>
+
+<!-- 2 · Cuenta regresiva -->
+<section class="slide">
+  <div class="eyebrow">La cuenta regresiva</div>
+  <div class="split">
+    <div>
+      <div class="stat">10</div>
+      <div class="stat-sub">semanas de campaña</div>
+    </div>
+    <div>
+      <dl class="kv">
+        <dt>Cierre de inscripciones</dt><dd><span class="hl">2 de octubre</span> de 2026</dd>
+        <dt>Inicio</dt><dd><span class="hl">9 de octubre</span> de 2026</dd>
+        <dt>Fin</dt><dd>Abril de 2027</dd>
+      </dl>
+      <p class="mt">No es mucho tiempo. Por eso esta sesión es para salir con <strong>responsables y fechas</strong>, no con ideas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Qué vendemos -->
+<section class="slide">
+  <div class="eyebrow">El producto</div>
+  <h2>Qué estamos vendiendo</h2>
+  <div class="split">
+    <dl class="kv">
+      <dt>Duración</dt><dd><span class="hl">180 horas</span></dd>
+      <dt>Modalidad</dt><dd>Virtual · viernes y sábado</dd>
+      <dt>Precio</dt><dd><span class="hl">$17,500</span> — $2,500 de inscripción + 6 × $2,500</dd>
+      <dt>Metodología</dt><dd>Método del caso + práctica + herramientas de IA</dd>
+      <dt>Titulación</dt><dd>Sí, acredita licenciatura</dd>
+      <dt>Planta docente</dt><dd>6 directivos en activo</dd>
+    </dl>
+    <div class="stack">
+      <div class="card pale">
+        <span class="tag">Meta de grupo</span>
+        <div class="metric-row" style="gap:2rem">
+          <div class="metric"><div class="v">15</div><div class="l">Mínimo</div></div>
+          <div class="metric"><div class="v">22</div><div class="l">Meta</div></div>
+          <div class="metric"><div class="v">30</div><div class="l">Lleno</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag">Nota comercial</span>
+        <p>La cifra que comunicamos es <strong>$2,500 al mes</strong>, no $17,500. Y son <strong>6 pagos en 7 meses</strong>: se termina de pagar antes de terminar el diplomado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Mercado: habilidades directivas -->
+<section class="slide">
+  <div class="eyebrow">Benchmark · Habilidades directivas</div>
+  <h2>Nuestro comparable <span class="accent">real</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Programa</th><th>Institución</th><th>Formato</th><th>Horas</th><th>Precio</th><th>IA</th><th>Titulación</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://mineria.unam.mx" target="_blank" rel="noopener">Desarrollo de Habilidades Directivas</a></td><td>UNAM</td><td>Diplomado, vie/sáb, 6 meses</td><td class="num">~180 h</td><td class="num">$16,800</td><td class="no">✕</td><td class="no">✕</td></tr>
+        <tr><td><a href="https://educacioncontinua.tec.mx" target="_blank" rel="noopener">Competencias Gerenciales</a></td><td>Tec de Monterrey</td><td>Microcertificado</td><td class="num">8–95 h</td><td class="num">~$8,500</td><td class="no">Parcial</td><td class="no">✕</td></tr>
+        <tr><td><a href="https://isu.edu.mx" target="_blank" rel="noopener">Habilidades Gerenciales</a></td><td>ISU</td><td>Curso en línea, 3 meses</td><td class="num">80 h</td><td class="num">$2,000</td><td class="no">✕</td><td class="no">✕</td></tr>
+        <tr class="highlight"><td>Habilidades Directivas + IA</td><td>UNLA</td><td>Diplomado, vie/sáb, 7 meses</td><td class="num">180 h</td><td class="num">$17,500</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt"><strong>El único comparable real es la UNAM:</strong> mismo formato, misma duración, $16,800 — sin IA y sin titulación. Los otros dos no son equivalentes y conviene decirlo antes de que alguien lo pregunte.</p>
+</section>
+
+<!-- 5 · Mercado: IA -->
+<section class="slide">
+  <div class="eyebrow">Benchmark · Diplomados de IA</div>
+  <h2>El dato que hay que ver <span class="accent">despacio</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Programa</th><th>Institución</th><th>Horas</th><th>Precio</th><th>Por hora</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://maestriasydiplomados.tec.mx/programas/curso-ia-para-altos-directivos" target="_blank" rel="noopener">IA para Altos Directivos</a></td><td>Tec de Monterrey</td><td class="num">40 h</td><td class="num">$110,000</td><td class="num">$2,750</td></tr>
+        <tr><td><a href="https://iada.anahuac.mx/products/inteligencia-artificial-para-la-alta-direccion" target="_blank" rel="noopener">IA para la Alta Dirección</a></td><td>Anáhuac IADA</td><td class="num">~12 h</td><td class="num">~$30,000</td><td class="num">~$2,500</td></tr>
+        <tr><td><a href="https://puebla.anahuac.mx/educacion-continua/diplomado-inteligencia-artificial-aplicada-a-los-negocios" target="_blank" rel="noopener">IA Aplicada a los Negocios</a></td><td>Anáhuac Puebla</td><td class="num">—</td><td class="num">$22,000</td><td class="num">—</td></tr>
+        <tr><td><a href="https://educacioncontinua.unam.mx/index.php/actividad/ver/5041" target="_blank" rel="noopener">Diplomado en IA</a></td><td>UNAM CEIICH</td><td class="num">~129 h</td><td class="num">$16,500</td><td class="num">~$128</td></tr>
+        <tr class="highlight"><td>Habilidades Directivas + IA</td><td>UNLA</td><td class="num">180 h</td><td class="num">$17,500</td><td class="num">$97</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="quote mt">4.5 veces más horas que el Tec,<br>por una fracción del precio.</div>
+</section>
+
+<!-- 6 · Dónde estamos -->
+<section class="slide">
+  <div class="eyebrow">Posicionamiento</div>
+  <div class="split">
+    <div>
+      <div class="stat">$97</div>
+      <div class="stat-sub">por hora</div>
+    </div>
+    <div>
+      <h2 style="margin-bottom:1.1rem">El precio por hora más bajo de todo el mercado analizado</h2>
+      <p>El precio ya está fijado para esta primera edición y está bien para llenar el grupo. Pero vale la pena tenerlo presente <strong>para la segunda generación</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · El hueco -->
+<section class="slide">
+  <div class="eyebrow">El hueco de mercado</div>
+  <h2>Nadie combina los <span class="accent">cuatro elementos</span></h2>
+  <div class="cards c2">
+    <div class="card pale">
+      <span class="tag">Lo que ofrecemos</span>
+      <ul class="clean">
+        <li><strong>Habilidades directivas</strong></li>
+        <li><strong>Inteligencia artificial aplicada</strong></li>
+        <li><strong>Método del caso</strong></li>
+        <li><strong>Opción de titulación</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Lo que hace el mercado</span>
+      <ul class="clean">
+        <li>Los programas directivos <strong>no titulan</strong></li>
+        <li>Los de titulación <strong>no llevan IA</strong></li>
+        <li>Los de IA cobran <strong>25 veces más por hora</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="quote small mt">Y en Michoacán no hay competencia identificada en este cruce.</div>
+  <p class="note">Esa ventaja se agota en cuanto alguien más la vea. Por eso este primer lanzamiento importa.</p>
+</section>
+
+<!-- 8 · IPADE -->
+<section class="slide">
+  <div class="eyebrow">Referencia · Mercado premium</div>
+  <h2>La escala de <span class="accent">IPADE</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Tipo de programa</th><th>Duración</th><th>Inversión aproximada</th></tr></thead>
+      <tbody>
+        <tr><td>Maestrías ejecutivas (MEDE / MEDEX)</td><td>2 años</td><td class="num">$1.5 – $2.5 millones</td></tr>
+        <tr><td>Perfeccionamiento directivo (AD / AD-2)</td><td>9 meses</td><td class="num">$800 – $900 mil</td></tr>
+        <tr><td>Perfeccionamiento directivo (D-1)</td><td>1 año</td><td class="num">~$450 mil</td></tr>
+        <tr><td>Programas enfocados</td><td>Variable</td><td class="num">$250 – $400 mil</td></tr>
+        <tr><td>Programas cortos y temáticos</td><td>Cortos</td><td class="num">$120 – $140 mil</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt">No competimos con IPADE ni queremos hacerlo. La referencia sirve para <strong>dimensionar la escala del mercado premium</strong> — y porque parte de nuestra planta docente se formó ahí.</p>
+  <p class="note">IPADE no publica precios. Rangos aproximados, varían por sede.</p>
+</section>
+
+<!-- 9 · Metodología -->
+<section class="slide">
+  <div class="eyebrow">El diferenciador</div>
+  <h2>La metodología</h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body">
+      <h4>Método del caso</h4>
+      <p>Situaciones directivas reales, con información incompleta y consecuencias inciertas. Se discuten, se defiende una postura, se contrastan criterios entre colegas.</p>
+    </div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body">
+      <h4>Teoría mínima necesaria</h4>
+      <p>Sólo el marco indispensable para poder decidir. No es un programa para saber más — es para dirigir mejor.</p>
+    </div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body">
+      <h4>Herramientas de IA aplicadas</h4>
+      <p>La IA acompaña tanto el aprendizaje como el quehacer directivo. Se usa en el aula y se usa en el trabajo real.</p>
+    </div></div>
+  </div>
+  <div class="quote mt">"Aquí no vas a escuchar clases. Vas a resolver casos, discutirlos con otros directivos y defender tu criterio — con las herramientas que ya están cambiando la forma de dirigir."</div>
+</section>
+
+<!-- 10 · Tres perfiles -->
+<section class="slide">
+  <div class="eyebrow">Decisión 1</div>
+  <h2>Tres perfiles. <span class="accent">Mensajes que no se mezclan.</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th></th><th>Perfil A</th><th>Perfil B</th><th>Perfil C</th></tr></thead>
+      <tbody>
+        <tr><td>Quién</td><td>Egresado UNLA sin titular</td><td>Directivo / dueño de PyME</td><td>Empresa</td></tr>
+        <tr><td>Su dolor</td><td>El título pendiente se volvió un techo</td><td>Quiere modernizar y no sabe por dónde</td><td>Necesita desarrollar mandos medios</td></tr>
+        <tr><td>Qué compra</td><td>Cerrar su licenciatura</td><td>Liderar su empresa con IA</td><td>Capacitación con constancia oficial</td></tr>
+        <tr class="highlight"><td>Meta</td><td>~11 alumnos</td><td>~8 alumnos</td><td>~3 alumnos</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt">La titulación es nuestro argumento más fuerte — <strong>pero sólo con el perfil A</strong>. Con el B, mencionarla nos debilita.</p>
+</section>
+
+<!-- 11 · Perfil A -->
+<section class="slide">
+  <div class="eyebrow">Perfil A · "El pendiente"</div>
+  <h2>Egresado UNLA · 30–45 años<br><span class="accent">nunca se tituló</span></h2>
+  <div class="split">
+    <div>
+      <p class="lead">Su dolor no es que quiera aprender IA. Es que <strong>la licenciatura sin cerrar se le convirtió en un techo.</strong></p>
+      <div class="quote small mt">"Tienes la carrera. Te falta el título. Ciérralo de octubre a abril — y sal actualizado en IA."</div>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <span class="tag">Su objeción no es el precio</span>
+        <p style="color:var(--white)">"¿De verdad me titulo con esto? ¿No hay letra chiquita?"</p>
+        <p class="mt-sm">Es <strong>credibilidad del mecanismo</strong>. Hay precedente institucional: hay que decirlo con claridad.</p>
+      </div>
+      <div class="card pale">
+        <span class="tag">Canales</span>
+        <p>Base de egresados · Facebook · WhatsApp · grupos de generación</p>
+        <p class="mt-sm"><strong style="color:var(--pale)">Lleva la batuta:</strong> Julieta y Guillermo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Perfil B -->
+<section class="slide">
+  <div class="eyebrow">Perfil B · "El que quiere dar el salto"</div>
+  <h2>35–55 años · dirige de 5 a 50 personas</h2>
+  <div class="split">
+    <div>
+      <p class="lead" style="color:var(--pale)">Aquí NO mencionamos titulación como eje.</p>
+      <p class="mt">No tiene un pendiente que resolver: <strong>tiene una ambición que no sabe cómo ejecutar.</strong> Probablemente ya usa un poco de IA y sospecha que hay un abismo entre eso y lo que la herramienta puede hacer.</p>
+      <div class="quote small mt">"Ya sabes que la IA va a cambiar tu empresa. Aquí aprendes a dirigirla."</div>
+    </div>
+    <div class="stack">
+      <div class="metric-row">
+        <div class="metric"><div class="v">51%</div><div class="l">de dueños de PyME<br>al borde de adoptar IA</div></div>
+        <div class="metric"><div class="v">32%</div><div class="l">de CEOs en México<br>ya la tienen como<br>prioridad #1</div></div>
+      </div>
+      <div class="card">
+        <span class="tag">Canales</span>
+        <p>LinkedIn · contacto directo · red de los docentes · cámaras empresariales</p>
+        <p class="mt-sm"><strong>Lleva la batuta:</strong> Paco</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · Perfil C -->
+<section class="slide">
+  <div class="eyebrow">Perfil C · Empresa</div>
+  <h2>Empresas que inscriben <span class="accent">2 a 5 mandos medios</span></h2>
+  <div class="split">
+    <div>
+      <div class="stat" style="font-size:clamp(2.8rem,7vw,5.6rem)">$70,000</div>
+      <div class="stat-sub">una sola empresa con 4 inscritos</div>
+      <div class="quote small mt">"Desarrolla a tus mandos medios en IA sin sacarlos de la operación."</div>
+    </div>
+    <div class="card pale">
+      <span class="tag">Tres argumentos que le importan a RH</span>
+      <ul class="clean">
+        <li>Virtual y en fin de semana — <strong>no interrumpe la operación</strong></li>
+        <li><strong>Capacitación con constancia oficial</strong> (STPS / SEP)</li>
+        <li>Descuento por inscripción múltiple</li>
+      </ul>
+      <div class="divider"></div>
+      <p><strong style="color:var(--pale)">Lleva la batuta:</strong> Paco y Memo</p>
+      <p class="mt-sm">Es el canal de mayor ticket y menor esfuerzo por peso ingresado. <strong>Hoy no lo estamos trabajando.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- 14 · Motores -->
+<section class="slide">
+  <div class="eyebrow">Cómo se llena el grupo</div>
+  <h2>El webinar convierte.<br><span class="accent">Las redes son el motor.</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Fuente</th><th>Audiencia</th><th>Quién la mueve</th></tr></thead>
+      <tbody>
+        <tr><td>Base de egresados UNLA</td><td>Tibia</td><td>Julieta / Guillermo</td></tr>
+        <tr><td>Red directa de Paco</td><td class="yes">Caliente</td><td>Paco</td></tr>
+        <tr class="highlight"><td>Red de los 6 docentes</td><td>Tibia</td><td>Cada docente</td></tr>
+        <tr><td>Pauta digital</td><td>Fría</td><td>Por definir</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt">Si dependiéramos sólo de pauta fría, harían falta <strong>~460 registros</strong> para llenar el grupo.</p>
+  <p class="note">La red de los seis docentes es el activo que hoy no estamos usando. Hay que darles material listo, no pedirles que improvisen.</p>
+</section>
+
+<!-- 15 · Clase muestra -->
+<section class="slide">
+  <div class="eyebrow">Decisión 2 · La clase muestra</div>
+  <h2>El objetivo no es enseñar.<br><span class="accent">Es que vean cómo se siente la clase.</span></h2>
+  <div class="split">
+    <div>
+      <p style="color:var(--white);font-weight:600;margin-bottom:1rem">Formato propuesto — no una conferencia de una sola persona:</p>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-body"><h4>Conversación sobre tendencias</h4><p>Entre Paco y 1–2 docentes</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-body"><h4>Un pedazo de caso en vivo</h4><p>Trabajado entre ellos, frente al grupo</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-body"><h4>Interacción con los asistentes</h4><p>Preguntas, participación, discusión</p></div></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card pale">
+        <span class="tag">Fechas propuestas</span>
+        <p style="color:var(--pale);font-weight:600">Jueves 17 de septiembre<br>Repetición: jueves 24 de septiembre<br>20:00 h</p>
+        <p class="note" style="margin-top:.9rem">Revisar que el 17 de septiembre no se vea afectado por los festejos del 16 (Día de la Independencia).</p>
+      </div>
+      <div class="card">
+        <span class="tag">Regla</span>
+        <p style="color:var(--white);font-weight:600">80% valor · 20% venta</p>
+        <p class="mt-sm">Ver a dos o tres directivos discutir un caso <strong>es</strong> el producto. Un webinar de una sola persona desperdicia nuestro mejor activo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 · Cinco opciones -->
+<section class="slide">
+  <div class="eyebrow">Decisión 2 · El tema</div>
+  <h2>Cinco opciones</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th></th><th>Título</th><th>Qué se demuestra en vivo</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>El directivo que multiplica: haz más con los recursos que ya tienes</td><td>Un asistente de IA absorbe una tarea operativa real</td></tr>
+        <tr><td class="num">2</td><td>Tu competencia ya lo está haciendo</td><td>Construir un mini-agente funcional en menos de 10 minutos</td></tr>
+        <tr class="highlight"><td class="num">3</td><td>Liderar a un equipo que ya sabe más de IA que tú</td><td>Cómo un líder usa IA para multiplicar al equipo</td></tr>
+        <tr><td class="num">4</td><td>De la idea al prototipo en 60 minutos</td><td>Pasar de idea a maqueta concreta en vivo</td></tr>
+        <tr><td class="num">5</td><td>La decisión que define el rumbo</td><td>Modelar escenarios para un comité, sin quitarle la decisión</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt"><strong>Recomendación: la 3</strong>, robándole a la 2 el momento de asombro. Es un problema <strong>de dirección, no de tecnología</strong> — atrae al directivo, no al técnico. Y se discute perfecto como caso: hay tres posturas defendibles y el grupo se divide solo.</p>
+</section>
+
+<!-- 17 · Decisión 3 -->
+<section class="slide">
+  <div class="eyebrow">Decisión 3</div>
+  <h2>Pauta, ejecución y <span class="accent">creativos</span></h2>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div class="step-body"><h4>¿Qué presupuesto de pauta hay para este programa?</h4></div></div>
+    <div class="step"><div class="step-n">2</div><div class="step-body"><h4>¿Quién ejecuta la pauta?</h4><p>¿Todo UNLA, o Paco corre una parte en paralelo para el perfil B?</p></div></div>
+    <div class="step"><div class="step-n">3</div><div class="step-body"><h4>¿Se pueden compartir los archivos editables de los creativos?</h4></div></div>
+    <div class="step"><div class="step-n">4</div><div class="step-body"><h4>¿Hay libertad para producir piezas propias en los canales que lleva Paco?</h4></div></div>
+  </div>
+  <p class="note">Los perfiles B y C viven en LinkedIn y en contacto directo, con un tono muy distinto al institucional. No es sustituir el trabajo del equipo — es cubrir un canal que hoy no se está atendiendo.</p>
+</section>
+
+<!-- 18 · Lo que hay que resolver -->
+<section class="slide">
+  <div class="eyebrow">Salir de esta sesión con esto</div>
+  <h2>Cinco preguntas</h2>
+  <div class="cards c2">
+    <div class="card pale"><span class="tag">01</span><h3>¿Cuántos egresados sin titular hay en la base y cómo los activamos juntos?</h3><p>Es el activo número uno de toda la campaña y hoy no sabemos su tamaño.</p></div>
+    <div class="card"><span class="tag">02</span><h3>¿Cómo aplican los descuentos — al total o sólo a la inscripción?</h3><p>La diferencia entre $3,500 y $500 de ahorro.</p></div>
+    <div class="card"><span class="tag">03</span><h3>¿Cuál es la capacidad máxima del grupo?</h3><p>¿Hay tope? ¿Se puede abrir un segundo?</p></div>
+    <div class="card"><span class="tag">04</span><h3>¿Presupuesto de pauta, quién ejecuta, hay editables?</h3></div>
+  </div>
+  <div class="card pale mt"><span class="tag">05</span><h3>¿Quién responde a los interesados y en cuánto tiempo?</h3><p>Un lead sin respuesta en 24 horas está muerto.</p></div>
+</section>
+
+<!-- 19 · Calendario -->
+<section class="slide">
+  <div class="eyebrow">Calendario</div>
+  <h2>De aquí al <span class="accent">9 de octubre</span></h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Fase</th><th>Fechas</th><th>Qué pasa</th></tr></thead>
+      <tbody>
+        <tr><td>Preparación</td><td class="num">21 jul – 9 ago</td><td>Landing, kit gráfico, base de datos, videos de docentes</td></tr>
+        <tr><td>Siembra</td><td class="num">10 – 30 ago</td><td>Anuncio oficial, primer correo a egresados, activación de redes</td></tr>
+        <tr><td>Empuje</td><td class="num">31 ago – 17 sep</td><td>Pauta activa, registro al webinar, recordatorios</td></tr>
+        <tr class="highlight"><td>Clase muestra</td><td class="num">17 sep</td><td>Repetición el 24 de septiembre</td></tr>
+        <tr><td>Cierre</td><td class="num">18 sep – 2 oct</td><td>Seguimiento por teléfono, urgencia</td></tr>
+        <tr class="highlight"><td>Cierre de inscripciones</td><td class="num">2 oct</td><td>—</td></tr>
+        <tr class="highlight"><td>Inicio</td><td class="num">9 oct</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mt"><strong>Siguiente revisión:</strong> <span style="color:var(--muted-dim)">definir en la sesión</span></p>
+</section>
+
+</div>
+
+<div class="chrome">
+  <div class="brand">Diplomado en Habilidades Directivas para la Era de la IA · UNLA</div>
+  <div class="nav">
+    <button id="prev" aria-label="Anterior"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <div class="counter"><b id="cur">01</b> / <span id="tot">19</span></div>
+    <button id="next" aria-label="Siguiente"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  var cur = document.getElementById('cur');
+  var tot = document.getElementById('tot');
+  var prev = document.getElementById('prev');
+  var next = document.getElementById('next');
+  var bar = document.getElementById('progress');
+  var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+
+  tot.textContent = pad(slides.length);
+
+  function show(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    slides[i].scrollTop = 0;
+    cur.textContent = pad(i + 1);
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    prev.disabled = (i === 0);
+    next.disabled = (i === slides.length - 1);
+  }
+
+  prev.addEventListener('click', function(){ show(i - 1); });
+  next.addEventListener('click', function(){ show(i + 1); });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+  });
+
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.changedTouches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 55) show(dx < 0 ? i + 1 : i - 1);
+    x0 = null;
+  }, {passive:true});
+
+  show(0);
+})();
+</script>
+</body>
+</html>

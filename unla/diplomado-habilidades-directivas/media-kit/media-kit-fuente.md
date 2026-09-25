@@ -99,8 +99,8 @@ Cada quien puede **descargar su ecard** con el botón de su tarjeta.
 
 Dos formatos listos para publicar, con botón para descargar:
 
+`[IMG: assets/ads/clase-muestra-ponentes-vertical.png]` — **Formato vertical** (historias y estados de WhatsApp) — con todos los ponentes · `[Descargar]`
 `[IMG: assets/ads/clase-muestra-cuadrado.jpeg]` — **Formato cuadrado** (feed de Instagram y Facebook) · `[Descargar]`
-`[IMG: assets/ads/clase-muestra-vertical.jpeg]` — **Formato vertical** (historias y estados de WhatsApp) · `[Descargar]`
 
 **Texto sugerido — elige según tu caso:**
 
@@ -111,10 +111,6 @@ Dos formatos listos para publicar, con botón para descargar:
 > Te quiero recomendar algo: el **29 de septiembre** el equipo docente da una clase muestra gratuita del **Diplomado en Habilidades Directivas para la Era de la IA** de la UNLA, un programa del que soy parte. Es en vivo, con un caso real. Yo no podré estar ese día, pero de verdad vale la pena; si diriges equipos o vas hacia un puesto de liderazgo, no te la pierdas. Regístrate: forms.gle/zxtf3FFQ2NyXszwt9
 
 > 💡 Estos textos son una base — adáptalos a tu estilo y cámbiales lo que quieras.
-
-> ⚠️ **Nota importante:** estas piezas llevan la foto de Paco como facilitador. Estamos preparando **una nueva versión con todos los profesores que participan**, y sale **lo antes posible**. Si quieres adelantar, publica esta; si prefieres esperar la del equipo completo, también sirve.
-
-*Nota interna: cuando lleguen los profes confirmados, se actualiza esta slide con la pieza nueva.*
 
 ---
 

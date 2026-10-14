@@ -108,6 +108,9 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
 .judge .eyebrow { color: var(--accent-ink); opacity: 0.85; }
 .judge b { display: block; font: 700 40px/1.05 var(--font-display); margin-top: 6px; }
 .role { display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: start; }
+.pill { display: inline-block; font: 600 11px/1 var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 8px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
+.pill.show { background: var(--gain-soft); color: var(--gain); }
+.pill.secret { background: var(--pain-soft); color: var(--pain); }
 .role .tag { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font: 700 15px var(--font-display); }
 .timer { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px 0; }
 .ring { width: 220px; height: 220px; max-width: 100%; }
@@ -270,10 +273,10 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   const HOWTO = [
     { t: "Dos roles por ronda", b: `<p>En cada ronda una persona es el <b>juez</b> y las demás son <b>inventores</b>. Todos serán juez una vez.</p>
        <div class="role"><span class="tag">I</span><p><b>Inventores:</b> toman una carta de <b>objeto</b> y una de <b>reto</b>. Con eso inventan algo.</p></div>
-       <div class="role"><span class="tag">J</span><p><b>Juez:</b> toma una carta de <b>personaje</b> y la enseña a todos. Es para quien inventan.</p></div>` },
+       <div class="role"><span class="tag">J</span><p><b>Juez:</b> toma una carta de <b>personaje</b> y la muestra a todos <span class="pill show">no es secreta</span>. Es para quien inventan.</p></div>` },
     { t: "El secreto del juez", b: `<p>Mientras corre el tiempo, el juez completa en secreto esta frase:</p>
        <div class="formula">Soy <u>buzo</u>, estoy en <u>la cárcel</u> y necesito <u>quitarme el traje</u>.</div>
-       <p class="muted">El personaje viene en la carta. El lugar y la necesidad los inventa el juez. Nadie los sabe hasta el final.</p>` },
+       <p class="muted">La carta del personaje se muestra a todos desde el inicio. Lo único secreto es el lugar y la necesidad, que inventa el juez y nadie sabe hasta el final.</p>` },
     { t: "Cómo se gana", b: `<p>Cada inventor presenta en 30 segundos. El juez revela su frase y reparte los siguientes puntos:</p>
        <div class="role"><span class="tag">3</span><p>Al que <b>mejor resuelve su necesidad</b>.</p></div>
        <div class="role"><span class="tag">2</span><p>A su <b>favorito</b>.</p></div>
@@ -302,23 +305,24 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       return top(roundLabel(), { help: true, exit: true }) + `<main>${pb}
         <div class="judge"><span class="eyebrow">Juez de esta ronda</span><b>${esc(judge)}</b></div>
         <div class="card">
-          <div class="role"><span class="tag">J</span><p><b>${esc(judge)}:</b> toma una carta de <b>personaje</b> y enséñala a todos.</p></div>
-          <div class="role"><span class="tag">I</span><p><b>${esc(inventors().join(", "))}:</b> tomen una carta de <b>objeto</b> y una de <b>reto</b>.</p></div>
+          <span class="eyebrow">Antes de iniciar el tiempo</span>
+          <div class="role"><span class="tag">1</span><p><b>${esc(inventors().join(", "))}:</b> cada quien toma una carta de <b>objeto</b> y una de <b>reto</b>.</p></div>
+          <div class="role"><span class="tag">2</span><p><b>${esc(judge)}:</b> toma una carta de <b>personaje</b> y <b>muéstrala a todos</b> <span class="pill show">se muestra</span></p></div>
+          <div class="role"><span class="tag">3</span><p>Lo único secreto es lo que ${esc(judge)} inventa durante el tiempo: dónde está y qué necesita <span class="pill secret">secreto</span></p></div>
         </div>
-        <p class="muted">Cuando todos tengan sus cartas, inicien el tiempo. Mientras inventan, ${esc(judge)} completa en secreto: "Soy..., estoy en... y necesito...".</p>
-        <div class="actions"><button class="btn primary" data-act="start">Iniciar ${S.timer} segundos</button></div></main>`;
+        <div class="actions"><button class="btn primary" data-act="start">Todos vieron el personaje: iniciar ${S.timer} s</button></div></main>`;
     }
     if (S.phase === "timer") {
       const C = 2 * Math.PI * 92;
       return top(roundLabel(), { help: true, exit: true }) + `<main>${pb}
         <div class="timer">
-          <span class="eyebrow">Inventores: creen su invento para el personaje</span>
+          <span class="eyebrow">Inventen para el personaje que mostró ${esc(judge)}</span>
           <svg class="ring" viewBox="0 0 220 220" role="timer" aria-live="off">
             <circle class="track" cx="110" cy="110" r="92"></circle>
             <circle class="bar" id="t-bar" cx="110" cy="110" r="92" stroke-dasharray="${C}" stroke-dashoffset="${C * (1 - S.remaining / S.roundTotal)}" transform="rotate(-90 110 110)"></circle>
             <text id="t-num" x="110" y="128" text-anchor="middle">${fmt(S.remaining)}</text>
           </svg>
-          <p class="muted">${esc(judge)}: completa tu frase secreta.</p>
+          <p class="muted">${esc(judge)}: completa en secreto "Soy..., estoy en... y necesito...".</p>
           <div class="btnrow">
             <button class="btn ghost" data-act="pause">${S.running ? "Pausar" : "Seguir"}</button>
             <button class="btn ghost" data-act="plus">+30 s</button>
@@ -389,7 +393,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   function vSheet() {
     if (S.sheet === "help") return `<div class="sheet-bg" data-act="close"><div class="sheet" role="dialog" aria-label="Ayuda">
       <h2>Ayuda rápida</h2>
-      <div class="card"><b>¿Qué hace el juez?</b><p>Enseña su carta de personaje y, mientras corre el tiempo, completa en secreto: "Soy..., estoy en... y necesito...". Al final la revela y reparte los puntos.</p></div>
+      <div class="card"><b>¿Qué hace el juez?</b><p>Muestra su carta de personaje a todos (no es secreta) y, mientras corre el tiempo, completa en secreto: "Soy..., estoy en... y necesito...". Al final la revela y reparte los puntos.</p></div>
       <div class="card"><b>¿Cómo se puntúa?</b><p>+3 al que mejor resuelve la necesidad (si nadie la resolvió, no se reparte). +2 a su favorito. +1 mención especial al más ingenioso o gracioso. Cada puntaje a una persona distinta. Con dos inventores, solo 3 y 2.</p></div>
       <div class="card"><b>¿Cuándo termina?</b><p>Cuando se completan las vueltas que eligieron. En cada vuelta todos son juez una vez. La app lleva la cuenta.</p></div>
       <button class="btn primary" data-act="close">Entendido</button></div></div>`;

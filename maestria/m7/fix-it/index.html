@@ -157,7 +157,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
 
   let S = fresh();
   function fresh() {
-    return { screen: "home", players: [], timer: 60, practice: true, howto: 0, round: 0, judgeIdx: 0, isPractice: false,
+    return { screen: "home", players: [], timer: 60, laps: 1, practice: true, howto: 0, round: 0, judgeIdx: 0, isPractice: false,
       phase: "prep", remaining: 60, roundTotal: 60, running: false, scores: {}, judged: [], last: {}, pick: { 3: null, 2: null, 1: null },
       err: "", sheet: null, presented: [], fromHome: false };
   }
@@ -169,7 +169,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   const criteria = () => {
     const n = inventors().length;
     const all = [
-      { pts: 3, label: "Mejor resuelve mi necesidad", help: "El invento que mejor responde a \"Soy, estoy en, necesito\"." },
+      { pts: 3, label: "Mejor resuelve mi necesidad", help: "El invento que mejor responde a \"Soy, estoy en, necesito\". Si nadie la resolvió, no se reparte.", optional: true },
       { pts: 2, label: "Mi favorito", help: "El que más te gustó o te pareció más útil." },
       { pts: 1, label: "Mención especial", help: "El más ingenioso o gracioso. No es un punto de consolación." }
     ];
@@ -178,8 +178,9 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   function estimate(n, t) {
     if (n < 1) return { rounds: 0, min: 0 };
     const perRound = t + Math.max(0, n - 1) * 40 + 75; // creación + presentaciones de 40 s + juicio
-    const total = n * perRound + (S.practice ? perRound : 0);
-    return { rounds: n, min: Math.round(total / 60) };
+    const rounds = n * S.laps;
+    const total = rounds * perRound + (S.practice ? perRound : 0);
+    return { rounds, min: Math.round(total / 60) };
   }
   function go(screen) { stopTick(); S.screen = screen; S.err = ""; render(); window.scrollTo(0, 0); }
 
@@ -233,7 +234,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
     let note = "";
     if (S.err) note = `<div class="msg error" role="alert">${esc(S.err)}</div>`;
     else if (n > 0 && n < MIN) note = `<div class="msg warn">Faltan ${MIN - n} para empezar. Se necesitan al menos 3: un juez y dos inventores.</div>`;
-    else if (n >= 8) note = `<div class="msg warn">Con ${n} personas la partida dura unos ${e.min} minutos. Si el grupo es grande, pueden jugar menos rondas y terminar antes.</div>`;
+    else if (n >= 8) note = `<div class="msg warn">Con ${n} personas la partida dura unos ${e.min} minutos. Si el grupo es grande, conviene jugar una sola vuelta.</div>`;
     return top("1 · Jugadores") + `<main>
       <h2>¿Quiénes juegan?</h2>
       <form class="row" id="addform" autocomplete="off">
@@ -249,11 +250,18 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
           <button data-time="60" aria-pressed="${S.timer === 60}">60 segundos</button>
           <button data-time="90" aria-pressed="${S.timer === 90}">90 segundos</button>
         </div>
+        <span class="eyebrow">Vueltas</span>
+        <div class="seg" role="group" aria-label="Número de vueltas" style="grid-template-columns:repeat(3,1fr)">
+          <button data-laps="1" aria-pressed="${S.laps === 1}">1 vuelta</button>
+          <button data-laps="2" aria-pressed="${S.laps === 2}">2 vueltas</button>
+          <button data-laps="3" aria-pressed="${S.laps === 3}">3 vueltas</button>
+        </div>
+        <p class="muted" style="font-size:14px">En cada vuelta todos son juez una vez.</p>
         <label class="toggle"><input type="checkbox" id="practice" ${S.practice ? "checked" : ""}> <span>Empezar con una ronda de prueba <span class="muted">(recomendado si alguien juega por primera vez)</span></span></label>
       </div>
       ${n >= MIN ? `<div class="estimate">
         <div class="stat"><b>${n}</b><span>jugadores</span></div>
-        <div class="stat"><b>${e.rounds}</b><span>rondas, todos son juez</span></div>
+        <div class="stat"><b>${e.rounds}</b><span>rondas (${n} × ${S.laps})</span></div>
         <div class="stat"><b>~${e.min}</b><span>minutos</span></div></div>` : ""}
       <div class="actions"><button class="btn primary" data-act="setup-go" ${n < MIN ? "disabled" : ""}>Continuar</button>
       <button class="btn quiet" data-act="home">Volver</button></div></main>`;
@@ -270,7 +278,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
        <div class="role"><span class="tag">3</span><p>Al que <b>mejor resuelve su necesidad</b>.</p></div>
        <div class="role"><span class="tag">2</span><p>A su <b>favorito</b>.</p></div>
        <div class="role"><span class="tag">1</span><p>Una <b>mención especial</b> al más ingenioso o gracioso.</p></div>
-       <p class="muted">Cada puntaje va a una persona distinta. Escribir es más rápido; dibujar es opcional. La app lleva el marcador.</p>` }
+       <p class="muted">Cada puntaje va a una persona distinta. Si nadie resolvió la necesidad, el +3 no se reparte. Escribir es más rápido; dibujar es opcional. La app lleva el marcador.</p>` }
   ];
   function vHowto() {
     const i = S.howto, c = HOWTO[i], last = i === HOWTO.length - 1;
@@ -284,7 +292,8 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       ${i > 0 ? `<button class="btn quiet" data-act="howto-back">Atrás</button>` : (S.fromHome ? `<button class="btn quiet" data-act="home">Volver</button>` : `<button class="btn quiet" data-act="skip-howto">Ya sabemos jugar, saltar</button>`)}</div></main>`;
   }
 
-  function roundLabel() { return S.isPractice ? "Ronda de prueba" : `Ronda ${S.round} de ${S.players.length}`; }
+  function roundLabel() { return S.isPractice ? "Ronda de prueba" : `Ronda ${S.round} de ${S.players.length * S.laps}`; }
+  const judgeCount = (i) => S.judged.filter((j) => j === i).length;
 
   function vRound() {
     const judge = S.players[S.judgeIdx];
@@ -327,9 +336,9 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
 
   function vScore() {
     const judge = S.players[S.judgeIdx], crit = criteria();
-    const used = Object.values(S.pick).filter(Boolean);
+    const used = Object.values(S.pick).filter((v) => v && v !== "__none__");
     const complete = crit.every((c) => S.pick[c.pts]);
-    const two = inventors().length === 2 ? `<div class="msg warn">Con dos inventores solo se reparten 3 y 2 puntos.</div>` : "";
+    const two = inventors().length === 2 ? `<div class="msg warn">Con dos inventores solo se reparten 3 y 2 puntos, a personas distintas.</div>` : "";
     return top(roundLabel(), { help: true, exit: true }) + `<main>
       ${S.isPractice ? `<div class="banner">Ronda de prueba: practiquen cómo se reparten los puntos.</div>` : ""}
       <span class="eyebrow">${esc(judge)} decide</span>
@@ -337,7 +346,8 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       ${two}
       ${crit.map((c) => `<div class="card crit"><div class="head"><span class="pts">+${c.pts}</span><div><b>${c.label}</b><p class="muted" style="font-size:14px">${c.help}</p></div></div>
         <div class="chips">${inventors().map((p) => { const mine = S.pick[c.pts] === p; const taken = !mine && used.includes(p);
-          return `<button class="chip" data-pts="${c.pts}" data-who="${esc(p)}" aria-pressed="${mine}" ${taken ? "disabled" : ""}>${esc(p)}</button>`; }).join("")}</div></div>`).join("")}
+          return `<button class="chip" data-pts="${c.pts}" data-who="${esc(p)}" aria-pressed="${mine}" ${taken ? "disabled" : ""}>${esc(p)}</button>`; }).join("")}
+          ${c.optional ? `<button class="chip" data-pts="${c.pts}" data-who="__none__" aria-pressed="${S.pick[c.pts] === "__none__"}">Nadie resolvió mi necesidad</button>` : ""}</div></div>`).join("")}
       ${S.err ? `<div class="msg error" role="alert">${esc(S.err)}</div>` : `<p class="muted" style="font-size:14px">Cada puntaje va a una persona distinta.</p>`}
       <div class="actions"><button class="btn primary" data-act="confirm" aria-disabled="${!complete}">${S.isPractice ? "Terminar ronda de prueba" : "Confirmar puntos"}</button></div></main>`;
   }
@@ -347,15 +357,16 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   }
 
   function vBoard() {
-    const n = S.players.length, done = S.judged.length, rank = ranking(), lead = rank[0].s;
-    const pending = S.players.filter((_, i) => !S.judged.includes(i));
-    const nextIdx = S.players.findIndex((_, i) => !S.judged.includes(i));
-    const left = estimate(n, S.timer).min * (n - done) / n;
-    return top(`Marcador · ${done} de ${n}`, { help: true, exit: true }) + `<main>
-      <span class="eyebrow">${done} de ${n} rondas</span>
-      <div class="progress" aria-hidden="true"><i style="width:${(done / n) * 100}%"></i></div>
+    const n = S.players.length, total = n * S.laps, done = S.judged.length, rank = ranking(), lead = rank[0].s;
+    const pending = Array.from({ length: total - done });
+    const nextIdx = done % n;
+    const left = estimate(n, S.timer).min * (total - done) / total;
+    const lap = Math.min(S.laps, Math.floor(done / n) + 1);
+    return top(`Marcador · ${done} de ${total}`, { help: true, exit: true }) + `<main>
+      <span class="eyebrow">${done} de ${total} rondas${S.laps > 1 ? ` · vuelta ${lap} de ${S.laps}` : ""}</span>
+      <div class="progress" aria-hidden="true"><i style="width:${(done / total) * 100}%"></i></div>
       <ol class="board">${rank.map((r, k) => `<li class="${r.s > 0 && r.s === lead ? "lead" : ""}"><span class="pos">${k + 1}</span><span class="avatar">${initial(r.p)}</span>
-        <span><b>${esc(r.p)}</b><br><span class="judged ${S.judged.includes(r.i) ? "yes" : ""}">${S.judged.includes(r.i) ? "✓ ya fue juez" : "falta ser juez"}</span></span>
+        <span><b>${esc(r.p)}</b><br><span class="judged ${judgeCount(r.i) ? "yes" : ""}">${judgeCount(r.i) ? (S.laps > 1 ? `✓ juez ${judgeCount(r.i)} de ${S.laps}` : "✓ ya fue juez") : "falta ser juez"}</span></span>
         <span style="text-align:right"><span class="score">${r.s}</span>${S.last[r.p] ? `<br><span class="delta">+${S.last[r.p]}</span>` : ""}</span></li>`).join("")}</ol>
       ${pending.length ? `<p class="muted">Faltan ${pending.length} ${pending.length === 1 ? "ronda" : "rondas"}, unos ${Math.max(1, Math.round(left))} minutos. Siguiente juez: <b>${esc(S.players[nextIdx])}</b>.</p>` : ""}
       <div class="actions">
@@ -366,10 +377,10 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
 
   function vEnd() {
     const rank = ranking(), top1 = rank[0].s, winners = rank.filter((r) => r.s === top1 && top1 > 0);
-    const allJudged = S.judged.length === S.players.length;
+    const allJudged = S.judged.length % S.players.length === 0 && S.judged.length > 0;
     return top("Fin de la partida") + `<main>
       <div class="winner"><span class="eyebrow">${winners.length > 1 ? "Empate" : "Gana"}</span><b>${esc(winners.map((w) => w.p).join(" y ") || "Nadie sumó puntos")}</b><span class="muted">${top1} puntos</span></div>
-      ${allJudged ? `<div class="msg ok">Todos fueron juez una vez. Partida pareja.</div>` : `<div class="msg warn">La partida terminó antes de que todos fueran juez.</div>`}
+      ${allJudged ? `<div class="msg ok">Todos fueron juez el mismo número de veces. Partida pareja.</div>` : `<div class="msg warn">La partida terminó antes de que todos fueran juez el mismo número de veces.</div>`}
       <ol class="board">${rank.map((r, k) => `<li><span class="pos">${k + 1}</span><span class="avatar">${initial(r.p)}</span><span><b>${esc(r.p)}</b></span><span class="score">${r.s}</span></li>`).join("")}</ol>
       <div class="actions"><button class="btn primary" data-act="again">Jugar otra con el mismo grupo</button>
       <button class="btn quiet" data-act="reset">Nueva partida desde cero</button></div></main>`;
@@ -379,15 +390,16 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
     if (S.sheet === "help") return `<div class="sheet-bg" data-act="close"><div class="sheet" role="dialog" aria-label="Ayuda">
       <h2>Ayuda rápida</h2>
       <div class="card"><b>¿Qué hace el juez?</b><p>Enseña su carta de personaje y, mientras corre el tiempo, completa en secreto: "Soy..., estoy en... y necesito...". Al final la revela y reparte los puntos.</p></div>
-      <div class="card"><b>¿Cómo se puntúa?</b><p>+3 al que mejor resuelve la necesidad. +2 a su favorito. +1 mención especial al más ingenioso o gracioso. Cada puntaje a una persona distinta. Con dos inventores, solo 3 y 2.</p></div>
-      <div class="card"><b>¿Cuándo termina?</b><p>Cuando todos fueron juez una vez. La app lleva la cuenta.</p></div>
+      <div class="card"><b>¿Cómo se puntúa?</b><p>+3 al que mejor resuelve la necesidad (si nadie la resolvió, no se reparte). +2 a su favorito. +1 mención especial al más ingenioso o gracioso. Cada puntaje a una persona distinta. Con dos inventores, solo 3 y 2.</p></div>
+      <div class="card"><b>¿Cuándo termina?</b><p>Cuando se completan las vueltas que eligieron. En cada vuelta todos son juez una vez. La app lleva la cuenta.</p></div>
       <button class="btn primary" data-act="close">Entendido</button></div></div>`;
     if (S.sheet === "exit") return `<div class="sheet-bg"><div class="sheet" role="dialog" aria-label="Salir">
       <h2>¿Salir de la partida?</h2><p>Se perderá el marcador actual.</p>
       <button class="btn danger" data-act="reset">Salir y borrar</button><button class="btn quiet" data-act="close">Seguir jugando</button></div></div>`;
-    if (S.sheet === "early") { const pend = S.players.filter((_, i) => !S.judged.includes(i));
+    if (S.sheet === "early") { const mx = Math.max(...S.players.map((_, i) => judgeCount(i))); const pend = S.players.filter((_, i) => judgeCount(i) < mx);
+      const txt = pend.length ? `${esc(pend.join(", "))} ${pend.length === 1 ? "ha sido juez menos veces" : "han sido juez menos veces"} que los demás. Quien fue juez menos veces tuvo más rondas para sumar puntos.` : "Todos han sido juez el mismo número de veces, así que la partida queda pareja.";
       return `<div class="sheet-bg"><div class="sheet" role="dialog" aria-label="Terminar">
-      <h2>¿Terminar ahora?</h2><p>${esc(pend.join(", "))} ${pend.length === 1 ? "no ha sido juez" : "no han sido juez"}. Quien no fue juez tuvo una ronda más para sumar puntos.</p>
+      <h2>¿Terminar ahora?</h2><p>${txt}</p>
       <button class="btn primary" data-act="finish">Terminar y ver ganador</button><button class="btn quiet" data-act="close">Seguir jugando</button></div></div>`; }
     return "";
   }
@@ -402,7 +414,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   function beginRound(practice) {
     S.isPractice = practice;
     if (practice) S.judgeIdx = 0;
-    else { S.judgeIdx = S.players.findIndex((_, i) => !S.judged.includes(i)); S.round = S.judged.length + 1; }
+    else { S.judgeIdx = S.judged.length % S.players.length; S.round = S.judged.length + 1; }
     S.phase = "prep"; S.remaining = S.timer; S.roundTotal = S.timer; S.pick = { 3: null, 2: null, 1: null }; S.presented = [];
     go("round");
   }
@@ -423,11 +435,12 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   });
 
   $app.addEventListener("click", (ev) => {
-    const el = ev.target.closest("[data-act],[data-del],[data-time],[data-pts]");
+    const el = ev.target.closest("[data-act],[data-del],[data-time],[data-laps],[data-pts]");
     if (!el) return;
     if (el.classList.contains("sheet-bg") && ev.target !== el) return;
     if (el.dataset.del !== undefined) { S.players.splice(+el.dataset.del, 1); S.err = ""; return render(); }
     if (el.dataset.time) { S.timer = +el.dataset.time; return render(); }
+    if (el.dataset.laps) { S.laps = +el.dataset.laps; return render(); }
     if (el.dataset.pts) {
       const pts = +el.dataset.pts, who = el.dataset.who;
       S.pick[pts] = S.pick[pts] === who ? null : who; S.err = ""; return render();
@@ -454,17 +467,17 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       case "confirm": {
         const crit = criteria();
         const missing = crit.filter((c) => !S.pick[c.pts]).map((c) => "+" + c.pts);
-        if (missing.length) { S.err = `Falta asignar ${missing.join(" y ")}. Toca un nombre en cada puntaje.`; return render(); }
+        if (missing.length) { S.err = `Falta decidir ${missing.join(" y ")}. Toca un nombre en cada puntaje${S.pick[3] ? "" : " (en el +3 también puedes elegir \"Nadie resolvió mi necesidad\")"}.`; return render(); }
         if (S.isPractice) { S.last = {}; return beginRound(false); }
         S.last = {};
-        crit.forEach((c) => { const p = S.pick[c.pts]; S.scores[p] = (S.scores[p] || 0) + c.pts; S.last[p] = (S.last[p] || 0) + c.pts; });
+        crit.forEach((c) => { const p = S.pick[c.pts]; if (p === "__none__") return; S.scores[p] = (S.scores[p] || 0) + c.pts; S.last[p] = (S.last[p] || 0) + c.pts; });
         S.judged.push(S.judgeIdx);
         return go("board");
       }
       case "next": S.last = {}; return beginRound(false);
       case "finish-early": S.sheet = "early"; return render();
       case "finish": S.sheet = null; return go("end");
-      case "again": { const p = S.players.slice(), t = S.timer; S = fresh(); S.players = p; S.timer = t; S.practice = false; return beginRound(false); }
+      case "again": { const p = S.players.slice(), t = S.timer, l = S.laps; S = fresh(); S.players = p; S.timer = t; S.laps = l; S.practice = false; return beginRound(false); }
       case "reset": { stopTick(); S = fresh(); return render(); }
       case "help": S.sheet = "help"; return render();
       case "exit": S.sheet = "exit"; return render();

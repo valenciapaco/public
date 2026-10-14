@@ -39,3 +39,19 @@ Es el prototipo navegable de la entrega final de la materia 7 de la maestría (D
 ### Por qué importa
 
 Define una regla que en los pilotos se resolvía de forma inconsistente y permite partidas más largas sin perder la equidad entre jueces.
+
+## Ajustes al prototipo de Fix it! tras la primera prueba de usabilidad (v1.3 y v1.4)
+
+**Proyecto:** maestria/m7/fix-it
+**Tipo:** desarrollo
+**Importancia:** alta
+**Commits:** 06f6312, 1391d55
+
+### Qué se hizo
+
+- v1.3: la pantalla de preparación de cada ronda indica con pasos numerados que la carta de personaje del juez se muestra a todos y que lo único secreto es el lugar y la necesidad; el botón de inicio pide confirmar que todos vieron el personaje.
+- v1.4: "Cómo se juega" pide leer cada pantalla en voz alta al grupo, con textos más cortos; el +1 (mención especial) también es opcional ("Nadie destacó"). El +2 sigue siendo obligatorio.
+
+### Por qué importa
+
+Responde a los hallazgos de la primera prueba con un anfitrión externo: el grupo entendió que la carta del juez era secreta, el anfitrión tardó de 5 a 7 minutos en arrancar porque sentía que debía entender todo antes de explicarlo, y los puntos obligatorios incomodaban cuando nadie los merecía.

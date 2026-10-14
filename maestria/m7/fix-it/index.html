@@ -172,9 +172,9 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   const criteria = () => {
     const n = inventors().length;
     const all = [
-      { pts: 3, label: "Mejor resuelve mi necesidad", help: "El invento que mejor responde a \"Soy, estoy en, necesito\". Si nadie la resolvió, no se reparte.", optional: true },
+      { pts: 3, label: "Mejor resuelve mi necesidad", help: "El invento que mejor responde a \"Soy, estoy en, necesito\". Si nadie la resolvió, no se reparte.", optional: true, none: "Nadie resolvió mi necesidad" },
       { pts: 2, label: "Mi favorito", help: "El que más te gustó o te pareció más útil." },
-      { pts: 1, label: "Mención especial", help: "El más ingenioso o gracioso. No es un punto de consolación." }
+      { pts: 1, label: "Mención especial", help: "El más ingenioso o gracioso. No es un punto de consolación.", optional: true, none: "Nadie destacó" }
     ];
     return n >= 3 ? all : all.slice(0, 2);
   };
@@ -271,17 +271,17 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
   }
 
   const HOWTO = [
-    { t: "Dos roles por ronda", b: `<p>En cada ronda una persona es el <b>juez</b> y las demás son <b>inventores</b>. Todos serán juez una vez.</p>
-       <div class="role"><span class="tag">I</span><p><b>Inventores:</b> toman una carta de <b>objeto</b> y una de <b>reto</b>. Con eso inventan algo.</p></div>
-       <div class="role"><span class="tag">J</span><p><b>Juez:</b> toma una carta de <b>personaje</b> y la muestra a todos <span class="pill show">no es secreta</span>. Es para quien inventan.</p></div>` },
-    { t: "El secreto del juez", b: `<p>Mientras corre el tiempo, el juez completa en secreto esta frase:</p>
+    { t: "Dos roles por ronda", b: `<p>En cada ronda, una persona es <b>juez</b> y las demás <b>inventan</b>. Todos serán juez.</p>
+       <div class="role"><span class="tag">I</span><p><b>Inventores:</b> cada quien toma un <b>objeto</b> y un <b>reto</b>, e inventa algo.</p></div>
+       <div class="role"><span class="tag">J</span><p><b>Juez:</b> toma un <b>personaje</b> y lo muestra <span class="pill show">no es secreto</span>. Para él se inventa.</p></div>` },
+    { t: "El secreto del juez", b: `<p>Mientras corre el tiempo, el juez piensa en secreto esta frase:</p>
        <div class="formula">Soy <u>buzo</u>, estoy en <u>la cárcel</u> y necesito <u>quitarme el traje</u>.</div>
-       <p class="muted">La carta del personaje se muestra a todos desde el inicio. Lo único secreto es el lugar y la necesidad, que inventa el juez y nadie sabe hasta el final.</p>` },
-    { t: "Cómo se gana", b: `<p>Cada inventor presenta en 30 segundos. El juez revela su frase y reparte los siguientes puntos:</p>
+       <p class="muted">El personaje ya lo vieron todos. Lo secreto es dónde está y qué necesita, hasta el final.</p>` },
+    { t: "Cómo se gana", b: `<p>Cada inventor presenta en 30 segundos. El juez revela su frase y reparte estos puntos:</p>
        <div class="role"><span class="tag">3</span><p>Al que <b>mejor resuelve su necesidad</b>.</p></div>
        <div class="role"><span class="tag">2</span><p>A su <b>favorito</b>.</p></div>
        <div class="role"><span class="tag">1</span><p>Una <b>mención especial</b> al más ingenioso o gracioso.</p></div>
-       <p class="muted">Cada puntaje va a una persona distinta. Si nadie resolvió la necesidad, el +3 no se reparte. Escribir es más rápido; dibujar es opcional. La app lleva el marcador.</p>` }
+       <p class="muted">Cada puntaje a una persona distinta. El +3 y el +1 se pueden quedar sin dar si nadie los merece. La app lleva el marcador.</p>` }
   ];
   function vHowto() {
     const i = S.howto, c = HOWTO[i], last = i === HOWTO.length - 1;
@@ -290,6 +290,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       <div class="dots" aria-label="Paso ${i + 1} de 3">${HOWTO.map((_, k) => `<i class="${k === i ? "on" : ""}"></i>`).join("")}</div>
       <span class="eyebrow">Paso ${i + 1} de 3</span>
       <h2>${c.t}</h2>
+      <div class="msg warn"><b>Lee esta pantalla en voz alta al grupo.</b> No hace falta entenderla antes: la ronda de prueba termina de explicarlo.</div>
       <div class="card">${c.b}</div>
       <div class="actions"><button class="btn primary" data-act="howto-next">${cta}</button>
       ${i > 0 ? `<button class="btn quiet" data-act="howto-back">Atrás</button>` : (S.fromHome ? `<button class="btn quiet" data-act="home">Volver</button>` : `<button class="btn quiet" data-act="skip-howto">Ya sabemos jugar, saltar</button>`)}</div></main>`;
@@ -351,7 +352,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       ${crit.map((c) => `<div class="card crit"><div class="head"><span class="pts">+${c.pts}</span><div><b>${c.label}</b><p class="muted" style="font-size:14px">${c.help}</p></div></div>
         <div class="chips">${inventors().map((p) => { const mine = S.pick[c.pts] === p; const taken = !mine && used.includes(p);
           return `<button class="chip" data-pts="${c.pts}" data-who="${esc(p)}" aria-pressed="${mine}" ${taken ? "disabled" : ""}>${esc(p)}</button>`; }).join("")}
-          ${c.optional ? `<button class="chip" data-pts="${c.pts}" data-who="__none__" aria-pressed="${S.pick[c.pts] === "__none__"}">Nadie resolvió mi necesidad</button>` : ""}</div></div>`).join("")}
+          ${c.optional ? `<button class="chip" data-pts="${c.pts}" data-who="__none__" aria-pressed="${S.pick[c.pts] === "__none__"}">${c.none}</button>` : ""}</div></div>`).join("")}
       ${S.err ? `<div class="msg error" role="alert">${esc(S.err)}</div>` : `<p class="muted" style="font-size:14px">Cada puntaje va a una persona distinta.</p>`}
       <div class="actions"><button class="btn primary" data-act="confirm" aria-disabled="${!complete}">${S.isPractice ? "Terminar ronda de prueba" : "Confirmar puntos"}</button></div></main>`;
   }
@@ -394,7 +395,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
     if (S.sheet === "help") return `<div class="sheet-bg" data-act="close"><div class="sheet" role="dialog" aria-label="Ayuda">
       <h2>Ayuda rápida</h2>
       <div class="card"><b>¿Qué hace el juez?</b><p>Muestra su carta de personaje a todos (no es secreta) y, mientras corre el tiempo, completa en secreto: "Soy..., estoy en... y necesito...". Al final la revela y reparte los puntos.</p></div>
-      <div class="card"><b>¿Cómo se puntúa?</b><p>+3 al que mejor resuelve la necesidad (si nadie la resolvió, no se reparte). +2 a su favorito. +1 mención especial al más ingenioso o gracioso. Cada puntaje a una persona distinta. Con dos inventores, solo 3 y 2.</p></div>
+      <div class="card"><b>¿Cómo se puntúa?</b><p>+3 al que mejor resuelve la necesidad. +2 a su favorito (siempre se da). +1 mención especial al más ingenioso o gracioso. El +3 y el +1 se pueden quedar sin dar si nadie los merece. Cada puntaje a una persona distinta. Con dos inventores, solo 3 y 2.</p></div>
       <div class="card"><b>¿Cuándo termina?</b><p>Cuando se completan las vueltas que eligieron. En cada vuelta todos son juez una vez. La app lleva la cuenta.</p></div>
       <button class="btn primary" data-act="close">Entendido</button></div></div>`;
     if (S.sheet === "exit") return `<div class="sheet-bg"><div class="sheet" role="dialog" aria-label="Salir">
@@ -471,7 +472,7 @@ input[type=text]:focus { border-color: var(--accent); outline: none; }
       case "confirm": {
         const crit = criteria();
         const missing = crit.filter((c) => !S.pick[c.pts]).map((c) => "+" + c.pts);
-        if (missing.length) { S.err = `Falta decidir ${missing.join(" y ")}. Toca un nombre en cada puntaje${S.pick[3] ? "" : " (en el +3 también puedes elegir \"Nadie resolvió mi necesidad\")"}.`; return render(); }
+        if (missing.length) { S.err = `Falta decidir ${missing.join(" y ")}. Toca un nombre en cada puntaje. En el +3 y el +1 también puedes elegir que nadie lo gana.`; return render(); }
         if (S.isPractice) { S.last = {}; return beginRound(false); }
         S.last = {};
         crit.forEach((c) => { const p = S.pick[c.pts]; if (p === "__none__") return; S.scores[p] = (S.scores[p] || 0) + c.pts; S.last[p] = (S.last[p] || 0) + c.pts; });

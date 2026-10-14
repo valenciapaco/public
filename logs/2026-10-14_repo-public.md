@@ -23,3 +23,19 @@ tags: [maestria, ux, prototipo, keewe]
 ### Por qué importa
 
 Es el prototipo navegable de la entrega final de la materia 7 de la maestría (Diseño de Experiencias para Usuarios). La URL pública permite hacer las pruebas de usabilidad y compartirlo con la profesora sin configurar permisos.
+
+## Ajustes al prototipo de Fix it! (v1.2)
+
+**Proyecto:** maestria/m7/fix-it
+**Tipo:** desarrollo
+**Importancia:** media
+**Commits:** cd09214
+
+### Qué se hizo
+
+- El +3 ("mejor resuelve mi necesidad") ahora es opcional: el juez puede elegir "Nadie resolvió mi necesidad". El +2 y el +1 siguen siendo obligatorios y a personas distintas.
+- Opción de 1, 2 o 3 vueltas; rondas totales = jugadores × vueltas, con minutos estimados. El marcador muestra la vuelta y cuántas veces ha sido juez cada persona.
+
+### Por qué importa
+
+Define una regla que en los pilotos se resolvía de forma inconsistente y permite partidas más largas sin perder la equidad entre jueces.

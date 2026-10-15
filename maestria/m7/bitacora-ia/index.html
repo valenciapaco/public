@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bitácora de IA · Fix it!</title>
+<meta name="description" content="Bitácora de uso de inteligencia artificial generativa en el proyecto integrador de Diseño de Experiencias para Usuarios (Fix it!).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: documento de lectura de una columna (máx. 820px) con línea de tiempo por fecha y tablas de decisiones */
+:root {
+  --bg: #fbfafc; --surface: #ffffff; --ink: #1d1722; --muted: #645b6c; --line: #e4dfe9;
+  --accent: #85409d; --accent-soft: #f1e7f5; --human: #0f7f7a; --human-soft: #e3f4f2; --ai: #85409d;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #17131b; --surface: #221c27; --ink: #f2edf5; --muted: #b0a6b8; --line: #3a3141; --accent: #c08ad6; --accent-soft: #33253b; --human: #4fc6bf; --human-soft: #17322f; --ai: #c08ad6; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #17131b; --surface: #221c27; --ink: #f2edf5; --muted: #b0a6b8; --line: #3a3141; --accent: #c08ad6; --accent-soft: #33253b; --human: #4fc6bf; --human-soft: #17322f; --ai: #c08ad6; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--font-body); }
+.wrap { max-width: 820px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: flex; flex-direction: column; gap: 36px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 6vw, 44px); }
+h2 { font-size: 26px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+h3 { font-size: 19px; }
+p { margin: 0; }
+a { color: var(--accent); }
+.eyebrow { font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+header { display: flex; flex-direction: column; gap: 12px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.meta div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.meta b { display: block; font: 500 11px var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+section { display: flex; flex-direction: column; gap: 14px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+.tag { display: inline-block; font: 500 11px/1 var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 8px; border-radius: 99px; }
+.tag.ai { background: var(--accent-soft); color: var(--ai); }
+.tag.human { background: var(--human-soft); color: var(--human); }
+.timeline { display: flex; flex-direction: column; gap: 18px; }
+.day { display: grid; grid-template-columns: 110px 1fr; gap: 16px; }
+.day .date { font: 600 15px/1.3 var(--font-display); color: var(--accent); padding-top: 2px; }
+.day .body { display: flex; flex-direction: column; gap: 8px; min-width: 0; border-left: 2px solid var(--line); padding-left: 16px; }
+.day ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.prompt { font-style: italic; color: var(--muted); }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+th { font: 600 12px var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+.cta { display: inline-block; background: var(--accent); color: var(--surface); text-decoration: none; padding: 11px 16px; border-radius: 10px; font-weight: 600; }
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 560px) { .day { grid-template-columns: 1fr; gap: 4px; } .day .body { padding-left: 12px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Universidad ICEMéxico · Maestría en Alta Dirección de Negocios Digitales</span>
+  <h1>Bitácora de uso de inteligencia artificial generativa</h1>
+  <p>Proyecto integrador de <b>Diseño de Experiencias para Usuarios</b>: <i>Fix it!</i>, juego de creatividad de KEEWE. Fase 1 (comprensión del problema y del usuario) y Fase 2 (ideación, prototipado y validación).</p>
+  <div class="meta">
+    <div><b>Autor</b>Francisco Valencia Martínez del Campo</div>
+    <div><b>Docente</b>PhD. Lesly Herrera</div>
+    <div><b>Herramienta</b>Claude Code (Anthropic), modelo Claude Opus 5.5</div>
+    <div><b>Periodo</b>23 de septiembre a 14 de octubre de 2026</div>
+  </div>
+  <p class="muted">Esta bitácora sigue la política de APA sobre IA generativa compartida en el curso: declara para qué se usó la IA, qué decidió y verificó el autor, y conserva la conversación completa como respaldo. La IA no es autora del trabajo.</p>
+  <p><a class="cta" href="transcripcion-sesion-anonimizada.txt">Ver la conversación completa (anonimizada)</a></p>
+</header>
+
+<section>
+  <h2>Resumen</h2>
+  <p>Todo el proyecto se trabajó en una sola sesión continua de Claude Code, un asistente de IA que opera dentro de la computadora del autor: lee y escribe archivos en su sistema de notas, busca en internet, genera documentos y publica páginas. En momentos puntuales, Claude lanzó <b>agentes</b> (instancias de apoyo del mismo modelo) para producir figuras en paralelo.</p>
+  <p>La investigación de campo (pilotos, entrevistas, autorregistro y pruebas de usabilidad) la hizo el autor con personas reales. La IA ordenó, sintetizó y redactó a partir de esa evidencia; el autor revisó, corrigió y tomó las decisiones de diseño.</p>
+  <div class="legend"><span><span class="tag ai">IA</span> lo que hizo Claude</span><span><span class="tag human">Autor</span> decisiones, correcciones y verificación del autor</span></div>
+</section>
+
+<section>
+  <h2>Línea de tiempo</h2>
+  <div class="timeline">
+
+    <div class="day"><div class="date">23 sep</div><div class="body">
+      <h3>Definición del proyecto y plan de la Fase 1</h3>
+      <p class="prompt">Instrucción: leer los requisitos de la primera entrega, proponer cómo usar el juego Fix it! y hacer un plan de trabajo.</p>
+      <ul>
+        <li><span class="tag ai">IA</span> Leyó los requisitos, propuso el enfoque y el plan, creó el documento de trabajo y redactó un guion de entrevista de 6 preguntas.</li>
+        <li><span class="tag ai">IA</span> Ordenó en tablas el dictado del autor sobre reglas, pilotos y observaciones.</li>
+        <li><span class="tag human">Autor</span> Eligió al <b>anfitrión</b> como usuario principal, aportó la descripción del juego, los pilotos y las mejoras, y la idea del mazo de contextos.</li>
+      </ul>
+    </div></div>
+
+    <div class="day"><div class="date">24 sep</div><div class="body">
+      <h3>Redacción de los apartados 2 a 5 (APA)</h3>
+      <ul>
+        <li><span class="tag ai">IA</span> Redactó descripción, tipo de experiencia, problema y justificación; buscó fuentes y verificó los datos del INEGI directamente en el comunicado oficial, <b>descartando una cifra de 4.4 horas</b> que circulaba en prensa pero no estaba en la fuente.</li>
+        <li><span class="tag human">Autor</span> Indicó que todo debía ir en <b>formato APA con referencias</b> desde el primer borrador.</li>
+      </ul>
+    </div></div>
+
+    <div class="day"><div class="date">25 sep</div><div class="body">
+      <h3>Entrevistas y documento de entrega</h3>
+      <ul>
+        <li><span class="tag ai">IA</span> Sistematizó 7 y luego 8 entrevistas (síntesis por pregunta, patrones, citas) y construyó un documento limpio con los 12 apartados: persona, mapa de empatía y Customer Journey Map en texto.</li>
+        <li><span class="tag human">Autor</span> Aplicó las entrevistas, aportó su interpretación (sesgo de la partida de 12 en la repetición de cartas, grupos de confianza, dibujo opcional), corrigió la inspiración en Dixit, el nombre del juego ("Fix it!") y pidió anonimizar con nombre e inicial.</li>
+      </ul>
+    </div></div>
+
+    <div class="day"><div class="date">26 sep</div><div class="body">
+      <h3>Autorregistro, figuras y Word final de la Fase 1</h3>
+      <ul>
+        <li><span class="tag ai">IA</span> Integró el autorregistro de los anfitriones y la novena entrevista; identificó el hallazgo del <b>doble rol del anfitrión</b>.</li>
+        <li><span class="tag ai">IA</span> Dos agentes generaron el Customer Journey Map y el mapa de empatía (Empathy Map Canvas) en HTML; Claude produjo las imágenes y el documento de Word sobre la plantilla del autor, con índice automático.</li>
+        <li><span class="tag human">Autor</span> Revisó el documento completo y pidió cambios: "tarjetas" por "cartas", agregar bolígrafos, "Carolina" en lugar de "Caro", edad de 90 años, quitar la cita del Cirujano General de EE. UU., citar a la OMS en español, sustituir la expresión "labor invisible" por "doble rol" y usar "<i>user persona</i>". Propuso usar el Empathy Map Canvas y agregar la foto de las cartas. Confirmó la convención APA de doble año en obras traducidas.</li>
+      </ul>
+    </div></div>
+
+    <div class="day"><div class="date">30 sep</div><div class="body">
+      <h3>Retroalimentación y plan de la Fase 2</h3>
+      <ul>
+        <li><span class="tag ai">IA</span> Resumió la retroalimentación (9.90/10), reconoció que faltaba la declaración de uso de IA y propuso cómo documentarla; armó el plan de la Fase 2.</li>
+        <li><span class="tag human">Autor</span> Compartió la política de APA sobre IA del curso y los requisitos de la entrega final.</li>
+      </ul>
+    </div></div>
+
+    <div class="day"><div class="date">14 oct</div><div class="body">
+      <h3>Replaneación, prototipo, pruebas y entrega final</h3>
+      <ul>
+        <li><span class="tag ai">IA</span> Ante la falta de pruebas, <b>recomendó no simularlas</b> y hacerlas reales ese día.</li>
+        <li><span class="tag human">Autor</span> Propuso primero reglas en PDF y tablero; tras recordar que la solución debía ser digital o híbrida, eligió una sola pantalla digital sin QR. Aprobó las 7 pantallas y la ronda de prueba.</li>
+        <li><span class="tag ai">IA</span> Construyó el prototipo funcional y lo publicó en GitHub Pages; luego aplicó los cambios de las versiones 1.1 a 1.4.</li>
+        <li><span class="tag human">Autor</span> Detectó un error en el temporizador y en el texto de la regla de puntos, definió la regla de puntos opcionales y pidió las vueltas. Realizó dos pruebas de usabilidad con anfitriones externos y dictó los resultados; corrigió un dato mal transcrito del dictado sobre el +3. Decidió cerrar la iteración en la v1.4 y proponer las cartas digitales como siguiente versión.</li>
+        <li><span class="tag ai">IA</span> Agentes generaron los wireframes, el diagrama de flujo y la presentación; Claude redactó el documento de la Fase 2, generó el código QR y el Word.</li>
+        <li><span class="tag human">Autor</span> Pidió el QR del prototipo, decidió trabajar todo en una sola sesión para exportarla como evidencia, editó el Word final y lo exportó a PDF.</li>
+      </ul>
+    </div></div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Usos de la IA por tipo de tarea</h2>
+  <p class="muted">Clasificación según la guía de divulgación de APA.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tarea</th><th>Uso de la IA</th><th>Dónde se refleja</th></tr></thead>
+    <tbody>
+      <tr><td>Planeación</td><td>Planes de trabajo de ambas fases y replaneación del día de la entrega</td><td>Documentos de trabajo del autor</td></tr>
+      <tr><td>Análisis de datos cualitativos</td><td>Transcripción ordenada, síntesis por pregunta y agrupación en patrones de 9 entrevistas, 2 autorregistros y 2 pruebas</td><td>Fase 1, apartados 6 y 7; Fase 2, apartados 8 y 9</td></tr>
+      <tr><td>Redacción</td><td>Borradores de los apartados, revisados y corregidos por el autor</td><td>Ambos documentos</td></tr>
+      <tr><td>Figuras y tablas</td><td>Customer Journey Map, mapa de empatía, flujo, wireframes, capturas, QR y tablas</td><td>Figuras de ambos documentos</td></tr>
+      <tr><td>Código</td><td>Prototipo funcional en HTML y JavaScript, 4 iteraciones</td><td>Fase 2, apartados 7 y 10</td></tr>
+      <tr><td>Búsqueda y verificación de fuentes</td><td>Búsqueda web y verificación de datos y ediciones en español; todas las referencias se revisaron en su fuente</td><td>Referencias de ambos documentos</td></tr>
+      <tr><td>Formato</td><td>Generación de los Word sobre la plantilla del autor y de la presentación</td><td>Entregables</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Privacidad</h2>
+  <p>Los participantes de la investigación aparecen con nombre e inicial del apellido o solo con su nombre de pila. En la conversación publicada se omitieron rutas locales de la computadora del autor y direcciones de correo.</p>
+</section>
+
+<section>
+  <h2>Referencia</h2>
+  <p>Anthropic. (2026). <i>Claude</i> (versión Opus 5.5) [Modelo de lenguaje grande]. https://valenciapaco.github.io/public/maestria/m7/bitacora-ia/</p>
+</section>
+
+<footer>Prototipo del proyecto: <a href="https://valenciapaco.github.io/public/maestria/m7/fix-it/">valenciapaco.github.io/public/maestria/m7/fix-it/</a> · La conversación publicada corresponde al momento previo a la elaboración de esta bitácora y de la presentación final.</footer>
+
+</div>
+</body>
+</html>

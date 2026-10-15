@@ -1,7 +1,7 @@
 ---
 fecha: 2026-10-14
 fuente: repo-public
-proyectos: [maestria/m7/fix-it]
+proyectos: [maestria/m7/fix-it, maestria/m7/bitacora-ia]
 tags: [maestria, ux, prototipo, keewe]
 ---
 
@@ -55,3 +55,19 @@ Define una regla que en los pilotos se resolvía de forma inconsistente y permit
 ### Por qué importa
 
 Responde a los hallazgos de la primera prueba con un anfitrión externo: el grupo entendió que la carta del juez era secreta, el anfitrión tardó de 5 a 7 minutos en arrancar porque sentía que debía entender todo antes de explicarlo, y los puntos obligatorios incomodaban cuando nadie los merecía.
+
+## Bitácora de uso de IA del proyecto de M7
+
+**Proyecto:** maestria/m7/bitacora-ia
+**Tipo:** documentacion
+**Importancia:** alta
+**Commits:** fc1cd86
+
+### Qué se hizo
+
+- Publicada la bitácora de uso de IA generativa del proyecto integrador de M7 (página con línea de tiempo, usos por tipo de tarea y decisiones del autor).
+- Publicada la conversación completa de la sesión de Claude Code, anonimizada (participantes con nombre e inicial; sin rutas locales ni correos).
+
+### Por qué importa
+
+La profesora pidió declarar el uso de IA conforme a la política de APA del curso, con enlace al chat utilizado. Esta URL es la que se cita en el documento final.

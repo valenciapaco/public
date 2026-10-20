@@ -57,6 +57,9 @@ h2{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mora
 .recursos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:12px}
 .recurso{display:block;text-decoration:none;color:inherit;background:var(--blanco);border:1px solid var(--linea);border-radius:14px;padding:16px;transition:border-color .15s,transform .15s}
 .recurso:hover{border-color:var(--morado-400);transform:translateY(-2px)}
+.recurso .ico{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:var(--morado-100);color:var(--morado-600);margin-bottom:12px}
+.recurso:hover .ico{background:var(--morado-600);color:#fff}
+.recurso .ico svg{width:30px;height:30px}
 .recurso b{display:block;color:var(--morado-700);margin-bottom:4px}
 .recurso span{color:var(--gris);font-size:14px}
 ol.pasos{margin:0;padding-left:22px}
@@ -113,6 +116,15 @@ footer{color:var(--gris);font-size:13px;text-align:center;padding:24px 16px 40px
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const link = (url, texto, cls = 'btn') => `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener">${esc(texto)}</a>`;
+const ICONOS = {
+  video: '<rect x="2" y="5" width="15" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3z"/>',
+  libro: '<path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/>',
+  calendario: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>',
+  archivo: '<rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8M10 12h4"/>',
+  carpeta: '<path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/>',
+  formulario: '<rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 12h6M9 16h6"/>'
+};
+const icono = n => ICONOS[n] ? `<span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONOS[n]}</svg></span>` : '';
 const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
 const DIAS = ['dom','lun','mar','mié','jue','vie','sáb'];
 const fechaCorta = iso => { const d = new Date(iso + 'T12:00:00'); return `${DIAS[d.getDay()]} ${d.getDate()} ${MESES[d.getMonth()]}`; };
@@ -153,7 +165,7 @@ function render(d) {
     </div>`).join('');
 
   const recursos = d.recursos.map(r => `
-    <a class="recurso" href="${esc(r.url)}" target="_blank" rel="noopener"><b>${esc(r.titulo)}</b><span>${esc(r.texto)}</span></a>`).join('');
+    <a class="recurso" href="${esc(r.url)}" target="_blank" rel="noopener">${icono(r.icono)}<b>${esc(r.titulo)}</b><span>${esc(r.texto)}</span></a>`).join('');
 
   const rp = d.reposicion;
   const reposicion = `

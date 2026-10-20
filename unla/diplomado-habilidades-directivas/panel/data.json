@@ -11,8 +11,16 @@
       "tipo": "pendiente",
       "titulo": "¿No has llenado el formulario? Sin él no te llega tu carpeta",
       "texto": "Si no contestaste el formulario «Quién soy como directivo», no tenemos tu correo y no te podemos mandar tu carpeta. Llénalo en cuanto puedas.",
-      "faltan": ["Juan Manuel A.", "María Guadalupe V.", "Meya Daniela E.", "Verónica C."],
-      "enlace": {"texto": "Llenar el formulario", "url": "https://docs.google.com/forms/d/e/1FAIpQLSfNf7f_QfIL5tfMiNKe0ENrvp6JiMY-GcG0ouPq6yEEyt7b1A/viewform"}
+      "faltan": [
+        "Juan Manuel A.",
+        "María Guadalupe V.",
+        "Meya Daniela E.",
+        "Verónica C."
+      ],
+      "enlace": {
+        "texto": "Llenar el formulario",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSfNf7f_QfIL5tfMiNKe0ENrvp6JiMY-GcG0ouPq6yEEyt7b1A/viewform"
+      }
     }
   ],
   "webex": {
@@ -27,7 +35,12 @@
       "dia": "viernes",
       "titulo": "Inteligencia emocional aplicada al liderazgo",
       "docente": "Francisco Valencia",
-      "lectura": [{"texto": "Caso 3 · Grupo Garibay", "url": "https://drive.google.com/file/d/18TTFneb4gWM_7d9BjrpQUsGr8-VZAg73/view"}],
+      "lectura": [
+        {
+          "texto": "Caso 3 · Grupo Garibay",
+          "url": "https://drive.google.com/file/d/18TTFneb4gWM_7d9BjrpQUsGr8-VZAg73/view"
+        }
+      ],
       "carpeta": "https://drive.google.com/drive/folders/1s5zyGbk2HvEoVOyJFDTwU5Nzsez90joK"
     },
     {
@@ -52,15 +65,48 @@
   ],
   "proxima_semana": {
     "texto": "Viernes 30 y sábado 31 de octubre: sesiones 1.5 y 1.6. Los casos se publican a más tardar el sábado 24.",
-    "sesiones": ["1.5", "1.6"]
+    "sesiones": [
+      "1.5",
+      "1.6"
+    ]
   },
   "recursos": [
-    {"titulo": "Grabaciones de clase", "texto": "Todas las sesiones grabadas, para repasar o para reponer una falta.", "url": "https://unlaedu-my.sharepoint.com/:f:/g/personal/aulavirtualedc3_unla_edu_mx/IgAmHSXLbfzjQ7FaCH_JpxLgAYYNl8meCA7hyESQhH8G_S8?e=YcXfIX"},
-    {"titulo": "Casos por leer", "texto": "Los casos de las próximas sesiones. Léelos antes de clase.", "url": "https://drive.google.com/drive/folders/1qLWPcc_5C5TID69GZi-yb4Tk2ZYzbxBT"},
-    {"titulo": "Materiales por sesión", "texto": "Una carpeta por sesión con su caso y sus láminas.", "url": "https://drive.google.com/drive/folders/1CFUl87WOR_ZDlpyDMcxHCx2Hr33ET8Ca"},
-    {"titulo": "Banco de casos", "texto": "Todos los casos del diplomado.", "url": "https://drive.google.com/drive/folders/1s_SerxTCYWFTkEXwL9M7ZLcCANhrLP7m"},
-    {"titulo": "Repositorio completo", "texto": "La carpeta con todos los materiales del diplomado.", "url": "https://drive.google.com/drive/folders/14Uo6NXmaPs6l6EdfwH_HNqCpIdq1AmB6"},
-    {"titulo": "Formulario «Quién soy como directivo»", "texto": "Si no lo has llenado, empieza aquí.", "url": "https://docs.google.com/forms/d/e/1FAIpQLSfNf7f_QfIL5tfMiNKe0ENrvp6JiMY-GcG0ouPq6yEEyt7b1A/viewform"}
+    {
+      "titulo": "Grabaciones de clase",
+      "texto": "Todas las sesiones grabadas, para repasar o para reponer una falta.",
+      "url": "https://unlaedu-my.sharepoint.com/:f:/g/personal/aulavirtualedc3_unla_edu_mx/IgAmHSXLbfzjQ7FaCH_JpxLgAYYNl8meCA7hyESQhH8G_S8?e=YcXfIX",
+      "icono": "video"
+    },
+    {
+      "titulo": "Casos por leer",
+      "texto": "Los casos de las próximas sesiones. Léelos antes de clase.",
+      "url": "https://drive.google.com/drive/folders/1qLWPcc_5C5TID69GZi-yb4Tk2ZYzbxBT",
+      "icono": "libro"
+    },
+    {
+      "titulo": "Materiales por sesión",
+      "texto": "Una carpeta por sesión con su caso y sus láminas.",
+      "url": "https://drive.google.com/drive/folders/1CFUl87WOR_ZDlpyDMcxHCx2Hr33ET8Ca",
+      "icono": "calendario"
+    },
+    {
+      "titulo": "Banco de casos",
+      "texto": "Todos los casos del diplomado.",
+      "url": "https://drive.google.com/drive/folders/1s_SerxTCYWFTkEXwL9M7ZLcCANhrLP7m",
+      "icono": "archivo"
+    },
+    {
+      "titulo": "Repositorio completo",
+      "texto": "La carpeta con todos los materiales del diplomado.",
+      "url": "https://drive.google.com/drive/folders/14Uo6NXmaPs6l6EdfwH_HNqCpIdq1AmB6",
+      "icono": "carpeta"
+    },
+    {
+      "titulo": "Formulario «Quién soy como directivo»",
+      "texto": "Si no lo has llenado, empieza aquí.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfNf7f_QfIL5tfMiNKe0ENrvp6JiMY-GcG0ouPq6yEEyt7b1A/viewform",
+      "icono": "formulario"
+    }
   ],
   "reposicion": {
     "pasos": [
@@ -79,69 +125,397 @@
     ]
   },
   "reglas": [
-    {"titulo": "Evaluación", "puntos": ["Participación activa en sesiones: 15%", "Portafolio de entregables, módulos 1 a 5 (10% cada uno): 50%", "Proyecto integrador: 20%", "Ensayo de reflexión final: 15%", "Evaluación de tus pares al final: ajuste de ±5%"]},
-    {"titulo": "Calificación", "puntos": ["Mínima para acreditar: 7.0.", "Para titularte por el diplomado necesitas al menos 8."]},
-    {"titulo": "Asistencia", "puntos": ["Necesitas 80% de asistencia para acreditar.", "La asistencia sale del reporte de Webex: entra siempre con tu nombre completo.", "En algunas sesiones se pasa lista."]},
-    {"titulo": "Uso de IA", "puntos": ["Úsala: es parte del programa.", "En cada entregable declara qué le pediste a la IA y qué hiciste tú.", "Lo que se evalúa es tu criterio.", "No subas datos confidenciales de tu empresa o de terceros sin pensarlo."]},
-    {"titulo": "Comunicación", "puntos": ["El grupo de WhatsApp es solo para temas del diplomado.", "Cualquier situación, con Paco, coordinador del diplomado."]}
+    {
+      "titulo": "Evaluación",
+      "puntos": [
+        "Participación activa en sesiones: 15%",
+        "Portafolio de entregables, módulos 1 a 5 (10% cada uno): 50%",
+        "Proyecto integrador: 20%",
+        "Ensayo de reflexión final: 15%",
+        "Evaluación de tus pares al final: ajuste de ±5%"
+      ]
+    },
+    {
+      "titulo": "Calificación",
+      "puntos": [
+        "Mínima para acreditar: 7.0.",
+        "Para titularte por el diplomado necesitas al menos 8."
+      ]
+    },
+    {
+      "titulo": "Asistencia",
+      "puntos": [
+        "Necesitas 80% de asistencia para acreditar.",
+        "La asistencia sale del reporte de Webex: entra siempre con tu nombre completo.",
+        "En algunas sesiones se pasa lista."
+      ]
+    },
+    {
+      "titulo": "Uso de IA",
+      "puntos": [
+        "Úsala: es parte del programa.",
+        "En cada entregable declara qué le pediste a la IA y qué hiciste tú.",
+        "Lo que se evalúa es tu criterio.",
+        "No subas datos confidenciales de tu empresa o de terceros sin pensarlo."
+      ]
+    },
+    {
+      "titulo": "Comunicación",
+      "puntos": [
+        "El grupo de WhatsApp es solo para temas del diplomado.",
+        "Cualquier situación, con Paco, coordinador del diplomado."
+      ]
+    }
   ],
   "calendario": [
-    {"modulo": "Módulo 1 · El Director como Persona: claridad, energía y criterio", "sesiones": [
-      {"n": 1, "tema": "1.1", "fecha": "2026-10-16", "titulo": "Bienvenida e introducción: ¿Qué significa dirigir en la era de la IA?", "docente": "Todo el equipo", "carpeta": "https://drive.google.com/drive/folders/1Pr1KyS-0vPhlhLa7EuiV4ien7TuLM8xm"},
-      {"n": 2, "tema": "1.2", "fecha": "2026-10-17", "titulo": "Autoconocimiento directivo y configuración de tu entorno de herramientas de IA", "docente": "Francisco Valencia", "carpeta": "https://drive.google.com/drive/folders/1EuQ08_6hpI_t240cEtj-Pz0N8tNkHR9m"},
-      {"n": 3, "tema": "1.3", "fecha": "2026-10-23", "titulo": "Inteligencia emocional aplicada al liderazgo", "docente": "Francisco Valencia", "carpeta": "https://drive.google.com/drive/folders/1s5zyGbk2HvEoVOyJFDTwU5Nzsez90joK"},
-      {"n": 4, "tema": "1.4", "fecha": "2026-10-24", "titulo": "Objetivos, prioridades y claridad directiva", "docente": "Francisco Valencia", "carpeta": "https://drive.google.com/drive/folders/1xeIjbl_eePTQY0ed1aGqygLYGH7lcz-7"},
-      {"n": 5, "tema": "1.5", "fecha": "2026-10-30", "titulo": "Gestión del tiempo, enfoque y uso de IA para la productividad", "docente": "Francisco Valencia"},
-      {"n": 6, "tema": "1.6", "fecha": "2026-10-31", "titulo": "Liderazgo sostenible: estrés, frustración y resiliencia en el rol directivo", "docente": "Francisco Valencia"}
-    ]},
-    {"modulo": "Módulo 2 · Comunicar, influir y negociar", "sesiones": [
-      {"n": 7, "tema": "2.1", "fecha": "2026-11-06", "titulo": "Comunicación asertiva y conversaciones efectivas", "docente": "Helena Hernández"},
-      {"n": 8, "tema": "2.2", "fecha": "2026-11-07", "titulo": "Negociación", "docente": "Helena Hernández"},
-      {"n": 9, "tema": "2.3", "fecha": "2026-11-13", "titulo": "Retroalimentación efectiva", "docente": "Alejandro Montoya"},
-      {"n": 10, "tema": "2.4", "fecha": "2026-11-14", "titulo": "Reconocimiento y motivación", "docente": "Alejandro Montoya"},
-      {"n": 11, "tema": "2.5", "fecha": "2026-11-20", "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador", "docente": "Helena Hernández"},
-      {"n": 12, "tema": "2.6", "fecha": "2026-11-21", "titulo": "Manejo de conflictos", "docente": "Helena Hernández"},
-      {"n": 13, "tema": "2.7", "fecha": "2026-11-27", "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis", "docente": "Helena Hernández"},
-      {"n": 14, "tema": "2.8", "fecha": "2026-11-28", "titulo": "Comunicación en redes sociales para directores", "docente": "Helena Hernández"}
-    ]},
-    {"modulo": "Módulo 3 · Equipos que ejecutan: talento, cultura y colaboración", "sesiones": [
-      {"n": 15, "tema": "3.1", "fecha": "2026-12-04", "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza", "docente": "Alejandro Montoya"},
-      {"n": 16, "tema": "3.2", "fecha": "2026-12-05", "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos", "docente": "Alejandro Montoya"},
-      {"n": 17, "tema": "3.3", "fecha": "2026-12-11", "titulo": "Atraer y retener talento al equipo", "docente": "Alejandro Montoya"},
-      {"n": 18, "tema": "3.4", "fecha": "2026-12-12", "titulo": "Desarrollar y potenciar al equipo", "docente": "Alejandro Montoya"},
-      {"n": 19, "tema": "3.5", "fecha": "2027-01-08", "titulo": "Empowerment y accountability", "docente": "Alejandro Montoya"},
-      {"n": 20, "tema": "3.6", "fecha": "2027-01-09", "titulo": "Diversidad, equipos híbridos y equipos remotos", "docente": "Alejandro Montoya"},
-      {"n": 21, "tema": "3.7", "fecha": "2027-01-15", "titulo": "Coaching como herramienta directiva (parte 1)", "docente": "Francisco Valencia"},
-      {"n": 22, "tema": "3.8", "fecha": "2027-01-16", "titulo": "Coaching como herramienta directiva (parte 2)", "docente": "Francisco Valencia"}
-    ]},
-    {"modulo": "Módulo 4 · Estrategia y ejecución: de la visión al resultado", "sesiones": [
-      {"n": 23, "tema": "4.1", "fecha": "2027-01-22", "titulo": "Pensamiento estratégico y enfoque a resultados", "docente": "Arturo Monroy"},
-      {"n": 24, "tema": "4.2", "fecha": "2027-01-23", "titulo": "Encontrar valor: detectar oportunidades con potencial", "docente": "Arturo Monroy"},
-      {"n": 25, "tema": "4.3", "fecha": "2027-01-29", "titulo": "Diseñar propuestas de valor", "docente": "Arturo Monroy"},
-      {"n": 26, "tema": "4.4", "fecha": "2027-01-30", "titulo": "Relaciones de valor y generación de impacto", "docente": "Arturo Monroy"},
-      {"n": 27, "tema": "4.5", "fecha": "2027-02-05", "titulo": "Mentalidad de resolución de problemas y toma de decisiones directivas", "docente": "Francisco Valencia"},
-      {"n": 28, "tema": "4.6", "fecha": "2027-02-06", "titulo": "Toma de decisiones directivas", "docente": "José Antonio Reyes"},
-      {"n": 29, "tema": "4.7", "fecha": "2027-02-12", "titulo": "Gestión del cambio organizacional", "docente": "Jairo Flores"},
-      {"n": 30, "tema": "4.8", "fecha": "2027-02-13", "titulo": "Resiliencia organizacional: liderar en la incertidumbre", "docente": "Jairo Flores"},
-      {"n": 31, "tema": "4.9", "fecha": "2027-02-19", "titulo": "Research, inspiración y tendencias: ideas en incubación", "docente": "Jairo Flores"},
-      {"n": 32, "tema": "4.10", "fecha": "2027-02-20", "titulo": "Proyectos de innovación aplicada: de la idea a la ejecución", "docente": "Jairo Flores"}
-    ]},
-    {"modulo": "Módulo 5 · El lenguaje del valor: finanzas para directivos", "sesiones": [
-      {"n": 33, "tema": "5.1", "fecha": "2027-02-26", "titulo": "Creación de valor en las organizaciones", "docente": "José Antonio Reyes"},
-      {"n": 34, "tema": "5.2", "fecha": "2027-02-27", "titulo": "Estrategia comercial: cómo generar ingresos y capturar valor", "docente": "José Antonio Reyes"},
-      {"n": 35, "tema": "5.3", "fecha": "2027-03-05", "titulo": "Fundamentos financieros para directivos (I): los estados financieros", "docente": "Francisco Valencia e invitado de finanzas"},
-      {"n": 36, "tema": "5.4", "fecha": "2027-03-06", "titulo": "Fundamentos financieros para directivos (II): leer e interpretar", "docente": "Francisco Valencia e invitado de finanzas"},
-      {"n": 37, "tema": "5.5", "fecha": "2027-03-12", "titulo": "Análisis financiero aplicado a decisiones directivas", "docente": "Francisco Valencia e invitado de finanzas"},
-      {"n": 38, "tema": "5.6", "fecha": "2027-03-13", "titulo": "Finanzas para el crecimiento: inversión, rentabilidad y flujo", "docente": "Francisco Valencia e invitado de finanzas"},
-      {"n": 39, "tema": "5.7", "fecha": "2027-03-19", "titulo": "Indicadores clave de desempeño y métricas de negocio", "docente": "José Antonio Reyes"},
-      {"n": 40, "tema": "5.8", "fecha": "2027-03-20", "titulo": "Tableros de control y uso de IA para análisis directivo", "docente": "José Antonio Reyes"},
-      {"n": 41, "tema": "5.9", "fecha": "2027-04-02", "titulo": "De los datos a la acción: decisiones basadas en evidencia", "docente": "José Antonio Reyes"},
-      {"n": 42, "tema": "5.10", "fecha": "2027-04-03", "titulo": "Integración financiera: simulación y caso práctico", "docente": "Francisco Valencia"}
-    ]},
-    {"modulo": "Módulo 6 · Proyecto Integrador: Laboratorio Directivo", "sesiones": [
-      {"n": 43, "tema": "6.1", "fecha": "2027-04-09", "titulo": "Diagnóstico directivo de una situación real", "docente": "Francisco Valencia"},
-      {"n": 44, "tema": "6.2", "fecha": "2027-04-10", "titulo": "Diseño de una propuesta de mejora o intervención", "docente": "Francisco Valencia"},
-      {"n": 45, "tema": "6.3", "fecha": "2027-04-16", "titulo": "Presentación y evaluación del proyecto final y cierre del diplomado", "docente": "Todo el equipo"}
-    ]}
+    {
+      "modulo": "Módulo 1 · El Director como Persona: claridad, energía y criterio",
+      "sesiones": [
+        {
+          "n": 1,
+          "tema": "1.1",
+          "fecha": "2026-10-16",
+          "titulo": "Bienvenida e introducción: ¿Qué significa dirigir en la era de la IA?",
+          "docente": "Todo el equipo",
+          "carpeta": "https://drive.google.com/drive/folders/1Pr1KyS-0vPhlhLa7EuiV4ien7TuLM8xm"
+        },
+        {
+          "n": 2,
+          "tema": "1.2",
+          "fecha": "2026-10-17",
+          "titulo": "Autoconocimiento directivo y configuración de tu entorno de herramientas de IA",
+          "docente": "Francisco Valencia",
+          "carpeta": "https://drive.google.com/drive/folders/1EuQ08_6hpI_t240cEtj-Pz0N8tNkHR9m"
+        },
+        {
+          "n": 3,
+          "tema": "1.3",
+          "fecha": "2026-10-23",
+          "titulo": "Inteligencia emocional aplicada al liderazgo",
+          "docente": "Francisco Valencia",
+          "carpeta": "https://drive.google.com/drive/folders/1s5zyGbk2HvEoVOyJFDTwU5Nzsez90joK"
+        },
+        {
+          "n": 4,
+          "tema": "1.4",
+          "fecha": "2026-10-24",
+          "titulo": "Objetivos, prioridades y claridad directiva",
+          "docente": "Francisco Valencia",
+          "carpeta": "https://drive.google.com/drive/folders/1xeIjbl_eePTQY0ed1aGqygLYGH7lcz-7"
+        },
+        {
+          "n": 5,
+          "tema": "1.5",
+          "fecha": "2026-10-30",
+          "titulo": "Gestión del tiempo, enfoque y uso de IA para la productividad",
+          "docente": "Francisco Valencia"
+        },
+        {
+          "n": 6,
+          "tema": "1.6",
+          "fecha": "2026-10-31",
+          "titulo": "Liderazgo sostenible: estrés, frustración y resiliencia en el rol directivo",
+          "docente": "Francisco Valencia"
+        }
+      ]
+    },
+    {
+      "modulo": "Módulo 2 · Comunicar, influir y negociar",
+      "sesiones": [
+        {
+          "n": 7,
+          "tema": "2.1",
+          "fecha": "2026-11-06",
+          "titulo": "Comunicación asertiva y conversaciones efectivas",
+          "docente": "Helena Hernández"
+        },
+        {
+          "n": 8,
+          "tema": "2.2",
+          "fecha": "2026-11-07",
+          "titulo": "Negociación",
+          "docente": "Helena Hernández"
+        },
+        {
+          "n": 9,
+          "tema": "2.3",
+          "fecha": "2026-11-13",
+          "titulo": "Retroalimentación efectiva",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 10,
+          "tema": "2.4",
+          "fecha": "2026-11-14",
+          "titulo": "Reconocimiento y motivación",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 11,
+          "tema": "2.5",
+          "fecha": "2026-11-20",
+          "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
+          "docente": "Helena Hernández"
+        },
+        {
+          "n": 12,
+          "tema": "2.6",
+          "fecha": "2026-11-21",
+          "titulo": "Manejo de conflictos",
+          "docente": "Helena Hernández"
+        },
+        {
+          "n": 13,
+          "tema": "2.7",
+          "fecha": "2026-11-27",
+          "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
+          "docente": "Helena Hernández"
+        },
+        {
+          "n": 14,
+          "tema": "2.8",
+          "fecha": "2026-11-28",
+          "titulo": "Comunicación en redes sociales para directores",
+          "docente": "Helena Hernández"
+        }
+      ]
+    },
+    {
+      "modulo": "Módulo 3 · Equipos que ejecutan: talento, cultura y colaboración",
+      "sesiones": [
+        {
+          "n": 15,
+          "tema": "3.1",
+          "fecha": "2026-12-04",
+          "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 16,
+          "tema": "3.2",
+          "fecha": "2026-12-05",
+          "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 17,
+          "tema": "3.3",
+          "fecha": "2026-12-11",
+          "titulo": "Atraer y retener talento al equipo",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 18,
+          "tema": "3.4",
+          "fecha": "2026-12-12",
+          "titulo": "Desarrollar y potenciar al equipo",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 19,
+          "tema": "3.5",
+          "fecha": "2027-01-08",
+          "titulo": "Empowerment y accountability",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 20,
+          "tema": "3.6",
+          "fecha": "2027-01-09",
+          "titulo": "Diversidad, equipos híbridos y equipos remotos",
+          "docente": "Alejandro Montoya"
+        },
+        {
+          "n": 21,
+          "tema": "3.7",
+          "fecha": "2027-01-15",
+          "titulo": "Coaching como herramienta directiva (parte 1)",
+          "docente": "Francisco Valencia"
+        },
+        {
+          "n": 22,
+          "tema": "3.8",
+          "fecha": "2027-01-16",
+          "titulo": "Coaching como herramienta directiva (parte 2)",
+          "docente": "Francisco Valencia"
+        }
+      ]
+    },
+    {
+      "modulo": "Módulo 4 · Estrategia y ejecución: de la visión al resultado",
+      "sesiones": [
+        {
+          "n": 23,
+          "tema": "4.1",
+          "fecha": "2027-01-22",
+          "titulo": "Pensamiento estratégico y enfoque a resultados",
+          "docente": "Arturo Monroy"
+        },
+        {
+          "n": 24,
+          "tema": "4.2",
+          "fecha": "2027-01-23",
+          "titulo": "Encontrar valor: detectar oportunidades con potencial",
+          "docente": "Arturo Monroy"
+        },
+        {
+          "n": 25,
+          "tema": "4.3",
+          "fecha": "2027-01-29",
+          "titulo": "Diseñar propuestas de valor",
+          "docente": "Arturo Monroy"
+        },
+        {
+          "n": 26,
+          "tema": "4.4",
+          "fecha": "2027-01-30",
+          "titulo": "Relaciones de valor y generación de impacto",
+          "docente": "Arturo Monroy"
+        },
+        {
+          "n": 27,
+          "tema": "4.5",
+          "fecha": "2027-02-05",
+          "titulo": "Mentalidad de resolución de problemas y toma de decisiones directivas",
+          "docente": "Francisco Valencia"
+        },
+        {
+          "n": 28,
+          "tema": "4.6",
+          "fecha": "2027-02-06",
+          "titulo": "Toma de decisiones directivas",
+          "docente": "José Antonio Reyes"
+        },
+        {
+          "n": 29,
+          "tema": "4.7",
+          "fecha": "2027-02-12",
+          "titulo": "Gestión del cambio organizacional",
+          "docente": "Jairo Flores"
+        },
+        {
+          "n": 30,
+          "tema": "4.8",
+          "fecha": "2027-02-13",
+          "titulo": "Resiliencia organizacional: liderar en la incertidumbre",
+          "docente": "Jairo Flores"
+        },
+        {
+          "n": 31,
+          "tema": "4.9",
+          "fecha": "2027-02-19",
+          "titulo": "Research, inspiración y tendencias: ideas en incubación",
+          "docente": "Jairo Flores"
+        },
+        {
+          "n": 32,
+          "tema": "4.10",
+          "fecha": "2027-02-20",
+          "titulo": "Proyectos de innovación aplicada: de la idea a la ejecución",
+          "docente": "Jairo Flores"
+        }
+      ]
+    },
+    {
+      "modulo": "Módulo 5 · El lenguaje del valor: finanzas para directivos",
+      "sesiones": [
+        {
+          "n": 33,
+          "tema": "5.1",
+          "fecha": "2027-02-26",
+          "titulo": "Creación de valor en las organizaciones",
+          "docente": "José Antonio Reyes"
+        },
+        {
+          "n": 34,
+          "tema": "5.2",
+          "fecha": "2027-02-27",
+          "titulo": "Estrategia comercial: cómo generar ingresos y capturar valor",
+          "docente": "José Antonio Reyes"
+        },
+        {
+          "n": 35,
+          "tema": "5.3",
+          "fecha": "2027-03-05",
+          "titulo": "Fundamentos financieros para directivos (I): los estados financieros",
+          "docente": "Francisco Valencia e invitado de finanzas"
+        },
+        {
+          "n": 36,
+          "tema": "5.4",
+          "fecha": "2027-03-06",
+          "titulo": "Fundamentos financieros para directivos (II): leer e interpretar",
+          "docente": "Francisco Valencia e invitado de finanzas"
+        },
+        {
+          "n": 37,
+          "tema": "5.5",
+          "fecha": "2027-03-12",
+          "titulo": "Análisis financiero aplicado a decisiones directivas",
+          "docente": "Francisco Valencia e invitado de finanzas"
+        },
+        {
+          "n": 38,
+          "tema": "5.6",
+          "fecha": "2027-03-13",
+          "titulo": "Finanzas para el crecimiento: inversión, rentabilidad y flujo",
+          "docente": "Francisco Valencia e invitado de finanzas"
+        },
+        {
+          "n": 39,
+          "tema": "5.7",
+          "fecha": "2027-03-19",
+          "titulo": "Indicadores clave de desempeño y métricas de negocio",
+          "docente": "José Antonio Reyes"
+        },
+        {
+          "n": 40,
+          "tema": "5.8",
+          "fecha": "2027-03-20",
+          "titulo": "Tableros de control y uso de IA para análisis directivo",
+          "docente": "José Antonio Reyes"
+        },
+        {
+          "n": 41,
+          "tema": "5.9",
+          "fecha": "2027-04-02",
+          "titulo": "De los datos a la acción: decisiones basadas en evidencia",
+          "docente": "José Antonio Reyes"
+        },
+        {
+          "n": 42,
+          "tema": "5.10",
+          "fecha": "2027-04-03",
+          "titulo": "Integración financiera: simulación y caso práctico",
+          "docente": "Francisco Valencia"
+        }
+      ]
+    },
+    {
+      "modulo": "Módulo 6 · Proyecto Integrador: Laboratorio Directivo",
+      "sesiones": [
+        {
+          "n": 43,
+          "tema": "6.1",
+          "fecha": "2027-04-09",
+          "titulo": "Diagnóstico directivo de una situación real",
+          "docente": "Francisco Valencia"
+        },
+        {
+          "n": 44,
+          "tema": "6.2",
+          "fecha": "2027-04-10",
+          "titulo": "Diseño de una propuesta de mejora o intervención",
+          "docente": "Francisco Valencia"
+        },
+        {
+          "n": 45,
+          "tema": "6.3",
+          "fecha": "2027-04-16",
+          "titulo": "Presentación y evaluación del proyecto final y cierre del diplomado",
+          "docente": "Todo el equipo"
+        }
+      ]
+    }
   ]
 }

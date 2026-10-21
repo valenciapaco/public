@@ -50,8 +50,16 @@
       "dia": "sabado",
       "titulo": "Objetivos, prioridades y claridad directiva",
       "docente": "Francisco Valencia",
-      "lectura": [],
-      "lectura_pendiente": "Casos 4 y 5: los publicamos aquí y en el grupo de WhatsApp en cuanto estén listos.",
+      "lectura": [
+        {
+          "texto": "Caso 4 · Uniformes Carranza (v1.1)",
+          "url": "https://drive.google.com/file/d/1rtLfD0lwSL4YMk8E3-JD__GPYsSeTSez/view"
+        },
+        {
+          "texto": "Caso 5 · Mascotalia (v1.2)",
+          "url": "https://drive.google.com/file/d/1d_nzw2CTk9I1OgbUsEvN5KpF0fzx5iFs/view"
+        }
+      ],
       "carpeta": "https://drive.google.com/drive/folders/1xeIjbl_eePTQY0ed1aGqygLYGH7lcz-7"
     }
   ],

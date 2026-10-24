@@ -192,7 +192,8 @@
           "fecha": "2026-10-16",
           "titulo": "Bienvenida e introducción: ¿Qué significa dirigir en la era de la IA?",
           "docente": "Todo el equipo",
-          "carpeta": "https://drive.google.com/drive/folders/1Pr1KyS-0vPhlhLa7EuiV4ien7TuLM8xm"
+          "carpeta": "https://drive.google.com/drive/folders/1Pr1KyS-0vPhlhLa7EuiV4ien7TuLM8xm",
+          "impartida": true
         },
         {
           "n": 2,
@@ -200,7 +201,8 @@
           "fecha": "2026-10-17",
           "titulo": "Autoconocimiento directivo y configuración de tu entorno de herramientas de IA",
           "docente": "Francisco Valencia",
-          "carpeta": "https://drive.google.com/drive/folders/1EuQ08_6hpI_t240cEtj-Pz0N8tNkHR9m"
+          "carpeta": "https://drive.google.com/drive/folders/1EuQ08_6hpI_t240cEtj-Pz0N8tNkHR9m",
+          "impartida": true
         },
         {
           "n": 3,
@@ -208,7 +210,8 @@
           "fecha": "2026-10-23",
           "titulo": "Inteligencia emocional aplicada al liderazgo",
           "docente": "Francisco Valencia",
-          "carpeta": "https://drive.google.com/drive/folders/1s5zyGbk2HvEoVOyJFDTwU5Nzsez90joK"
+          "carpeta": "https://drive.google.com/drive/folders/1s5zyGbk2HvEoVOyJFDTwU5Nzsez90joK",
+          "impartida": true
         },
         {
           "n": 4,

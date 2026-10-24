@@ -183,7 +183,7 @@ function render(d) {
   const calendario = d.calendario.map(m => {
     const abierto = m.sesiones.some(s => s.fecha >= hoy) && m.sesiones.some(s => s.fecha <= addDays(hoy, 14));
     const filas = m.sesiones.map(s => {
-      const pasada = s.fecha < hoy;
+      const pasada = s.impartida === true;
       const estado = pasada ? '<span class="estado hecha">Impartida</span>' : (temasSemana.has(s.tema) ? '<span class="estado ahora">Esta semana</span>' : '');
       const titulo = s.carpeta ? `<a href="${esc(s.carpeta)}" target="_blank" rel="noopener">${esc(s.titulo)}</a>` : esc(s.titulo);
       return `<tr class="${pasada ? 'pasada' : ''}"><td class="t">${esc(s.tema)}<br>${fechaCorta(s.fecha)}</td><td class="tt">${titulo}${estado}<span class="doc">${esc(s.docente)}</span></td></tr>`;

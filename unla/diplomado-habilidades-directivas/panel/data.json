@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-10-24",
+  "actualizado": "2026-10-25",
   "semana": "Semana 3 · 30 y 31 de octubre",
   "avisos": [
     {
@@ -10,6 +10,11 @@
         "texto": "Hacer mi copia del registro",
         "url": "https://docs.google.com/spreadsheets/d/1bZR4n3iKhmnI2vjXMZ_OPKHmse6qXiBNTbHEKuOgzAo/copy"
       }
+    },
+    {
+      "tipo": "importante",
+      "titulo": "Cuéntanos tu proyecto final y recibe retroalimentación",
+      "texto": "Esta semana, manda al grupo de WhatsApp una nota de voz o un texto con tu idea de proyecto: qué situación quieres mejorar (de tu trabajo, tu empresa familiar, un emprendimiento o tu propio proyecto) y en qué consiste. Paco y tus compañeros te dan retroalimentación. No es una entrega; si prefieres no mandarlo, llévalo preparado: la próxima semana definimos el proyecto y llenamos su ficha."
     },
     {
       "tipo": "importante",

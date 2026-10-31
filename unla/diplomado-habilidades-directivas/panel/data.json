@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-10-25",
+  "actualizado": "2026-10-30",
   "semana": "Semana 3 · 30 y 31 de octubre",
   "avisos": [
     {
@@ -18,11 +18,11 @@
     },
     {
       "tipo": "importante",
-      "titulo": "Ya están las láminas de la sesión 1.4",
-      "texto": "Las láminas de Objetivos, prioridades y claridad directiva ya están en la carpeta de la sesión: la matriz de Eisenhower, el diagnóstico directivo en cinco pasos y los pendientes para la próxima semana. Las de la 1.1 a la 1.3 siguen en sus carpetas.",
+      "titulo": "Ya están las láminas de la sesión 1.5",
+      "texto": "Las láminas de Gestión del tiempo, enfoque y uso de IA ya están en la carpeta de la sesión: las instrucciones de la consultoría en tercias, la nota técnica en seis ideas, lo que dice la evidencia de la IA, el kit mínimo y el prompt del vaciado mental. Las de la 1.1 a la 1.4 siguen en sus carpetas.",
       "enlace": {
-        "texto": "Ver las láminas 1.4",
-        "url": "https://drive.google.com/file/d/1apM3Jv3Fo05W6lmMp-FVgYeMjbBOKO-t/view"
+        "texto": "Ver las láminas 1.5",
+        "url": "https://drive.google.com/file/d/146Z2o90LOHkN9IuuxmjG0TK7sOmEFED3/view"
       }
     },
     {
@@ -238,7 +238,8 @@
           "fecha": "2026-10-30",
           "titulo": "Gestión del tiempo, enfoque y uso de IA para la productividad",
           "docente": "Francisco Valencia",
-          "carpeta": "https://drive.google.com/drive/folders/1mjCHMCziquonCV4U_YfLH9gg8uZemYfc"
+          "carpeta": "https://drive.google.com/drive/folders/1mjCHMCziquonCV4U_YfLH9gg8uZemYfc",
+          "impartida": true
         },
         {
           "n": 6,

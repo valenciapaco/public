@@ -1,28 +1,23 @@
 {
-  "actualizado": "2026-10-30",
+  "actualizado": "2026-10-31",
   "semana": "Semana 3 · 30 y 31 de octubre",
   "avisos": [
     {
       "tipo": "importante",
-      "titulo": "Esta semana: registra a dónde se va tu tiempo",
-      "texto": "Empieza el lunes 26. Haz una copia de la plantilla, anota cada día cada actividad y cuántos minutos te tomó, y sube tu copia a tu carpeta de entregables antes de la clase del viernes 30. Llega con los días que lleves.",
+      "titulo": "Llena la ficha de tu proyecto final",
+      "texto": "Ya está en tu carpeta de entregables como «Ficha de proyecto - tu nombre». Llénala con lo que sabes hoy; es un documento vivo y la vas a ir ajustando. Fecha límite: viernes 6 de noviembre, antes de clase. Si quieres retroalimentación de Paco, pídesela por mensaje directo de WhatsApp.",
       "enlace": {
-        "texto": "Hacer mi copia del registro",
-        "url": "https://docs.google.com/spreadsheets/d/1bZR4n3iKhmnI2vjXMZ_OPKHmse6qXiBNTbHEKuOgzAo/copy"
+        "texto": "Ver la plantilla",
+        "url": "https://docs.google.com/document/d/1dE3UAN2hmrsvqwK0HIKszm_2IjXalusba3Thl5mPquo/view"
       }
     },
     {
       "tipo": "importante",
-      "titulo": "Cuéntanos tu proyecto final y recibe retroalimentación",
-      "texto": "Esta semana, manda al grupo de WhatsApp una nota de voz o un texto con tu idea de proyecto: qué situación quieres mejorar (de tu trabajo, tu empresa familiar, un emprendimiento o tu propio proyecto) y en qué consiste. Paco y tus compañeros te dan retroalimentación. No es una entrega; si prefieres no mandarlo, llévalo preparado: la próxima semana definimos el proyecto y llenamos su ficha."
-    },
-    {
-      "tipo": "importante",
-      "titulo": "Ya están las láminas de la sesión 1.5",
-      "texto": "Las láminas de Gestión del tiempo, enfoque y uso de IA ya están en la carpeta de la sesión: las instrucciones de la consultoría en tercias, la nota técnica en seis ideas, lo que dice la evidencia de la IA, el kit mínimo y el prompt del vaciado mental. Las de la 1.1 a la 1.4 siguen en sus carpetas.",
+      "titulo": "Ya están las láminas de la sesión 1.6",
+      "texto": "Las láminas de Liderazgo sostenible ya están en la carpeta de la sesión: el mapa emocional completo, los conceptos de IA (con RAG), el Caso 6 desde cuatro personas, la teoría del estrés al desgaste y la ficha del proyecto. Las de la 1.1 a la 1.5 siguen en sus carpetas.",
       "enlace": {
-        "texto": "Ver las láminas 1.5",
-        "url": "https://drive.google.com/file/d/146Z2o90LOHkN9IuuxmjG0TK7sOmEFED3/view"
+        "texto": "Ver las láminas 1.6",
+        "url": "https://drive.google.com/file/d/1X3QB3N_vEMvXHV7_LVs6SgQSeujVhgCO/view"
       }
     },
     {
@@ -82,10 +77,10 @@
   ],
   "entregas": [
     {
-      "que": "Registro de mi semana",
-      "cuando": "Viernes 30 de octubre, antes de clase",
-      "donde": "Tu carpeta de entregables",
-      "nota": "Haz tu copia desde el aviso de arriba. Solo actividad y minutos; llega con los días que lleves."
+      "que": "Ficha de proyecto",
+      "cuando": "Viernes 6 de noviembre, antes de clase",
+      "donde": "Tu carpeta de entregables (ya tiene tu ficha)",
+      "nota": "Llénala en el mismo documento. Si quieres retroalimentación, pídesela a Paco por mensaje directo."
     }
   ],
   "proxima_semana": {
@@ -113,6 +108,12 @@
       "texto": "Una carpeta por sesión con su caso y sus láminas.",
       "url": "https://drive.google.com/drive/folders/1CFUl87WOR_ZDlpyDMcxHCx2Hr33ET8Ca",
       "icono": "calendario"
+    },
+    {
+      "titulo": "Formatos y plantillas",
+      "texto": "La plantilla de la ficha de proyecto, el registro de la semana y los demás formatos.",
+      "url": "https://drive.google.com/drive/folders/1PyGJuUYAfrdminj5n66Zk4r4WJBRM8yr",
+      "icono": "archivo"
     },
     {
       "titulo": "Banco de casos",
@@ -247,7 +248,8 @@
           "fecha": "2026-10-31",
           "titulo": "Liderazgo sostenible: estrés, frustración y resiliencia en el rol directivo",
           "docente": "Francisco Valencia",
-          "carpeta": "https://drive.google.com/drive/folders/1xESebaPlIeJN4BU_MhRyiL5toyFQeZaz"
+          "carpeta": "https://drive.google.com/drive/folders/1xESebaPlIeJN4BU_MhRyiL5toyFQeZaz",
+          "impartida": true
         }
       ]
     },

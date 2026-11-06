@@ -1,6 +1,6 @@
 {
-  "actualizado": "2026-10-31",
-  "semana": "Semana 3 · 30 y 31 de octubre",
+  "actualizado": "2026-11-06",
+  "semana": "Semana 4 · 6 y 7 de noviembre",
   "avisos": [
     {
       "tipo": "importante",
@@ -45,34 +45,26 @@
   },
   "esta_semana": [
     {
-      "tema": "1.5",
-      "fecha": "Viernes 30 de octubre",
+      "tema": "2.1",
+      "fecha": "Viernes 6 de noviembre",
       "horario": "16:00 a 20:00",
       "dia": "viernes",
-      "titulo": "Gestión del tiempo, enfoque y uso de IA para la productividad",
-      "docente": "Francisco Valencia",
-      "lectura": [
-        {
-          "texto": "Nota técnica 1 · El tiempo del directivo (v1.1)",
-          "url": "https://drive.google.com/file/d/1_J6N57K4550lDJkjYARACtlTU4YQnr88/view"
-        }
-      ],
-      "carpeta": "https://drive.google.com/drive/folders/1mjCHMCziquonCV4U_YfLH9gg8uZemYfc"
+      "titulo": "Comunicación asertiva y conversaciones efectivas",
+      "docente": "Helena Hernández",
+      "lectura": [],
+      "lectura_pendiente": "Helena comparte el material en la carpeta de la sesión.",
+      "carpeta": "https://drive.google.com/drive/folders/1EiNdtjlhWojt-4XWt0gi8G5pRKN_cGsA"
     },
     {
-      "tema": "1.6",
-      "fecha": "Sábado 31 de octubre",
+      "tema": "2.2",
+      "fecha": "Sábado 7 de noviembre",
       "horario": "9:00 a 13:00",
       "dia": "sabado",
-      "titulo": "Liderazgo sostenible: estrés, frustración y resiliencia en el rol directivo",
-      "docente": "Francisco Valencia",
-      "lectura": [
-        {
-          "texto": "Caso 6 · La gran oportunidad de Mariana Lemus (v1.2)",
-          "url": "https://drive.google.com/file/d/1g8bQD0AW7asvWEMefWDmBKKmMOoObZaF/view"
-        }
-      ],
-      "carpeta": "https://drive.google.com/drive/folders/1xESebaPlIeJN4BU_MhRyiL5toyFQeZaz"
+      "titulo": "Negociación",
+      "docente": "Helena Hernández",
+      "lectura": [],
+      "lectura_pendiente": "Helena comparte el material en la carpeta de la sesión.",
+      "carpeta": "https://drive.google.com/drive/folders/1KMYm7jmsxEXa2zzcP20iX7sKZ_C3BO1I"
     }
   ],
   "entregas": [
@@ -84,10 +76,10 @@
     }
   ],
   "proxima_semana": {
-    "texto": "Viernes 6 y sábado 7 de noviembre: arranca el Módulo 2 con Helena Hernández, sesiones 2.1 (comunicación asertiva) y 2.2 (negociación).",
+    "texto": "Viernes 13 y sábado 14 de noviembre: sesiones 2.3 (retroalimentación efectiva) y 2.4 (reconocimiento y motivación) con Alejandro Montoya.",
     "sesiones": [
-      "2.1",
-      "2.2"
+      "2.3",
+      "2.4"
     ]
   },
   "recursos": [
@@ -261,14 +253,16 @@
           "tema": "2.1",
           "fecha": "2026-11-06",
           "titulo": "Comunicación asertiva y conversaciones efectivas",
-          "docente": "Helena Hernández"
+          "docente": "Helena Hernández",
+          "carpeta": "https://drive.google.com/drive/folders/1EiNdtjlhWojt-4XWt0gi8G5pRKN_cGsA"
         },
         {
           "n": 8,
           "tema": "2.2",
           "fecha": "2026-11-07",
           "titulo": "Negociación",
-          "docente": "Helena Hernández"
+          "docente": "Helena Hernández",
+          "carpeta": "https://drive.google.com/drive/folders/1KMYm7jmsxEXa2zzcP20iX7sKZ_C3BO1I"
         },
         {
           "n": 9,

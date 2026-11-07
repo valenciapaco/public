@@ -163,10 +163,10 @@
     "pasos": [
       "Ve la grabación de la sesión que te perdiste.",
       "Sube a tu carpeta de entregables una nota de recuperación de máximo una cuartilla: resumen ejecutivo, conclusiones y cómo lo aplicarías en tu trabajo.",
-      "Avísanos que ya la subiste. Paco revisa la nota y te pone la asistencia."
+      "Mándale un WhatsApp a Paco cuando la subas. Él revisa tu nota y te pone la asistencia."
     ],
     "aviso_url": "",
-    "aviso_texto": "Mientras abrimos el formulario de aviso, mándale un WhatsApp a Paco cuando subas tu nota.",
+    "aviso_texto": "No hay formulario de aviso: basta con tu mensaje por WhatsApp.",
     "reglas": [
       "Tienes hasta 15 días después de la sesión para reponerla.",
       "Las sesiones del módulo 6 se reponen en la misma semana.",

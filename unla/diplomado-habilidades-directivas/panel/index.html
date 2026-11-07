@@ -142,7 +142,7 @@ function render(d) {
       ${a.enlace ? link(a.enlace.url, a.enlace.texto) : ''}
     </div>`).join('');
 
-  const sesiones = d.esta_semana.map(s => `
+  const tarjeta = (s, conWebex) => `
     <div class="card sesion">
       <div class="cuando">${esc(s.fecha)} · ${esc(s.horario)}</div>
       <h3>${esc(s.tema)} · ${esc(s.titulo)}</h3>
@@ -151,10 +151,12 @@ function render(d) {
         ${s.lectura.length ? s.lectura.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.texto)}</a>`).join('<br>') : `<span class="pend">${esc(s.lectura_pendiente || 'Sin lectura previa.')}</span>`}
       </div>
       <div class="acciones">
-        ${link(d.webex[s.dia], 'Entrar a Webex')}
-        ${s.carpeta ? link(s.carpeta, 'Materiales de la sesión', 'btn sec') : ''}
+        ${conWebex ? link(d.webex[s.dia], 'Entrar a Webex') : ''}
+        ${s.carpeta ? link(s.carpeta, 'Materiales de la sesión', conWebex ? 'btn sec' : undefined) : ''}
       </div>
-    </div>`).join('');
+    </div>`;
+  const sesiones = d.esta_semana.map(s => tarjeta(s, true)).join('');
+  const proximas = (d.proxima_semana.detalle || []).map(s => tarjeta(s, false)).join('');
 
   const entregas = d.entregas.map(e => `
     <div class="card entrega">
@@ -195,7 +197,7 @@ function render(d) {
     <section>${avisos}</section>
     <section><h2>Esta semana</h2><div class="grid2">${sesiones}</div></section>
     <section><h2>Entregas</h2>${entregas}</section>
-    <section><h2>La próxima semana</h2><div class="card"><p style="margin:0">${esc(d.proxima_semana.texto)}</p></div></section>
+    <section><h2>La próxima semana</h2><div class="card"><p style="margin:0">${esc(d.proxima_semana.texto)}</p></div>${proximas ? `<div class="grid2" style="margin-top:12px">${proximas}</div>` : ''}</section>
     <section><h2>Recursos</h2><div class="recursos">${recursos}</div></section>
     <section><h2>Si faltaste: cómo reponer la asistencia</h2>${reposicion}</section>
     <section><h2>Reglas del juego</h2>${reglas}</section>

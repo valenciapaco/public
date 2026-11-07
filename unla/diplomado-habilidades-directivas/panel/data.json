@@ -4,26 +4,26 @@
   "avisos": [
     {
       "tipo": "importante",
-      "titulo": "Llena la ficha de tu proyecto final",
-      "texto": "Ya está en tu carpeta de entregables como «Ficha de proyecto - tu nombre». Llénala con lo que sabes hoy; es un documento vivo y la vas a ir ajustando. Fecha límite: viernes 6 de noviembre, antes de clase. Si quieres retroalimentación de Paco, pídesela por mensaje directo de WhatsApp.",
+      "titulo": "Dejamos la guía para llenar tu ficha de proyecto",
+      "texto": "Varias fichas quedaron incompletas o en blanco, así que tienen una semana más: la nueva fecha es el viernes 13 de noviembre, antes de clase. Llénala en el mismo documento de tu carpeta de entregables. La guía explica cada sección con ejemplos y trae una lista para revisar antes de entregar. Si ya tienes retroalimentación al final de tu ficha, úsala para ajustarla. Si no le entiendes a algo, escríbele a Paco por WhatsApp.",
       "enlace": {
-        "texto": "Ver la plantilla",
-        "url": "https://docs.google.com/document/d/1dE3UAN2hmrsvqwK0HIKszm_2IjXalusba3Thl5mPquo/view"
+        "texto": "Ver la guía",
+        "url": "https://drive.google.com/file/d/1M7I7H762PUri5M0YrZoBGgD5oRqY8J2y/view"
       }
     },
     {
       "tipo": "importante",
-      "titulo": "Ya están las láminas de la sesión 1.6",
-      "texto": "Las láminas de Liderazgo sostenible ya están en la carpeta de la sesión: el mapa emocional completo, los conceptos de IA (con RAG), el Caso 6 desde cuatro personas, la teoría del estrés al desgaste y la ficha del proyecto. Las de la 1.1 a la 1.5 siguen en sus carpetas.",
+      "titulo": "Ya están los casos de la próxima semana",
+      "texto": "Caso 9, Mitras Software, para la 2.3 (viernes 13), y Caso 10, Cardón Resort, para la 2.4 (sábado 14). Léelos antes de clase. Están en «Casos por leer» y en la carpeta de cada sesión.",
       "enlace": {
-        "texto": "Ver las láminas 1.6",
-        "url": "https://drive.google.com/file/d/1X3QB3N_vEMvXHV7_LVs6SgQSeujVhgCO/view"
+        "texto": "Ver los casos",
+        "url": "https://drive.google.com/drive/folders/1qLWPcc_5C5TID69GZi-yb4Tk2ZYzbxBT"
       }
     },
     {
       "tipo": "importante",
       "titulo": "Tu carpeta de entregables te llegó por correo",
-      "texto": "Le mandamos a cada quien el enlace de su carpeta personal al correo que dejó en el formulario «Quién soy como directivo». Revisa tu bandeja de entrada y tu carpeta de spam. Ahí vas a subir todos tus entregables, empezando por tu FODA personal. Solo tú y el equipo docente tienen ese enlace."
+      "texto": "Le mandamos a cada quien el enlace de su carpeta personal al correo que dejó en el formulario «Quién soy como directivo». Revisa tu bandeja de entrada y tu carpeta de spam. Ahí vas a subir todos tus entregables. Solo tú y el equipo docente tienen ese enlace."
     },
     {
       "tipo": "pendiente",
@@ -31,7 +31,8 @@
       "texto": "Si no contestaste el formulario «Quién soy como directivo», no tenemos tu correo y no te podemos mandar tu carpeta. Llénalo en cuanto puedas.",
       "faltan": [
         "Meya Daniela E.",
-        "Verónica C."
+        "Verónica C.",
+        "Raúl S."
       ],
       "enlace": {
         "texto": "Llenar el formulario",
@@ -52,7 +53,7 @@
       "titulo": "Comunicación asertiva y conversaciones efectivas",
       "docente": "Helena Hernández",
       "lectura": [],
-      "lectura_pendiente": "Helena comparte el material en la carpeta de la sesión.",
+      "lectura_pendiente": "Helena compartió el material en clase.",
       "carpeta": "https://drive.google.com/drive/folders/1EiNdtjlhWojt-4XWt0gi8G5pRKN_cGsA"
     },
     {
@@ -63,23 +64,55 @@
       "titulo": "Negociación",
       "docente": "Helena Hernández",
       "lectura": [],
-      "lectura_pendiente": "Helena comparte el material en la carpeta de la sesión.",
+      "lectura_pendiente": "Helena comparte el caso en clase.",
       "carpeta": "https://drive.google.com/drive/folders/1KMYm7jmsxEXa2zzcP20iX7sKZ_C3BO1I"
     }
   ],
   "entregas": [
     {
       "que": "Ficha de proyecto",
-      "cuando": "Viernes 6 de noviembre, antes de clase",
+      "cuando": "Viernes 13 de noviembre, antes de clase",
       "donde": "Tu carpeta de entregables (ya tiene tu ficha)",
-      "nota": "Llénala en el mismo documento. Si quieres retroalimentación, pídesela a Paco por mensaje directo."
+      "nota": "Llénala en el mismo documento, con ayuda de la guía (en «Formatos y plantillas»). Si no le entiendes a algo o quieres retroalimentación, escríbele a Paco por WhatsApp."
     }
   ],
   "proxima_semana": {
-    "texto": "Viernes 13 y sábado 14 de noviembre: sesiones 2.3 (retroalimentación efectiva) y 2.4 (reconocimiento y motivación) con Francisco Valencia.",
+    "texto": "Viernes 13 y sábado 14 de noviembre: sesiones 2.3 (retroalimentación efectiva) y 2.4 (reconocimiento y motivación) con Francisco Valencia. Lee los casos antes de clase.",
     "sesiones": [
       "2.3",
       "2.4"
+    ],
+    "detalle": [
+      {
+        "tema": "2.3",
+        "fecha": "Viernes 13 de noviembre",
+        "horario": "16:00 a 20:00",
+        "dia": "viernes",
+        "titulo": "Retroalimentación efectiva",
+        "docente": "Francisco Valencia",
+        "lectura": [
+          {
+            "texto": "Caso 9 · Mitras Software: cumple parcialmente (v1.0)",
+            "url": "https://drive.google.com/file/d/1ug5KwD_-5Ot2HnFOj6ABAONPLTWWEYLw/view"
+          }
+        ],
+        "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2"
+      },
+      {
+        "tema": "2.4",
+        "fecha": "Sábado 14 de noviembre",
+        "horario": "9:00 a 13:00",
+        "dia": "sabado",
+        "titulo": "Reconocimiento y motivación",
+        "docente": "Francisco Valencia",
+        "lectura": [
+          {
+            "texto": "Caso 10 · Cardón Resort: la estrella que nadie ve (v1.0)",
+            "url": "https://drive.google.com/file/d/1hMBkv2C4LFHBl29fsIAM9wRBf90nyFeO/view"
+          }
+        ],
+        "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS"
+      }
     ]
   },
   "recursos": [
@@ -254,7 +287,8 @@
           "fecha": "2026-11-06",
           "titulo": "Comunicación asertiva y conversaciones efectivas",
           "docente": "Helena Hernández",
-          "carpeta": "https://drive.google.com/drive/folders/1EiNdtjlhWojt-4XWt0gi8G5pRKN_cGsA"
+          "carpeta": "https://drive.google.com/drive/folders/1EiNdtjlhWojt-4XWt0gi8G5pRKN_cGsA",
+          "impartida": true
         },
         {
           "n": 8,
@@ -269,14 +303,16 @@
           "tema": "2.3",
           "fecha": "2026-11-13",
           "titulo": "Retroalimentación efectiva",
-          "docente": "Francisco Valencia"
+          "docente": "Francisco Valencia",
+          "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2"
         },
         {
           "n": 10,
           "tema": "2.4",
           "fecha": "2026-11-14",
           "titulo": "Reconocimiento y motivación",
-          "docente": "Francisco Valencia"
+          "docente": "Francisco Valencia",
+          "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS"
         },
         {
           "n": 11,

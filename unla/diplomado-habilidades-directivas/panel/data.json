@@ -1,11 +1,11 @@
 {
-  "actualizado": "2026-11-06",
-  "semana": "Semana 4 · 6 y 7 de noviembre",
+  "actualizado": "2026-11-09",
+  "semana": "Semana 5 · 13 y 14 de noviembre",
   "avisos": [
     {
       "tipo": "importante",
       "titulo": "Dejamos la guía para llenar tu ficha de proyecto",
-      "texto": "Varias fichas quedaron incompletas o en blanco, así que tienen una semana más: la nueva fecha es el viernes 13 de noviembre, antes de clase. Llénala en el mismo documento de tu carpeta de entregables. La guía explica cada sección con ejemplos y trae una lista para revisar antes de entregar. Si ya tienes retroalimentación al final de tu ficha, úsala para ajustarla. Si no le entiendes a algo, escríbele a Paco por WhatsApp.",
+      "texto": "Varias fichas quedaron incompletas o en blanco, así que tienen una semana más: la fecha es este viernes 13 de noviembre, antes de clase. Llénala en el mismo documento de tu carpeta de entregables. La guía explica cada sección con ejemplos y trae una lista para revisar antes de entregar. Si ya tienes retroalimentación al final de tu ficha, úsala para ajustarla. Si no le entiendes a algo, escríbele a Paco por WhatsApp.",
       "enlace": {
         "texto": "Ver la guía",
         "url": "https://drive.google.com/file/d/1M7I7H762PUri5M0YrZoBGgD5oRqY8J2y/view"
@@ -13,12 +13,17 @@
     },
     {
       "tipo": "importante",
-      "titulo": "Ya están los casos de la próxima semana",
+      "titulo": "Lee los casos de esta semana",
       "texto": "Caso 9, Mitras Software, para la 2.3 (viernes 13), y Caso 10, Cardón Resort, para la 2.4 (sábado 14). Léelos antes de clase. Están en «Casos por leer» y en la carpeta de cada sesión.",
       "enlace": {
         "texto": "Ver los casos",
         "url": "https://drive.google.com/drive/folders/1qLWPcc_5C5TID69GZi-yb4Tk2ZYzbxBT"
       }
+    },
+    {
+      "tipo": "importante",
+      "titulo": "¿Debes sesiones? Repónlas antes del viernes 27 de noviembre",
+      "texto": "Si te faltan sesiones por reponer, ve la grabación, sube tu nota de recuperación a tu carpeta de entregables y mándale un WhatsApp a Paco. Todas deben quedar antes del viernes 27 de noviembre. Los pasos están abajo, en «Cómo reponer una sesión». Si no te da tiempo, platícalo con Paco."
     },
     {
       "tipo": "importante",
@@ -46,26 +51,34 @@
   },
   "esta_semana": [
     {
-      "tema": "2.1",
-      "fecha": "Viernes 6 de noviembre",
+      "tema": "2.3",
+      "fecha": "Viernes 13 de noviembre",
       "horario": "16:00 a 20:00",
       "dia": "viernes",
-      "titulo": "Comunicación asertiva y conversaciones efectivas",
-      "docente": "Helena Hernández",
-      "lectura": [],
-      "lectura_pendiente": "Helena compartió el material en clase.",
-      "carpeta": "https://drive.google.com/drive/folders/1EiNdtjlhWojt-4XWt0gi8G5pRKN_cGsA"
+      "titulo": "Retroalimentación efectiva",
+      "docente": "Daniel Álvarez",
+      "lectura": [
+        {
+          "texto": "Caso 9 · Mitras Software: cumple parcialmente (v1.0)",
+          "url": "https://drive.google.com/file/d/1ug5KwD_-5Ot2HnFOj6ABAONPLTWWEYLw/view"
+        }
+      ],
+      "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2"
     },
     {
-      "tema": "2.2",
-      "fecha": "Sábado 7 de noviembre",
+      "tema": "2.4",
+      "fecha": "Sábado 14 de noviembre",
       "horario": "9:00 a 13:00",
       "dia": "sabado",
-      "titulo": "Negociación",
-      "docente": "Helena Hernández",
-      "lectura": [],
-      "lectura_pendiente": "Helena comparte el caso en clase.",
-      "carpeta": "https://drive.google.com/drive/folders/1KMYm7jmsxEXa2zzcP20iX7sKZ_C3BO1I"
+      "titulo": "Reconocimiento y motivación",
+      "docente": "Daniel Álvarez",
+      "lectura": [
+        {
+          "texto": "Caso 10 · Cardón Resort: la estrella que nadie ve (v1.0)",
+          "url": "https://drive.google.com/file/d/1hMBkv2C4LFHBl29fsIAM9wRBf90nyFeO/view"
+        }
+      ],
+      "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS"
     }
   ],
   "entregas": [
@@ -74,44 +87,42 @@
       "cuando": "Viernes 13 de noviembre, antes de clase",
       "donde": "Tu carpeta de entregables (ya tiene tu ficha)",
       "nota": "Llénala en el mismo documento, con ayuda de la guía (en «Formatos y plantillas»). Si no le entiendes a algo o quieres retroalimentación, escríbele a Paco por WhatsApp."
+    },
+    {
+      "que": "Reposiciones pendientes",
+      "cuando": "Viernes 27 de noviembre",
+      "donde": "Tu carpeta de entregables",
+      "nota": "Una nota de recuperación por cada sesión que debas. Avísale a Paco por WhatsApp cuando la subas."
     }
   ],
   "proxima_semana": {
-    "texto": "Viernes 13 y sábado 14 de noviembre: sesiones 2.3 (retroalimentación efectiva) y 2.4 (reconocimiento y motivación) con Daniel Álvarez. Lee los casos antes de clase.",
+    "texto": "Viernes 20 y sábado 21 de noviembre: sesiones 2.5 (persuasión e influencia) y 2.6 (manejo de conflictos) con Helena Hernández.",
     "sesiones": [
-      "2.3",
-      "2.4"
+      "2.5",
+      "2.6"
     ],
     "detalle": [
       {
-        "tema": "2.3",
-        "fecha": "Viernes 13 de noviembre",
+        "tema": "2.5",
+        "fecha": "Viernes 20 de noviembre",
         "horario": "16:00 a 20:00",
         "dia": "viernes",
-        "titulo": "Retroalimentación efectiva",
-        "docente": "Daniel Álvarez",
-        "lectura": [
-          {
-            "texto": "Caso 9 · Mitras Software: cumple parcialmente (v1.0)",
-            "url": "https://drive.google.com/file/d/1ug5KwD_-5Ot2HnFOj6ABAONPLTWWEYLw/view"
-          }
-        ],
-        "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2"
+        "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
+        "docente": "Helena Hernández",
+        "lectura": [],
+        "lectura_pendiente": "El material lo comparte Helena.",
+        "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6"
       },
       {
-        "tema": "2.4",
-        "fecha": "Sábado 14 de noviembre",
+        "tema": "2.6",
+        "fecha": "Sábado 21 de noviembre",
         "horario": "9:00 a 13:00",
         "dia": "sabado",
-        "titulo": "Reconocimiento y motivación",
-        "docente": "Daniel Álvarez",
-        "lectura": [
-          {
-            "texto": "Caso 10 · Cardón Resort: la estrella que nadie ve (v1.0)",
-            "url": "https://drive.google.com/file/d/1hMBkv2C4LFHBl29fsIAM9wRBf90nyFeO/view"
-          }
-        ],
-        "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS"
+        "titulo": "Manejo de conflictos",
+        "docente": "Helena Hernández",
+        "lectura": [],
+        "lectura_pendiente": "El material lo comparte Helena.",
+        "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg"
       }
     ]
   },
@@ -296,7 +307,8 @@
           "fecha": "2026-11-07",
           "titulo": "Negociación",
           "docente": "Helena Hernández",
-          "carpeta": "https://drive.google.com/drive/folders/1KMYm7jmsxEXa2zzcP20iX7sKZ_C3BO1I"
+          "carpeta": "https://drive.google.com/drive/folders/1KMYm7jmsxEXa2zzcP20iX7sKZ_C3BO1I",
+          "impartida": true
         },
         {
           "n": 9,
@@ -319,14 +331,16 @@
           "tema": "2.5",
           "fecha": "2026-11-20",
           "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
-          "docente": "Helena Hernández"
+          "docente": "Helena Hernández",
+          "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6"
         },
         {
           "n": 12,
           "tema": "2.6",
           "fecha": "2026-11-21",
           "titulo": "Manejo de conflictos",
-          "docente": "Helena Hernández"
+          "docente": "Helena Hernández",
+          "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg"
         },
         {
           "n": 13,

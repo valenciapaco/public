@@ -289,7 +289,8 @@
           "fecha": "2026-11-13",
           "titulo": "Retroalimentación efectiva",
           "docente": "Daniel Álvarez",
-          "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2"
+          "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2",
+          "impartida": true
         },
         {
           "n": 10,
@@ -297,7 +298,8 @@
           "fecha": "2026-11-14",
           "titulo": "Reconocimiento y motivación",
           "docente": "Daniel Álvarez",
-          "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS"
+          "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS",
+          "impartida": true
         },
         {
           "n": 11,

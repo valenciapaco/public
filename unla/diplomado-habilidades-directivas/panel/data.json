@@ -1,24 +1,11 @@
 {
-  "actualizado": "2026-11-09",
-  "semana": "Semana 5 · 13 y 14 de noviembre",
+  "actualizado": "2026-11-20",
+  "semana": "Semana 6 · 20 y 21 de noviembre",
   "avisos": [
     {
       "tipo": "importante",
-      "titulo": "Dejamos la guía para llenar tu ficha de proyecto",
-      "texto": "Varias fichas quedaron incompletas o en blanco, así que tienen una semana más: la fecha es este viernes 13 de noviembre, antes de clase. Llénala en el mismo documento de tu carpeta de entregables. La guía explica cada sección con ejemplos y trae una lista para revisar antes de entregar. Si ya tienes retroalimentación al final de tu ficha, úsala para ajustarla. Si no le entiendes a algo, escríbele a Paco por WhatsApp.",
-      "enlace": {
-        "texto": "Ver la guía",
-        "url": "https://drive.google.com/file/d/1M7I7H762PUri5M0YrZoBGgD5oRqY8J2y/view"
-      }
-    },
-    {
-      "tipo": "importante",
-      "titulo": "Lee los casos de esta semana",
-      "texto": "Caso 9, Mitras Software, para la 2.3 (viernes 13), y Caso 10, Cardón Resort, para la 2.4 (sábado 14). Léelos antes de clase. Están en «Casos por leer» y en la carpeta de cada sesión.",
-      "enlace": {
-        "texto": "Ver los casos",
-        "url": "https://drive.google.com/drive/folders/1qLWPcc_5C5TID69GZi-yb4Tk2ZYzbxBT"
-      }
+      "titulo": "Los casos de Helena se entregan en clase",
+      "texto": "Esta semana no hay lectura previa: en la 2.5 (viernes 20) y la 2.6 (sábado 21) Helena entrega el caso durante la sesión. Para la 2.7 y la 2.8 (27 y 28 de noviembre), mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos."
     },
     {
       "tipo": "importante",
@@ -51,43 +38,29 @@
   },
   "esta_semana": [
     {
-      "tema": "2.3",
-      "fecha": "Viernes 13 de noviembre",
+      "tema": "2.5",
+      "fecha": "Viernes 20 de noviembre",
       "horario": "16:00 a 20:00",
       "dia": "viernes",
-      "titulo": "Retroalimentación efectiva",
-      "docente": "Daniel Álvarez",
-      "lectura": [
-        {
-          "texto": "Caso 9 · Mitras Software: cumple parcialmente (v1.0)",
-          "url": "https://drive.google.com/file/d/1ug5KwD_-5Ot2HnFOj6ABAONPLTWWEYLw/view"
-        }
-      ],
-      "carpeta": "https://drive.google.com/drive/folders/1OfTXKgl4M1DagA_Lt09crDbiz5XChJS2"
+      "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
+      "docente": "Helena Hernández",
+      "lectura": [],
+      "lectura_pendiente": "Helena entrega el caso en clase. No hay lectura previa.",
+      "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6"
     },
     {
-      "tema": "2.4",
-      "fecha": "Sábado 14 de noviembre",
+      "tema": "2.6",
+      "fecha": "Sábado 21 de noviembre",
       "horario": "9:00 a 13:00",
       "dia": "sabado",
-      "titulo": "Reconocimiento y motivación",
-      "docente": "Daniel Álvarez",
-      "lectura": [
-        {
-          "texto": "Caso 10 · Cardón Resort: la estrella que nadie ve (v1.0)",
-          "url": "https://drive.google.com/file/d/1hMBkv2C4LFHBl29fsIAM9wRBf90nyFeO/view"
-        }
-      ],
-      "carpeta": "https://drive.google.com/drive/folders/1PuM2LpIIlhV3xNXGsJNIHboDAYT819AS"
+      "titulo": "Manejo de conflictos",
+      "docente": "Helena Hernández",
+      "lectura": [],
+      "lectura_pendiente": "Helena entrega el caso en clase. No hay lectura previa.",
+      "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg"
     }
   ],
   "entregas": [
-    {
-      "que": "Ficha de proyecto",
-      "cuando": "Viernes 13 de noviembre, antes de clase",
-      "donde": "Tu carpeta de entregables (ya tiene tu ficha)",
-      "nota": "Llénala en el mismo documento, con ayuda de la guía (en «Formatos y plantillas»). Si no le entiendes a algo o quieres retroalimentación, escríbele a Paco por WhatsApp."
-    },
     {
       "que": "Reposiciones pendientes",
       "cuando": "Viernes 27 de noviembre",
@@ -96,33 +69,33 @@
     }
   ],
   "proxima_semana": {
-    "texto": "Viernes 20 y sábado 21 de noviembre: sesiones 2.5 (persuasión e influencia) y 2.6 (manejo de conflictos) con Helena Hernández.",
+    "texto": "Viernes 27 y sábado 28 de noviembre: sesiones 2.7 (comunicación en situaciones de crisis) y 2.8 (comunicación en redes sociales para directores) con Helena Hernández. La fecha de entrega de los casos la avisamos en el grupo de WhatsApp.",
     "sesiones": [
-      "2.5",
-      "2.6"
+      "2.7",
+      "2.8"
     ],
     "detalle": [
       {
-        "tema": "2.5",
-        "fecha": "Viernes 20 de noviembre",
+        "tema": "2.7",
+        "fecha": "Viernes 27 de noviembre",
         "horario": "16:00 a 20:00",
         "dia": "viernes",
-        "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
+        "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
         "docente": "Helena Hernández",
         "lectura": [],
-        "lectura_pendiente": "El caso estará disponible próximamente, al terminar las clases de este fin de semana.",
-        "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6"
+        "lectura_pendiente": "Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entrega el caso.",
+        "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA"
       },
       {
-        "tema": "2.6",
-        "fecha": "Sábado 21 de noviembre",
+        "tema": "2.8",
+        "fecha": "Sábado 28 de noviembre",
         "horario": "9:00 a 13:00",
         "dia": "sabado",
-        "titulo": "Manejo de conflictos",
+        "titulo": "Comunicación en redes sociales para directores",
         "docente": "Helena Hernández",
         "lectura": [],
-        "lectura_pendiente": "El caso estará disponible próximamente, al terminar las clases de este fin de semana.",
-        "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg"
+        "lectura_pendiente": "Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entrega el caso.",
+        "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U"
       }
     ]
   },
@@ -332,7 +305,8 @@
           "fecha": "2026-11-20",
           "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
           "docente": "Helena Hernández",
-          "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6"
+          "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6",
+          "impartida": true
         },
         {
           "n": 12,
@@ -347,14 +321,16 @@
           "tema": "2.7",
           "fecha": "2026-11-27",
           "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
-          "docente": "Helena Hernández"
+          "docente": "Helena Hernández",
+          "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA"
         },
         {
           "n": 14,
           "tema": "2.8",
           "fecha": "2026-11-28",
           "titulo": "Comunicación en redes sociales para directores",
-          "docente": "Helena Hernández"
+          "docente": "Helena Hernández",
+          "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U"
         }
       ]
     },

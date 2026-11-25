@@ -3,6 +3,15 @@
   "semana": "Semana 7 · 27 y 28 de noviembre",
   "avisos": [
     {
+      "tipo": "destacado",
+      "titulo": "Sesión de configuración avanzada de IA · lunes 7 de diciembre, 7:00 a 9:00 p.m.",
+      "texto": "Sesión extra, opcional y gratuita, en línea. Paco te muestra cómo tiene configurado su entorno de trabajo con IA (Claude Code, archivos de contexto y conexiones con otras apps) y cómo puedes armar el tuyo. Se graba, por si no puedes estar en vivo. Regístrate llenando el formulario: con tus respuestas preparamos la sesión según el punto en el que está cada quien.",
+      "enlace": {
+        "texto": "Regístrate aquí",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSekk1WmE2IRiS-a3XLg-GyKg04DxeLLT5KT34VcmMm1yxArhg/viewform"
+      }
+    },
+    {
       "tipo": "importante",
       "titulo": "Los casos de Helena se entregan en clase",
       "texto": "Esta semana no hay lectura previa: en la 2.7 (viernes 27) y la 2.8 (sábado 28) Helena entrega el caso durante la sesión. Para la 3.1 y la 3.2 con Alejandro Montoya (4 y 5 de diciembre), mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos."
@@ -139,6 +148,12 @@
       "titulo": "Formulario «Quién soy como directivo»",
       "texto": "Si no lo has llenado, empieza aquí.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSfNf7f_QfIL5tfMiNKe0ENrvp6JiMY-GcG0ouPq6yEEyt7b1A/viewform",
+      "icono": "formulario"
+    },
+    {
+      "titulo": "Registro · Sesión de configuración avanzada de IA",
+      "texto": "Lunes 7 de diciembre, 7:00 a 9:00 p.m. Opcional y gratuita.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSekk1WmE2IRiS-a3XLg-GyKg04DxeLLT5KT34VcmMm1yxArhg/viewform",
       "icono": "formulario"
     }
   ],

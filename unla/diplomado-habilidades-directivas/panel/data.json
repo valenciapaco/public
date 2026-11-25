@@ -1,11 +1,11 @@
 {
   "actualizado": "2026-11-24",
-  "semana": "Semana 6 · 20 y 21 de noviembre",
+  "semana": "Semana 7 · 27 y 28 de noviembre",
   "avisos": [
     {
       "tipo": "importante",
       "titulo": "Los casos de Helena se entregan en clase",
-      "texto": "Esta semana no hay lectura previa: en la 2.5 (viernes 20) y la 2.6 (sábado 21) Helena entrega el caso durante la sesión. Para la 2.7 y la 2.8 (27 y 28 de noviembre), mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos."
+      "texto": "Esta semana no hay lectura previa: en la 2.7 (viernes 27) y la 2.8 (sábado 28) Helena entrega el caso durante la sesión. Para la 3.1 y la 3.2 con Alejandro Montoya (4 y 5 de diciembre), mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos."
     },
     {
       "tipo": "importante",
@@ -37,26 +37,26 @@
   },
   "esta_semana": [
     {
-      "tema": "2.5",
-      "fecha": "Viernes 20 de noviembre",
+      "tema": "2.7",
+      "fecha": "Viernes 27 de noviembre",
       "horario": "16:00 a 20:00",
       "dia": "viernes",
-      "titulo": "Persuasión e influencia: desarrollar un liderazgo inspirador",
+      "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
       "docente": "Helena Hernández",
       "lectura": [],
       "lectura_pendiente": "Helena entrega el caso en clase. No hay lectura previa.",
-      "carpeta": "https://drive.google.com/drive/folders/1kRlwBXQFqhp4X1RpjLeuNN96AWSLQ5v6"
+      "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA"
     },
     {
-      "tema": "2.6",
-      "fecha": "Sábado 21 de noviembre",
+      "tema": "2.8",
+      "fecha": "Sábado 28 de noviembre",
       "horario": "9:00 a 13:00",
       "dia": "sabado",
-      "titulo": "Manejo de conflictos",
+      "titulo": "Comunicación en redes sociales para directores",
       "docente": "Helena Hernández",
       "lectura": [],
       "lectura_pendiente": "Helena entrega el caso en clase. No hay lectura previa.",
-      "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg"
+      "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U"
     }
   ],
   "entregas": [
@@ -68,33 +68,33 @@
     }
   ],
   "proxima_semana": {
-    "texto": "Viernes 27 y sábado 28 de noviembre: sesiones 2.7 (comunicación en situaciones de crisis) y 2.8 (comunicación en redes sociales para directores) con Helena Hernández. La fecha de entrega de los casos la avisamos en el grupo de WhatsApp.",
+    "texto": "Viernes 4 y sábado 5 de diciembre: sesiones 3.1 (factores humanos del trabajo en equipo) y 3.2 (equipos híbridos: personas y máquinas) con Alejandro Montoya. Arranca el módulo 3. Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos.",
     "sesiones": [
-      "2.7",
-      "2.8"
+      "3.1",
+      "3.2"
     ],
     "detalle": [
       {
-        "tema": "2.7",
-        "fecha": "Viernes 27 de noviembre",
+        "tema": "3.1",
+        "fecha": "Viernes 4 de diciembre",
         "horario": "16:00 a 20:00",
         "dia": "viernes",
-        "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
-        "docente": "Helena Hernández",
+        "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza",
+        "docente": "Alejandro Montoya",
         "lectura": [],
         "lectura_pendiente": "Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entrega el caso.",
-        "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA"
+        "carpeta": "https://drive.google.com/drive/folders/1mrGsinEBImule5cBSy2BK3f5AU-L40YE"
       },
       {
-        "tema": "2.8",
-        "fecha": "Sábado 28 de noviembre",
+        "tema": "3.2",
+        "fecha": "Sábado 5 de diciembre",
         "horario": "9:00 a 13:00",
         "dia": "sabado",
-        "titulo": "Comunicación en redes sociales para directores",
-        "docente": "Helena Hernández",
+        "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos",
+        "docente": "Alejandro Montoya",
         "lectura": [],
         "lectura_pendiente": "Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entrega el caso.",
-        "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U"
+        "carpeta": "https://drive.google.com/drive/folders/1VWTECM6FVZXb7epYL0M-3mJjtqSM75wP"
       }
     ]
   },
@@ -315,7 +315,8 @@
           "fecha": "2026-11-21",
           "titulo": "Manejo de conflictos",
           "docente": "Helena Hernández",
-          "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg"
+          "carpeta": "https://drive.google.com/drive/folders/1qmnofJPmxgaXVjtI6ZBkNuK4qRdwMxXg",
+          "impartida": true
         },
         {
           "n": 13,
@@ -343,14 +344,16 @@
           "tema": "3.1",
           "fecha": "2026-12-04",
           "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza",
-          "docente": "Alejandro Montoya"
+          "docente": "Alejandro Montoya",
+          "carpeta": "https://drive.google.com/drive/folders/1mrGsinEBImule5cBSy2BK3f5AU-L40YE"
         },
         {
           "n": 16,
           "tema": "3.2",
           "fecha": "2026-12-05",
           "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos",
-          "docente": "Alejandro Montoya"
+          "docente": "Alejandro Montoya",
+          "carpeta": "https://drive.google.com/drive/folders/1VWTECM6FVZXb7epYL0M-3mJjtqSM75wP"
         },
         {
           "n": 17,

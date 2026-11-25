@@ -5,7 +5,7 @@
     {
       "tipo": "destacado",
       "titulo": "Sesión de configuración avanzada de IA · lunes 7 de diciembre, 7:00 a 9:00 p.m.",
-      "texto": "Sesión extra, opcional y gratuita, en línea. Paco te muestra cómo tiene configurado su entorno de trabajo con IA (Claude Code, archivos de contexto y conexiones con otras apps) y cómo puedes armar el tuyo. Se graba, por si no puedes estar en vivo. Regístrate llenando el formulario: con tus respuestas preparamos la sesión según el punto en el que está cada quien.",
+      "texto": "Sesión extra, opcional y gratuita, en línea. Paco te muestra cómo tiene configurado su entorno de trabajo con IA (Claude Code, archivos de contexto y conexiones con otras apps) y cómo puedes armar el tuyo. Se graba. Regístrate aunque no te vayas a conectar en vivo: así te compartimos la grabación y, con tus respuestas, preparamos la sesión según el punto en el que está cada quien. El registro cierra el jueves 3 de diciembre y el viernes 4 te mandamos por correo el enlace de la sesión.",
       "enlace": {
         "texto": "Regístrate aquí",
         "url": "https://docs.google.com/forms/d/e/1FAIpQLSekk1WmE2IRiS-a3XLg-GyKg04DxeLLT5KT34VcmMm1yxArhg/viewform"
@@ -152,7 +152,7 @@
     },
     {
       "titulo": "Registro · Sesión de configuración avanzada de IA",
-      "texto": "Lunes 7 de diciembre, 7:00 a 9:00 p.m. Opcional y gratuita.",
+      "texto": "Lunes 7 de diciembre, 7:00 a 9:00 p.m. Opcional y gratuita. El registro cierra el jueves 3.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSekk1WmE2IRiS-a3XLg-GyKg04DxeLLT5KT34VcmMm1yxArhg/viewform",
       "icono": "formulario"
     }

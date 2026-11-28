@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-24",
+  "actualizado": "2026-11-28",
   "semana": "Semana 7 · 27 y 28 de noviembre",
   "avisos": [
     {
@@ -13,8 +13,8 @@
     },
     {
       "tipo": "importante",
-      "titulo": "Los casos de Helena se entregan en clase",
-      "texto": "Esta semana no hay lectura previa: en la 2.7 (viernes 27) y la 2.8 (sábado 28) Helena entrega el caso durante la sesión. Para la 3.1 y la 3.2 con Alejandro Montoya (4 y 5 de diciembre), mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos."
+      "titulo": "Ya están los casos de la 3.1 y la 3.2",
+      "texto": "Para las sesiones con Alejandro Montoya del viernes 4 y el sábado 5 de diciembre sí hay lectura previa: el Caso 15 (Monograma) para la 3.1 y el Caso 16 (Refaccionaria Tangamanga) para la 3.2. Están en la carpeta de cada sesión y en «Casos por leer». Léelos y trabaja las preguntas guía antes de clase."
     },
     {
       "tipo": "importante",
@@ -77,7 +77,7 @@
     }
   ],
   "proxima_semana": {
-    "texto": "Viernes 4 y sábado 5 de diciembre: sesiones 3.1 (factores humanos del trabajo en equipo) y 3.2 (equipos híbridos: personas y máquinas) con Alejandro Montoya. Arranca el módulo 3. Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entregan los casos.",
+    "texto": "Viernes 4 y sábado 5 de diciembre: sesiones 3.1 (factores humanos del trabajo en equipo) y 3.2 (equipos híbridos: personas y máquinas) con Alejandro Montoya. Arranca el módulo 3. Ya están los casos: léelos y trabaja las preguntas guía antes de clase.",
     "sesiones": [
       "3.1",
       "3.2"
@@ -90,8 +90,12 @@
         "dia": "viernes",
         "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza",
         "docente": "Alejandro Montoya",
-        "lectura": [],
-        "lectura_pendiente": "Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entrega el caso.",
+        "lectura": [
+          {
+            "texto": "Caso 15 · Monograma",
+            "url": "https://drive.google.com/file/d/1IFOX5sre-bGBNp2W3TZdCnYUt2iowQ6t/view"
+          }
+        ],
         "carpeta": "https://drive.google.com/drive/folders/1mrGsinEBImule5cBSy2BK3f5AU-L40YE"
       },
       {
@@ -101,8 +105,12 @@
         "dia": "sabado",
         "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos",
         "docente": "Alejandro Montoya",
-        "lectura": [],
-        "lectura_pendiente": "Mantente al tanto del grupo de WhatsApp: ahí avisamos cuándo se entrega el caso.",
+        "lectura": [
+          {
+            "texto": "Caso 16 · Refaccionaria Tangamanga",
+            "url": "https://drive.google.com/file/d/1B0PznSaPzg_iau8yJOcl2Kao9ABTqwBP/view"
+          }
+        ],
         "carpeta": "https://drive.google.com/drive/folders/1VWTECM6FVZXb7epYL0M-3mJjtqSM75wP"
       }
     ]
@@ -339,7 +347,8 @@
           "fecha": "2026-11-27",
           "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
           "docente": "Helena Hernández",
-          "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA"
+          "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA",
+          "impartida": true
         },
         {
           "n": 14,
@@ -347,7 +356,8 @@
           "fecha": "2026-11-28",
           "titulo": "Comunicación en redes sociales para directores",
           "docente": "Helena Hernández",
-          "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U"
+          "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U",
+          "impartida": true
         }
       ]
     },

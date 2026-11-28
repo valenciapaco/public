@@ -1,6 +1,6 @@
 {
   "actualizado": "2026-11-28",
-  "semana": "Semana 7 · 27 y 28 de noviembre",
+  "semana": "Semana 8 · 4 y 5 de diciembre",
   "avisos": [
     {
       "tipo": "destacado",
@@ -15,11 +15,6 @@
       "tipo": "importante",
       "titulo": "Ya están los casos de la 3.1 y la 3.2",
       "texto": "Para las sesiones con Alejandro Montoya del viernes 4 y el sábado 5 de diciembre sí hay lectura previa: el Caso 15 (Monograma) para la 3.1 y el Caso 16 (Refaccionaria Tangamanga) para la 3.2. Están en la carpeta de cada sesión y en «Casos por leer». Léelos y trabaja las preguntas guía antes de clase."
-    },
-    {
-      "tipo": "importante",
-      "titulo": "¿Debes sesiones? Repónlas antes del viernes 27 de noviembre",
-      "texto": "Si te faltan sesiones por reponer, ve la grabación, sube tu nota de recuperación a tu carpeta de entregables y mándale un WhatsApp a Paco. Todas deben quedar antes del viernes 27 de noviembre. Los pasos están abajo, en «Cómo reponer una sesión». Si no te da tiempo, platícalo con Paco."
     },
     {
       "tipo": "importante",
@@ -46,72 +41,65 @@
   },
   "esta_semana": [
     {
-      "tema": "2.7",
-      "fecha": "Viernes 27 de noviembre",
+      "tema": "3.1",
+      "fecha": "Viernes 4 de diciembre",
       "horario": "16:00 a 20:00",
       "dia": "viernes",
-      "titulo": "Comunicación en situaciones de crisis: prevenir y gestionar la crisis",
-      "docente": "Helena Hernández",
-      "lectura": [],
-      "lectura_pendiente": "Helena entrega el caso en clase. No hay lectura previa.",
-      "carpeta": "https://drive.google.com/drive/folders/1oON3nyj5mkYJPLlsqco1VajfbTu16yaA"
+      "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza",
+      "docente": "Alejandro Montoya",
+      "lectura": [
+        {
+          "texto": "Caso 15 · Monograma",
+          "url": "https://drive.google.com/file/d/1IFOX5sre-bGBNp2W3TZdCnYUt2iowQ6t/view"
+        }
+      ],
+      "carpeta": "https://drive.google.com/drive/folders/1mrGsinEBImule5cBSy2BK3f5AU-L40YE"
     },
     {
-      "tema": "2.8",
-      "fecha": "Sábado 28 de noviembre",
+      "tema": "3.2",
+      "fecha": "Sábado 5 de diciembre",
       "horario": "9:00 a 13:00",
       "dia": "sabado",
-      "titulo": "Comunicación en redes sociales para directores",
-      "docente": "Helena Hernández",
-      "lectura": [],
-      "lectura_pendiente": "Helena entrega el caso en clase. No hay lectura previa.",
-      "carpeta": "https://drive.google.com/drive/folders/1Z6FBpfQD_UZfWCiThT4c2gmGpte97O6U"
+      "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos",
+      "docente": "Alejandro Montoya",
+      "lectura": [
+        {
+          "texto": "Caso 16 · Refaccionaria Tangamanga",
+          "url": "https://drive.google.com/file/d/1B0PznSaPzg_iau8yJOcl2Kao9ABTqwBP/view"
+        }
+      ],
+      "carpeta": "https://drive.google.com/drive/folders/1VWTECM6FVZXb7epYL0M-3mJjtqSM75wP"
     }
   ],
-  "entregas": [
-    {
-      "que": "Reposiciones pendientes",
-      "cuando": "Viernes 27 de noviembre",
-      "donde": "Tu carpeta de entregables",
-      "nota": "Una nota de recuperación por cada sesión que debas. Avísale a Paco por WhatsApp cuando la subas."
-    }
-  ],
+  "entregas": [],
   "proxima_semana": {
-    "texto": "Viernes 4 y sábado 5 de diciembre: sesiones 3.1 (factores humanos del trabajo en equipo) y 3.2 (equipos híbridos: personas y máquinas) con Alejandro Montoya. Arranca el módulo 3. Ya están los casos: léelos y trabaja las preguntas guía antes de clase.",
+    "texto": "Viernes 11 y sábado 12 de diciembre: sesiones 3.3 (atraer y retener talento) y 3.4 (desarrollar y potenciar al equipo) con Alejandro Montoya. Los casos se entregan en clase: no hay lectura previa.",
     "sesiones": [
-      "3.1",
-      "3.2"
+      "3.3",
+      "3.4"
     ],
     "detalle": [
       {
-        "tema": "3.1",
-        "fecha": "Viernes 4 de diciembre",
+        "tema": "3.3",
+        "fecha": "Viernes 11 de diciembre",
         "horario": "16:00 a 20:00",
         "dia": "viernes",
-        "titulo": "Factores humanos del trabajo en equipo: colaboración y confianza",
+        "titulo": "Atraer y retener talento al equipo",
         "docente": "Alejandro Montoya",
-        "lectura": [
-          {
-            "texto": "Caso 15 · Monograma",
-            "url": "https://drive.google.com/file/d/1IFOX5sre-bGBNp2W3TZdCnYUt2iowQ6t/view"
-          }
-        ],
-        "carpeta": "https://drive.google.com/drive/folders/1mrGsinEBImule5cBSy2BK3f5AU-L40YE"
+        "lectura": [],
+        "lectura_pendiente": "Alejandro entrega el caso en clase. No hay lectura previa.",
+        "carpeta": "https://drive.google.com/drive/folders/1AP4sMOg4FFPaGQr7ofvlwv5me5J8tRR2"
       },
       {
-        "tema": "3.2",
-        "fecha": "Sábado 5 de diciembre",
+        "tema": "3.4",
+        "fecha": "Sábado 12 de diciembre",
         "horario": "9:00 a 13:00",
         "dia": "sabado",
-        "titulo": "Construir equipos híbridos: personas y máquinas trabajando juntos",
+        "titulo": "Desarrollar y potenciar al equipo",
         "docente": "Alejandro Montoya",
-        "lectura": [
-          {
-            "texto": "Caso 16 · Refaccionaria Tangamanga",
-            "url": "https://drive.google.com/file/d/1B0PznSaPzg_iau8yJOcl2Kao9ABTqwBP/view"
-          }
-        ],
-        "carpeta": "https://drive.google.com/drive/folders/1VWTECM6FVZXb7epYL0M-3mJjtqSM75wP"
+        "lectura": [],
+        "lectura_pendiente": "Alejandro entrega el caso en clase. No hay lectura previa.",
+        "carpeta": "https://drive.google.com/drive/folders/11QrCqfJjTFZziCfRsgqSb9oW1Di8V-h9"
       }
     ]
   },
@@ -385,14 +373,16 @@
           "tema": "3.3",
           "fecha": "2026-12-11",
           "titulo": "Atraer y retener talento al equipo",
-          "docente": "Alejandro Montoya"
+          "docente": "Alejandro Montoya",
+          "carpeta": "https://drive.google.com/drive/folders/1AP4sMOg4FFPaGQr7ofvlwv5me5J8tRR2"
         },
         {
           "n": 18,
           "tema": "3.4",
           "fecha": "2026-12-12",
           "titulo": "Desarrollar y potenciar al equipo",
-          "docente": "Alejandro Montoya"
+          "docente": "Alejandro Montoya",
+          "carpeta": "https://drive.google.com/drive/folders/11QrCqfJjTFZziCfRsgqSb9oW1Di8V-h9"
         },
         {
           "n": 19,

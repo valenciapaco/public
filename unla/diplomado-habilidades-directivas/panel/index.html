@@ -201,7 +201,7 @@ function render(d) {
   $('#app').innerHTML = `
     <section>${avisos}</section>
     <section><h2>Esta semana</h2><div class="grid2">${sesiones}</div></section>
-    <section><h2>Entregas</h2>${entregas}</section>
+    ${entregas ? `<section><h2>Entregas</h2>${entregas}</section>` : ''}
     <section><h2>La próxima semana</h2><div class="card"><p style="margin:0">${esc(d.proxima_semana.texto)}</p></div>${proximas ? `<div class="grid2" style="margin-top:12px">${proximas}</div>` : ''}</section>
     <section><h2>Recursos</h2><div class="recursos">${recursos}</div></section>
     <section><h2>Si faltaste: cómo reponer la asistencia</h2>${reposicion}</section>
